@@ -117,6 +117,172 @@ export default function HeroSection() {
             </div>
           </motion.div>
         </motion.div>
+
+        {/* Portfolio Logos Section */}
+        <motion.div
+          className="max-w-6xl mx-auto mt-20"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+        >
+          <motion.div
+            className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6"
+            variants={fadeInUp}
+          >
+            {/* Solana */}
+            <a
+              href="https://solana.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            >
+              <div className="w-16 h-16 flex items-center justify-center mb-3">
+                <Image
+                  src="/asset_logos/1.solana_logo.png"
+                  alt="Solana"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Solana</span>
+            </a>
+
+            {/* AAVE */}
+            <a
+              href="https://aave.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            >
+              <div className="w-16 h-16 flex items-center justify-center mb-3">
+                <Image
+                  src="/asset_logos/2.aave_logo.png"
+                  alt="AAVE"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">AAVE</span>
+            </a>
+
+            {/* SushiSwap */}
+            <a
+              href="https://sushi.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            >
+              <div className="w-16 h-16 flex items-center justify-center mb-3">
+                <Image
+                  src="/asset_logos/3.sushiswap_logo.png"
+                  alt="SushiSwap"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">SushiSwap</span>
+            </a>
+
+            {/* Polkadot */}
+            <a
+              href="https://polkadot.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            >
+              <div className="w-16 h-16 flex items-center justify-center mb-3">
+                <Image
+                  src="/asset_logos/4.polkadot_logo.png"
+                  alt="Polkadot"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Polkadot</span>
+            </a>
+
+            {/* Mintify */}
+            <a
+              href="https://app.mintify.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            >
+              <div className="w-16 h-16 flex items-center justify-center mb-3">
+                <Image
+                  src="/asset_logos/5.mintify_logo.png"
+                  alt="Mintify"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Mintify</span>
+            </a>
+
+            {/* Arkis */}
+            <a
+              href="https://arkis.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            >
+              <div className="w-16 h-16 flex items-center justify-center mb-3">
+                <Image
+                  src="/asset_logos/6.arkis_logo.png"
+                  alt="Arkis"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Arkis</span>
+            </a>
+
+            {/* Hinkal */}
+            <a
+              href="https://hinkal.pro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            >
+              <div className="w-16 h-16 flex items-center justify-center mb-3">
+                <Image
+                  src="/asset_logos/7.hinkal_logo.png"
+                  alt="Hinkal"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Hinkal</span>
+            </a>
+
+            {/* Usual */}
+            <a
+              href="https://usual.money"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            >
+              <div className="w-16 h-16 flex items-center justify-center mb-3">
+                <Image
+                  src="/asset_logos/8.usual_logo.png"
+                  alt="Usual"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Usual</span>
+            </a>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
