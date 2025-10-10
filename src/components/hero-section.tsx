@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { TrendingUp, Users, Shield } from 'lucide-react';
 
 export default function HeroSection() {
   const fadeInUp = {
@@ -61,12 +60,12 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative w-full max-w-md lg:max-w-lg">
+            <div className="relative w-full max-w-2xl sm:max-w-3xl lg:max-w-2xl">
               <Image
                 src="/psalion_cubes.png"
                 alt="Psalion Cubes"
-                width={600}
-                height={600}
+                width={800}
+                height={800}
                 className="w-full h-auto object-contain"
                 priority
               />
@@ -74,45 +73,48 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Stats Grid */}
+        {/* VC Section */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mt-16"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
         >
+          {/* Text Content */}
           <motion.div
-            className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-100"
+            className="text-left"
             variants={fadeInUp}
           >
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <TrendingUp className="w-6 h-6 text-blue-600" />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">$2.5B+</h3>
-            <p className="text-gray-600">Assets Under Management</p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              Driving innovation
+              <br />
+              in digital assets.
+            </h2>
+            
+            <p className="text-lg text-gray-600 mb-4 leading-relaxed">
+              Psalion VC is committed to empowering the next generation of blockchain and digital asset innovators.
+            </p>
+            
+            <p className="text-lg text-gray-600 leading-relaxed">
+              By investing in cutting-edge startups, we drive the development of technologies that enhance transparency, security, and efficiency across various industries.
+            </p>
           </motion.div>
 
+          {/* VC Cube Image */}
           <motion.div
-            className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-100"
+            className="flex justify-center lg:justify-end"
             variants={fadeInUp}
           >
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Users className="w-6 h-6 text-green-600" />
+            <div className="relative w-full max-w-md lg:max-w-lg">
+              <Image
+                src="/psalion_vc_cube.png"
+                alt="Psalion VC Cube"
+                width={500}
+                height={500}
+                className="w-full h-auto object-contain"
+              />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">500+</h3>
-            <p className="text-gray-600">Institutional Clients</p>
-          </motion.div>
-
-          <motion.div
-            className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-100"
-            variants={fadeInUp}
-          >
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Shield className="w-6 h-6 text-purple-600" />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">15+</h3>
-            <p className="text-gray-600">Years of Excellence</p>
           </motion.div>
         </motion.div>
       </div>
