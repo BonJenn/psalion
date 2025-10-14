@@ -2,6 +2,7 @@ import HeroSection from "@/components/hero-section";
 import BoardOfDirectors from "@/components/board-of-directors";
 import PsalionTeam from "@/components/psalion-team";
 import AwardsSection from "@/components/awards-section";
+import ClientTypesChart from "@/components/client-types-chart";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <BoardOfDirectors />
       <PsalionTeam />
       <AwardsSection />
+      <ClientTypesChart />
     </>
   );
 }
