@@ -1,6 +1,7 @@
 import HeroSection from "@/components/hero-section";
 import BoardOfDirectors from "@/components/board-of-directors";
 import PsalionTeam from "@/components/psalion-team";
+import AwardsSection from "@/components/awards-section";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <HeroSection />
       <BoardOfDirectors />
       <PsalionTeam />
+      <AwardsSection />
     </>
   );
 }
