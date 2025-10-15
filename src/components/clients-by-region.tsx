@@ -13,31 +13,36 @@ export default function ClientsByRegion() {
       name: 'NORTH AMERICA',
       clients: '12 CLIENTS',
       color: '#3B82F6',
-      countries: ['United States of America', 'Canada', 'Mexico', 'Greenland', 'Cuba', 'Jamaica', 'Haiti', 'Dominican Rep.', 'Puerto Rico', 'Trinidad and Tobago', 'Barbados', 'Grenada', 'St. Lucia', 'St. Vincent and the Grenadines', 'Antigua and Barb.', 'St. Kitts and Nevis', 'Dominica', 'Bahamas', 'Belize', 'Guatemala', 'Honduras', 'El Salvador', 'Nicaragua', 'Costa Rica', 'Panama']
+      countries: ['United States of America', 'Canada', 'Mexico', 'Greenland', 'Cuba', 'Jamaica', 'Haiti', 'Dominican Rep.', 'Puerto Rico', 'Trinidad and Tobago', 'Barbados', 'Grenada', 'St. Lucia', 'St. Vincent and the Grenadines', 'Antigua and Barb.', 'St. Kitts and Nevis', 'Dominica', 'Bahamas', 'Belize', 'Guatemala', 'Honduras', 'El Salvador', 'Nicaragua', 'Costa Rica', 'Panama'],
+      exclude: [] // No exclusions needed
     },
     {
       name: 'EUROPE',
       clients: '50 CLIENTS',
       color: '#3B82F6',
-      countries: ['United Kingdom', 'France', 'Germany', 'Italy', 'Spain', 'Netherlands', 'Belgium', 'Switzerland', 'Austria', 'Sweden', 'Norway', 'Denmark', 'Finland', 'Poland', 'Czechia', 'Hungary', 'Romania', 'Bulgaria', 'Croatia', 'Slovenia', 'Slovakia', 'Lithuania', 'Latvia', 'Estonia', 'Ireland', 'Portugal', 'Greece', 'Cyprus', 'Malta', 'Luxembourg', 'Liechtenstein', 'Monaco', 'Andorra', 'San Marino', 'Vatican', 'Moldova', 'Ukraine', 'Belarus', 'Serbia', 'Montenegro', 'Bosnia and Herz.', 'North Macedonia', 'Albania', 'Kosovo']
+      countries: ['United Kingdom', 'France', 'Germany', 'Italy', 'Spain', 'Netherlands', 'Belgium', 'Switzerland', 'Austria', 'Sweden', 'Norway', 'Denmark', 'Finland', 'Poland', 'Czechia', 'Hungary', 'Romania', 'Bulgaria', 'Croatia', 'Slovenia', 'Slovakia', 'Lithuania', 'Latvia', 'Estonia', 'Ireland', 'Portugal', 'Greece', 'Cyprus', 'Malta', 'Luxembourg', 'Liechtenstein', 'Monaco', 'Andorra', 'San Marino', 'Vatican', 'Moldova', 'Ukraine', 'Belarus', 'Serbia', 'Montenegro', 'Bosnia and Herz.', 'North Macedonia', 'Albania', 'Kosovo'],
+      exclude: ['French Guiana', 'Guadeloupe', 'Martinique', 'Réunion', 'Mayotte', 'New Caledonia', 'French Polynesia', 'Wallis and Futuna', 'Saint Pierre and Miquelon', 'Saint Barthélemy', 'Saint Martin', 'Iceland'] // Exclude overseas territories and Iceland
     },
     {
       name: 'ASIA-PACIFIC',
       clients: '13 CLIENTS',
       color: '#3B82F6',
-      countries: ['China', 'Japan', 'South Korea', 'India', 'Australia', 'New Zealand', 'Singapore', 'Hong Kong', 'Taiwan', 'Thailand', 'Malaysia', 'Indonesia', 'Philippines', 'Vietnam', 'Bangladesh', 'Pakistan', 'Sri Lanka', 'Myanmar', 'Cambodia', 'Laos', 'Brunei', 'Mongolia', 'Nepal', 'Bhutan', 'Maldives', 'Fiji', 'Papua New Guinea', 'Solomon Is.', 'Vanuatu', 'New Caledonia', 'French Polynesia', 'Samoa', 'Tonga', 'Kiribati', 'Tuvalu', 'Nauru', 'Marshall Is.', 'Micronesia', 'Palau', 'American Samoa', 'Guam', 'Northern Mariana Is.', 'Cook Is.', 'Niue', 'Tokelau', 'Wallis and Futuna', 'Russia', 'Kazakhstan', 'Uzbekistan', 'Turkmenistan', 'Tajikistan', 'Kyrgyzstan', 'Afghanistan', 'North Korea']
+      countries: ['China', 'Japan', 'South Korea', 'India', 'Australia', 'New Zealand', 'Singapore', 'Taiwan', 'Thailand', 'Malaysia', 'Indonesia', 'Philippines', 'Vietnam', 'Bangladesh', 'Pakistan', 'Sri Lanka', 'Myanmar', 'Cambodia', 'Laos', 'Brunei', 'Mongolia', 'Nepal', 'Bhutan', 'Maldives', 'Fiji', 'Papua New Guinea', 'Solomon Is.', 'Vanuatu', 'Samoa', 'Tonga', 'Russia', 'Kazakhstan', 'Uzbekistan', 'Turkmenistan', 'Tajikistan', 'Kyrgyzstan', 'Afghanistan', 'North Korea'],
+      exclude: ['Alaska', 'Hawaii', 'Guam', 'American Samoa', 'Northern Mariana Is.', 'Puerto Rico', 'US Virgin Islands', 'Greenland'] // Exclude US territories and Greenland
     },
     {
       name: 'MIDDLE EAST',
       clients: '4 CLIENTS',
       color: '#3B82F6',
-      countries: ['Saudi Arabia', 'United Arab Emirates', 'Qatar', 'Kuwait', 'Bahrain', 'Oman', 'Yemen', 'Iran', 'Iraq', 'Syria', 'Jordan', 'Lebanon', 'Israel', 'Palestine', 'Turkey']
+      countries: ['Saudi Arabia', 'United Arab Emirates', 'Qatar', 'Kuwait', 'Bahrain', 'Oman', 'Yemen', 'Iran', 'Iraq', 'Syria', 'Jordan', 'Lebanon', 'Israel', 'Palestine', 'Turkey'],
+      exclude: [] // No exclusions needed
     },
     {
       name: 'AFRICA',
       clients: '3 CLIENTS',
       color: '#3B82F6',
-      countries: ['South Africa', 'Nigeria', 'Egypt', 'Kenya', 'Ghana', 'Morocco', 'Tunisia', 'Algeria', 'Libya', 'Sudan', 'Ethiopia', 'Uganda', 'Tanzania', 'Rwanda', 'Burundi', 'Malawi', 'Zambia', 'Zimbabwe', 'Botswana', 'Namibia', 'Eswatini', 'Lesotho', 'Madagascar', 'Mauritius', 'Seychelles', 'Comoros', 'Mayotte', 'Réunion', 'Mozambique', 'Angola', 'Dem. Rep. Congo', 'Congo', 'Central African Rep.', 'Chad', 'Niger', 'S. Sudan', 'Eritrea', 'Djibouti', 'Somalia', 'Burkina Faso', 'Côte d\'Ivoire', 'Liberia', 'Sierra Leone', 'Guinea', 'Guinea-Bissau', 'Gambia', 'Senegal', 'Mali', 'Mauritania', 'Cape Verde', 'São Tomé and Principe', 'Eq. Guinea', 'Gabon', 'Cameroon', 'Benin', 'Togo', 'W. Sahara']
+      countries: ['South Africa', 'Nigeria', 'Egypt', 'Kenya', 'Ghana', 'Morocco', 'Tunisia', 'Algeria', 'Libya', 'Sudan', 'Ethiopia', 'Uganda', 'Tanzania', 'Rwanda', 'Burundi', 'Malawi', 'Zambia', 'Zimbabwe', 'Botswana', 'Namibia', 'Eswatini', 'Lesotho', 'Madagascar', 'Mauritius', 'Seychelles', 'Comoros', 'Mayotte', 'Réunion', 'Mozambique', 'Angola', 'Dem. Rep. Congo', 'Congo', 'Central African Rep.', 'Chad', 'Niger', 'S. Sudan', 'Eritrea', 'Djibouti', 'Somalia', 'Burkina Faso', 'Côte d\'Ivoire', 'Liberia', 'Sierra Leone', 'Guinea', 'Guinea-Bissau', 'Gambia', 'Senegal', 'Mali', 'Mauritania', 'Cape Verde', 'São Tomé and Principe', 'Eq. Guinea', 'Gabon', 'Cameroon', 'Benin', 'Togo', 'W. Sahara'],
+      exclude: [] // No exclusions needed
     }
   ];
 
@@ -56,36 +61,45 @@ export default function ClientsByRegion() {
     transition: { duration: 0.6 }
   };
 
-  // Function to determine if a country should be highlighted
-  const getCountryFill = (geo: any) => {
-    // Check what properties are available
-    if (!geo.properties) {
-      return '#f8fafc';
-    }
-    
-    // Try different possible property names for country name
-    const countryName = geo.properties.NAME || geo.properties.name || geo.properties.NAME_EN || geo.properties.ADMIN;
-    
-    if (!countryName) {
-      return '#f8fafc'; // Light gray for countries without names
-    }
-    
-    // No debug logging for cleaner output
-    
-    // Check if this country belongs to the hovered region
-    if (hoveredRegion !== null) {
-      const currentRegion = regions[hoveredRegion];
-      const isMatch = currentRegion.countries.some(country => 
-        countryName === country
-      );
-      
-      if (isMatch) {
-        return '#3B82F6'; // Blue for highlighted countries
-      }
-    }
-    
-    return '#f8fafc'; // Light gray for unhighlighted countries
-  };
+      // Function to determine if a country should be highlighted
+      const getCountryFill = (geo: any) => {
+        // Check what properties are available
+        if (!geo.properties) {
+          return '#f8fafc';
+        }
+        
+        // Try different possible property names for country name
+        const countryName = geo.properties.NAME || geo.properties.name || geo.properties.NAME_EN || geo.properties.ADMIN;
+        
+        if (!countryName) {
+          return '#f8fafc'; // Light gray for countries without names
+        }
+        
+        // Check if this country belongs to the hovered region
+        if (hoveredRegion !== null) {
+          const currentRegion = regions[hoveredRegion];
+          
+          // First check if this country is explicitly excluded
+          const isExcluded = currentRegion.exclude.some(excludedCountry => 
+            countryName === excludedCountry
+          );
+          
+          if (isExcluded) {
+            return '#f8fafc'; // Light gray for excluded countries
+          }
+          
+          // Then check if this country is included
+          const isMatch = currentRegion.countries.some(country => 
+            countryName === country
+          );
+          
+          if (isMatch) {
+            return '#3B82F6'; // Blue for highlighted countries
+          }
+        }
+        
+        return '#f8fafc'; // Light gray for unhighlighted countries
+      };
 
   return (
     <section className="py-20 bg-white hidden lg:block">
@@ -132,12 +146,22 @@ export default function ClientsByRegion() {
                   geographies.map((geo) => {
                     const countryName = geo.properties.NAME || geo.properties.name || geo.properties.NAME_EN || geo.properties.ADMIN;
                     
-                    // Find which region this country belongs to
-                    const belongsToRegion = regions.findIndex(region => 
-                      region.countries.some(country => 
-                        countryName === country
-                      )
-                    );
+                        // Find which region this country belongs to
+                        const belongsToRegion = regions.findIndex(region => {
+                          // Check if country is excluded from this region
+                          const isExcluded = region.exclude.some(excludedCountry => 
+                            countryName === excludedCountry
+                          );
+                          
+                          if (isExcluded) {
+                            return false; // Don't belong to this region if excluded
+                          }
+                          
+                          // Check if country is included in this region
+                          return region.countries.some(country => 
+                            countryName === country
+                          );
+                        });
                     
                     return (
                       <Geography
