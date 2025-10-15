@@ -13,7 +13,7 @@ export const sanityClient = createClient({
 // Image URL builder
 const builder = imageUrlBuilder(sanityClient);
 
-export const urlFor = (source: unknown) => builder.image(source);
+export const urlFor = (source: any) => builder.image(source);
 
 // Type definitions for CMS content
 export interface PressMention {
@@ -25,6 +25,28 @@ export interface PressMention {
   excerpt: string;
   category: 'news' | 'analysis' | 'interview' | 'award';
   featured: boolean;
+}
+
+export interface MentionContent {
+  _id: string;
+  publisherName: string;
+  publisherLogo: {
+    asset: {
+      _ref: string;
+    };
+  };
+  articleTitle: string;
+  articleUrl: string;
+  isInterview: boolean;
+  intervieweeName?: string;
+  intervieweeHeadshot?: {
+    asset: {
+      _ref: string;
+    };
+  };
+  publishDate: string;
+  featured: boolean;
+  order: number;
 }
 
 export interface PortfolioCompany {
@@ -90,6 +112,29 @@ export async function getPressMentions(): Promise<PressMention[]> {
     return await sanityClient.fetch(query);
   } catch (error) {
     console.error('Error fetching press mentions:', error);
+    return [];
+  }
+}
+
+export async function getMentionContent(): Promise<MentionContent[]> {
+  try {
+    const query = `*[_type == "mentionContent" && featured == true] | order(order asc, publishDate desc) {
+      _id,
+      publisherName,
+      publisherLogo,
+      articleTitle,
+      articleUrl,
+      isInterview,
+      intervieweeName,
+      intervieweeHeadshot,
+      publishDate,
+      featured,
+      order
+    }`;
+    
+    return await sanityClient.fetch(query);
+  } catch (error) {
+    console.error('Error fetching mention content:', error);
     return [];
   }
 }
@@ -181,6 +226,41 @@ export const schemas = {
       },
       { name: 'featured', title: 'Featured', type: 'boolean' }
     ]
+  },
+
+  mentionContent: {
+    name: 'mentionContent',
+    title: 'Mention & Featured Content',
+    type: 'document',
+    fields: [
+      { name: 'publisherName', title: 'Publisher Name', type: 'string' },
+      { name: 'publisherLogo', title: 'Publisher Logo', type: 'image' },
+      { name: 'articleTitle', title: 'Article Title', type: 'string' },
+      { name: 'articleUrl', title: 'Article URL', type: 'url' },
+      { name: 'isInterview', title: 'Is Interview?', type: 'boolean' },
+      { 
+        name: 'intervieweeName', 
+        title: 'Interviewee Name', 
+        type: 'string',
+        hidden: ({ parent }: { parent: any }) => !parent?.isInterview
+      },
+      { 
+        name: 'intervieweeHeadshot', 
+        title: 'Interviewee Headshot', 
+        type: 'image',
+        hidden: ({ parent }: { parent: any }) => !parent?.isInterview
+      },
+      { name: 'publishDate', title: 'Publish Date', type: 'date' },
+      { name: 'featured', title: 'Featured', type: 'boolean' },
+      { name: 'order', title: 'Display Order', type: 'number' }
+    ],
+    preview: {
+      select: {
+        title: 'articleTitle',
+        subtitle: 'publisherName',
+        media: 'publisherLogo'
+      }
+    }
   },
   
   portfolioCompany: {

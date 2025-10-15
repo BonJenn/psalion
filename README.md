@@ -18,6 +18,7 @@ A modern, professional website for Psalion Capital built with Next.js, TypeScrip
 - **Framework**: Next.js 15 with App Router
 - **Language**: TypeScript
 - **Styling**: TailwindCSS
+- **CMS**: Sanity (for dynamic content management)
 - **UI Components**: ShadCN UI
 - **Animations**: Framer Motion
 - **CMS**: Sanity
@@ -151,6 +152,7 @@ src/
 The website includes Sanity CMS integration for dynamic content management:
 
 ### Content Types
+- **Mention & Featured Content**: Press mentions with publisher logos, article titles, and optional interview information
 - **Press Mentions**: News articles and media coverage
 - **Portfolio Companies**: VC portfolio companies
 - **Page Sections**: Customizable page content
