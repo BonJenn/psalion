@@ -29,19 +29,23 @@ export interface PressMention {
 
 export interface MentionContent {
   _id: string;
-  publisherName: string;
-  publisherLogo: {
-    asset: {
-      _ref: string;
+  publisherData: {
+    publisherName: string;
+    publisherLogo: {
+      asset: {
+        _ref: string;
+      };
     };
   };
   articleTitle: string;
   articleUrl: string;
   isInterview: boolean;
-  intervieweeName?: string;
-  intervieweeHeadshot?: {
-    asset: {
-      _ref: string;
+  intervieweeData?: {
+    intervieweeName: string;
+    intervieweeHeadshot: {
+      asset: {
+        _ref: string;
+      };
     };
   };
   publishDate: string;
@@ -120,19 +124,40 @@ export async function getMentionContent(): Promise<MentionContent[]> {
   try {
     const query = `*[_type == "mentionContent" && featured == true] | order(order asc, publishDate desc) {
       _id,
-      publisherName,
-      publisherLogo,
+      publisherData {
+        publisherName,
+        publisherLogo
+      },
+      "legacyPublisherName": publisherName,
+      "legacyPublisherLogo": publisherLogo,
       articleTitle,
       articleUrl,
       isInterview,
-      intervieweeName,
-      intervieweeHeadshot,
+      intervieweeData {
+        intervieweeName,
+        intervieweeHeadshot
+      },
+      "legacyIntervieweeName": intervieweeName,
+      "legacyIntervieweeHeadshot": intervieweeHeadshot,
       publishDate,
       featured,
       order
     }`;
     
-    return await sanityClient.fetch(query);
+    const data = await sanityClient.fetch(query);
+    
+    // Transform data to handle both old and new structures
+    return data.map((item: any) => ({
+      ...item,
+      publisherData: item.publisherData || {
+        publisherName: item.legacyPublisherName,
+        publisherLogo: item.legacyPublisherLogo
+      },
+      intervieweeData: item.intervieweeData || (item.legacyIntervieweeName ? {
+        intervieweeName: item.legacyIntervieweeName,
+        intervieweeHeadshot: item.legacyIntervieweeHeadshot
+      } : undefined)
+    }));
   } catch (error) {
     console.error('Error fetching mention content:', error);
     return [];

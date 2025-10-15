@@ -91,36 +91,42 @@ export default function MentionsSection() {
               <div className="flex items-center space-x-6">
                 {/* Publisher Logo and Name */}
                 <div className="flex items-center space-x-3 min-w-0 flex-shrink-0">
-                  {mention.publisherLogo && (
+                  {mention.publisherData?.publisherLogo ? (
                     <div className="w-8 h-8 relative flex-shrink-0">
                       <Image
-                        src={urlFor(mention.publisherLogo).width(32).height(32).url()}
-                        alt={`${mention.publisherName} logo`}
+                        src={urlFor(mention.publisherData.publisherLogo).width(32).height(32).url()}
+                        alt={`${mention.publisherData.publisherName} logo`}
                         fill
                         className="object-contain"
                       />
                     </div>
+                  ) : (
+                    <div className="w-8 h-8 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
+                      <span className="text-xs font-medium text-gray-500">
+                        {mention.publisherData?.publisherName?.charAt(0) || '?'}
+                      </span>
+                    </div>
                   )}
                   <span className="text-sm font-medium text-gray-900 whitespace-nowrap">
-                    {mention.publisherName}
+                    {mention.publisherData?.publisherName}
                   </span>
                 </div>
 
                 {/* Interview Info (if applicable) */}
-                {mention.isInterview && mention.intervieweeName && (
+                {mention.isInterview && mention.intervieweeData?.intervieweeName && (
                   <div className="flex items-center space-x-3 min-w-0 flex-shrink-0">
-                    {mention.intervieweeHeadshot && (
+                    {mention.intervieweeData.intervieweeHeadshot && (
                       <div className="w-8 h-8 relative flex-shrink-0">
                         <Image
-                          src={urlFor(mention.intervieweeHeadshot).width(32).height(32).url()}
-                          alt={`${mention.intervieweeName} headshot`}
+                          src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(32).height(32).url()}
+                          alt={`${mention.intervieweeData.intervieweeName} headshot`}
                           fill
                           className="object-cover rounded-full grayscale"
                         />
                       </div>
                     )}
                     <span className="text-sm text-gray-500 whitespace-nowrap">
-                      Interview with {mention.intervieweeName}
+                      Interview with {mention.intervieweeData.intervieweeName}
                     </span>
                   </div>
                 )}
