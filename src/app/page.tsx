@@ -3,6 +3,7 @@ import BoardOfDirectors from "@/components/board-of-directors";
 import PsalionTeam from "@/components/psalion-team";
 import AwardsSection from "@/components/awards-section";
 import ClientTypesChart from "@/components/client-types-chart";
+import ClientsByRegion from "@/components/clients-by-region";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <PsalionTeam />
       <AwardsSection />
       <ClientTypesChart />
+      <ClientsByRegion />
     </>
   );
 }
