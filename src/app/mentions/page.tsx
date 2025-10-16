@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { MentionContent, getMentionContent, urlFor } from '@/lib/sanity';
-import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 
 export default function MentionsPage() {
@@ -245,11 +244,6 @@ export default function MentionsPage() {
           </div>
         )}
 
-        {/* Newsletter CTA */}
-        <div className="mt-24">
-          {/** Load client component dynamically to avoid server action hydration issues in edge cases */}
-          {dynamic(() => import('@/components/newsletter-cta'), { ssr: false })({ source: '/mentions' })}
-        </div>
 
       </div>
     </div>

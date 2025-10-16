@@ -29,7 +29,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
 
   return (
     <section className="py-24 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="bg-gradient-to-b from-gray-50 to-gray-100 rounded-none">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
             <div className="flex-1">
