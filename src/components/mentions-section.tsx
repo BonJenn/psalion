@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { MentionContent, getMentionContent, urlFor } from '@/lib/sanity';
 import { useEffect, useState } from 'react';
 
 export default function MentionsSection() {
   const [mentions, setMentions] = useState<MentionContent[]>([]);
   const [loading, setLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(5);
 
   useEffect(() => {
     const fetchMentions = async () => {
@@ -24,20 +26,18 @@ export default function MentionsSection() {
     fetchMentions();
   }, []);
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
+  const handleShowMore = () => {
+    setVisibleCount(prev => prev + 5);
   };
 
   if (loading) {
     return (
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-200 rounded w-64 mb-12"></div>
             <div className="space-y-6">
-              {[...Array(5)].map((_, i) => (
+              {[...Array(6)].map((_, i) => (
                 <div key={i} className="h-16 bg-gray-200 rounded"></div>
               ))}
             </div>
@@ -51,9 +51,11 @@ export default function MentionsSection() {
     return null; // Don't render section if no mentions
   }
 
+  const visibleMentions = mentions.slice(0, visibleCount);
+
   return (
     <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:pl-8 lg:pr-16">
         {/* Section Title */}
         <motion.div
           className="mb-12"
@@ -62,84 +64,106 @@ export default function MentionsSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-400 uppercase tracking-wide">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 uppercase tracking-wide">
             Mentions and Featured Content
           </h2>
-          <div className="mt-4 border-b border-dotted border-gray-300 w-32"></div>
         </motion.div>
 
         {/* Mentions List */}
         <motion.div
-          className="space-y-6"
-          variants={fadeInUp}
-          initial="initial"
-          whileInView="animate"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          {mentions.map((mention, index) => (
-            <motion.a
-              key={mention._id}
-              href={mention.articleUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block group hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex items-center space-x-6">
-                {/* Publisher Logo and Name */}
-                <div className="flex items-center space-x-3 min-w-0 flex-shrink-0">
-                  {mention.publisherData?.publisherLogo ? (
-                    <div className="w-8 h-8 relative flex-shrink-0">
-                      <Image
-                        src={urlFor(mention.publisherData.publisherLogo).width(32).height(32).url()}
-                        alt={`${mention.publisherData.publisherName} logo`}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-8 h-8 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
-                      <span className="text-xs font-medium text-gray-500">
-                        {mention.publisherData?.publisherName?.charAt(0) || '?'}
+          
+          {/* Mentions List */}
+          <div className="divide-y divide-gray-200">
+            {visibleMentions.map((mention, index) => (
+              <motion.a
+                key={mention._id}
+                href={mention.articleUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="py-12 grid grid-cols-1 md:grid-cols-12 gap-y-10 md:gap-x-28 items-center">
+                  {/* Publisher Logo and Name */}
+                  <div className="flex items-center space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
+                    {mention.publisherData?.publisherLogo ? (
+                      <div className="w-14 h-14 relative flex-shrink-0">
+                        <Image
+                          src={urlFor(mention.publisherData.publisherLogo).width(56).height(56).url()}
+                          alt={`${mention.publisherData.publisherName} logo`}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-14 h-14 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
+                        <span className="text-base font-medium text-gray-500">
+                          {mention.publisherData?.publisherName?.charAt(0) || '?'}
+                        </span>
+                      </div>
+                    )}
+                    <span className="text-sm font-medium text-gray-900 whitespace-nowrap">
+                      {mention.publisherData?.publisherName}
+                    </span>
+                  </div>
+
+                  {/* Interview Info (if applicable) */}
+                  {mention.isInterview && mention.intervieweeData?.intervieweeName && (
+                    <div className="flex items-center space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
+                      {mention.intervieweeData.intervieweeHeadshot && (
+                        <div className="w-14 h-14 relative flex-shrink-0">
+                          <Image
+                            src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(56).height(56).url()}
+                            alt={`${mention.intervieweeData.intervieweeName} headshot`}
+                            fill
+                            className="object-cover rounded-full grayscale"
+                          />
+                        </div>
+                      )}
+                      <span className="text-sm text-gray-600 whitespace-nowrap">
+                        Interview with {mention.intervieweeData.intervieweeName}
                       </span>
                     </div>
                   )}
-                  <span className="text-sm font-medium text-gray-900 whitespace-nowrap">
-                    {mention.publisherData?.publisherName}
-                  </span>
-                </div>
 
-                {/* Interview Info (if applicable) */}
-                {mention.isInterview && mention.intervieweeData?.intervieweeName && (
-                  <div className="flex items-center space-x-3 min-w-0 flex-shrink-0">
-                    {mention.intervieweeData.intervieweeHeadshot && (
-                      <div className="w-8 h-8 relative flex-shrink-0">
-                        <Image
-                          src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(32).height(32).url()}
-                          alt={`${mention.intervieweeData.intervieweeName} headshot`}
-                          fill
-                          className="object-cover rounded-full grayscale"
-                        />
-                      </div>
-                    )}
-                    <span className="text-sm text-gray-500 whitespace-nowrap">
-                      Interview with {mention.intervieweeData.intervieweeName}
-                    </span>
+                  {/* Article Title */}
+                  <div className="flex-1 min-w-0 mt-3 md:mt-0 md:col-span-6 md:pl-16">
+                    <h3 className="text-base md:text-lg font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
+                      {mention.articleTitle}
+                    </h3>
                   </div>
-                )}
-
-                {/* Article Title */}
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-base font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
-                    {mention.articleTitle}
-                  </h3>
                 </div>
-              </div>
-            </motion.a>
-          ))}
+              </motion.a>
+            ))}
+          </div>
+
+          
+
+          {/* View All Button */}
+          <div className="mt-8 pt-6 border-t border-gray-200 text-center">
+            <Link 
+              href="/mentions"
+              className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm uppercase tracking-wide group"
+            >
+              <span>VIEW ALL</span>
+              <svg 
+                className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-200" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

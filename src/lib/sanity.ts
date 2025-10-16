@@ -122,7 +122,7 @@ export async function getPressMentions(): Promise<PressMention[]> {
 
 export async function getMentionContent(): Promise<MentionContent[]> {
   try {
-    const query = `*[_type == "mentionContent" && featured == true] | order(order asc, publishDate desc) {
+    const query = `*[_type == "mentionContent" && featured == true] | order(publishDate desc, order asc) {
       _id,
       publisherData {
         publisherName,
