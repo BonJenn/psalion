@@ -22,8 +22,10 @@ const SplineComponent = ({ scene, ...props }: any) => {
   const [Spline, setSpline] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     loadSpline().then((SplineComponent) => {
       if (SplineComponent) {
         setSpline(() => SplineComponent);
@@ -33,6 +35,15 @@ const SplineComponent = ({ scene, ...props }: any) => {
       setIsLoading(false);
     });
   }, []);
+
+  // Don't render anything during SSR
+  if (!mounted) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
