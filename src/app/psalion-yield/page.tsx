@@ -18,15 +18,23 @@ const Spline = dynamic(() => import('@splinetool/react-spline'), {
 // Fallback component for when WebGL fails
 function SplineFallback() {
   return (
-    <div className="w-full h-96 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-24 h-24 mx-auto mb-4 bg-blue-500 rounded-full flex items-center justify-center">
+    <div className="w-full h-[600px] lg:h-[700px] bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg flex items-center justify-center relative overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-blue-200 rounded-full blur-xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-indigo-200 rounded-full blur-xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-purple-200 rounded-full blur-lg"></div>
+      </div>
+      
+      {/* Content */}
+      <div className="text-center z-10">
+        <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
           <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
           </svg>
         </div>
-        <h3 className="text-lg font-semibold text-gray-700 mb-2">3D Model</h3>
-        <p className="text-sm text-gray-500">Interactive 3D visualization</p>
+        <h3 className="text-xl font-semibold text-gray-800 mb-2">Interactive 3D Model</h3>
+        <p className="text-gray-600 text-sm">3D visualization requires WebGL support</p>
       </div>
     </div>
   );
@@ -65,7 +73,40 @@ class SplineErrorBoundary extends Component<{ children: React.ReactNode }, { has
   }
 }
 
-// Direct Spline component - let it try to load without interference
+// Check if WebGL is supported and working
+function hasWorkingWebGL(): boolean {
+  try {
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    if (!gl) {
+      console.log('WebGL: No context available');
+      return false;
+    }
+    
+    // Just test basic WebGL functionality, don't be too strict
+    const program = gl.createProgram();
+    if (!program) {
+      console.log('WebGL: Cannot create program');
+      return false;
+    }
+    
+    gl.deleteProgram(program);
+    console.log('WebGL: Working correctly');
+    return true;
+  } catch (e) {
+    console.log('WebGL: Error during test:', e);
+    return false;
+  }
+}
+
+// Check if we're in Chrome
+function isChrome(): boolean {
+  const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+  console.log('Browser detection - Chrome:', isChrome);
+  return isChrome;
+}
+
+// Direct Spline component - prevent loading in problematic Chrome environments
 function DirectSpline({ scene, style }: { scene: string; style: any }) {
   const [showFallback, setShowFallback] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -73,10 +114,21 @@ function DirectSpline({ scene, style }: { scene: string; style: any }) {
   useEffect(() => {
     setMounted(true);
     
-    // Set a timeout to show fallback if Spline doesn't load within 5 seconds
+    console.log('DirectSpline: Starting WebGL check...');
+    const webglWorks = hasWorkingWebGL();
+    const isChromeBrowser = isChrome();
+    
+    console.log('DirectSpline: WebGL works:', webglWorks, 'Chrome:', isChromeBrowser);
+    
+    // Let Spline attempt to load regardless of WebGL detection
+    // The Error Boundary will catch any runtime errors
+    console.log('DirectSpline: Allowing Spline to attempt loading');
+    
+    // Set a timeout to show fallback if Spline doesn't load within 8 seconds
     const timeout = setTimeout(() => {
+      console.log('DirectSpline: Timeout reached, showing fallback');
       setShowFallback(true);
-    }, 5000);
+    }, 8000);
 
     return () => clearTimeout(timeout);
   }, []);
