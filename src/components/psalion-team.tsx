@@ -89,7 +89,7 @@ export default function PsalionTeam() {
 
         {/* Team Grid */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -101,7 +101,7 @@ export default function PsalionTeam() {
               className="text-center"
               variants={fadeInUp}
             >
-              <div className="relative w-24 h-24 mx-auto mb-4 rounded-lg overflow-hidden">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-3 sm:mb-4 rounded-lg overflow-hidden">
                 <Image
                   src={member.image}
                   alt={member.name}
@@ -109,10 +109,10 @@ export default function PsalionTeam() {
                   className="object-cover grayscale"
                 />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-1">
+              <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1">
                 {member.name}
               </h3>
-              <p className="text-base text-gray-600">
+              <p className="text-xs sm:text-sm lg:text-base text-gray-600">
                 {member.role}
               </p>
             </motion.div>

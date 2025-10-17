@@ -209,7 +209,7 @@ export default function PsalionVCPage() {
       {/* Hero Section */}
       <section className="pt-16 pb-4 lg:pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left Column - Text Content */}
             <motion.div
               className="space-y-6"
@@ -217,15 +217,15 @@ export default function PsalionVCPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                 Driving innovation in digital assets.
               </h1>
               
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
                 Psalion VC is committed to empowering the next generation of blockchain and digital asset innovators.
               </p>
               
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
                 By investing in cutting-edge startups, we drive the development of technologies that enhance transparency, security, and efficiency across various industries.
               </p>
             </motion.div>
@@ -237,7 +237,7 @@ export default function PsalionVCPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="w-full max-w-2xl h-[600px] lg:h-[700px] overflow-hidden">
+              <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
                 <DirectSpline
                   scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/funds.splinecode"
                   style={{ 

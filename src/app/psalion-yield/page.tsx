@@ -205,7 +205,7 @@ export default function PsalionYieldPage() {
       {/* Hero Section */}
       <section className="pt-16 pb-8 lg:pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-center">
             {/* Left Column - Text Content */}
             <motion.div
               className="space-y-6 lg:col-span-2"
@@ -213,11 +213,11 @@ export default function PsalionYieldPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                 Psalion Yield is a unique, fully liquid strategy that offers attractive returns for investment, cash management or white-label distribution.
               </h1>
               
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
                 The strategy can be accessed either via Separately Managed Accounts (SMAs) or via Psalion's Yield Funds.
               </p>
             </motion.div>
@@ -229,7 +229,7 @@ export default function PsalionYieldPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-                  <div className="w-full max-w-4xl h-[600px] lg:h-[700px] overflow-hidden">
+                  <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-4xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
                 <DirectSpline
                   scene="https://prod.spline.design/x7emdz5Mo6GlTTWV/scene.splinecode"
                   style={{ 
@@ -248,7 +248,7 @@ export default function PsalionYieldPage() {
       {/* Features Grid Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Feature 1: High yields */}
             <motion.div
               className="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300"

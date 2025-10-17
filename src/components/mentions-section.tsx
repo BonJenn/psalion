@@ -91,11 +91,11 @@ export default function MentionsSection() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="py-12 grid grid-cols-1 md:grid-cols-12 gap-y-10 md:gap-x-28 items-center">
+                <div className="py-8 sm:py-12 grid grid-cols-1 md:grid-cols-12 gap-y-6 sm:gap-y-10 md:gap-x-28 items-center">
                   {/* Publisher Logo and Name */}
-                  <div className="flex items-center space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
+                  <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                     {mention.publisherData?.publisherLogo ? (
-                      <div className="w-14 h-14 relative flex-shrink-0">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0">
                         <Image
                           src={urlFor(mention.publisherData.publisherLogo).width(56).height(56).url()}
                           alt={`${mention.publisherData.publisherName} logo`}
@@ -104,22 +104,22 @@ export default function MentionsSection() {
                         />
                       </div>
                     ) : (
-                      <div className="w-14 h-14 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
                         <span className="text-base font-medium text-gray-500">
                           {mention.publisherData?.publisherName?.charAt(0) || '?'}
                         </span>
                       </div>
                     )}
-                    <span className="text-sm font-medium text-gray-900 whitespace-nowrap">
+                    <span className="text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap">
                       {mention.publisherData?.publisherName}
                     </span>
                   </div>
 
                   {/* Interview Info (if applicable) */}
                   {mention.isInterview && mention.intervieweeData?.intervieweeName && (
-                    <div className="flex items-center space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
+                    <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
                       {mention.intervieweeData.intervieweeHeadshot && (
-                        <div className="w-14 h-14 relative flex-shrink-0">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0">
                           <Image
                             src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(56).height(56).url()}
                             alt={`${mention.intervieweeData.intervieweeName} headshot`}
@@ -128,7 +128,7 @@ export default function MentionsSection() {
                           />
                         </div>
                       )}
-                      <span className="text-sm text-gray-600 whitespace-nowrap">
+                      <span className="text-xs sm:text-sm text-gray-600 whitespace-nowrap">
                         Interview with {mention.intervieweeData.intervieweeName}
                       </span>
                     </div>
@@ -136,7 +136,7 @@ export default function MentionsSection() {
 
                   {/* Article Title */}
                   <div className="flex-1 min-w-0 mt-3 md:mt-0 md:col-span-6 md:pl-16">
-                    <h3 className="text-base md:text-lg font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
+                    <h3 className="text-sm sm:text-base md:text-lg font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
                       {mention.articleTitle}
                     </h3>
                   </div>

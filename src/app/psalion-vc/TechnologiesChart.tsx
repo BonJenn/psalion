@@ -415,13 +415,13 @@ export default function TechnologiesChart() {
       </div>
 
       {/* Filter Bar */}
-      <div className="flex flex-wrap items-center gap-4 mb-8 justify-center">
-        <div className="flex items-center gap-2">
-          <span className="text-gray-700 font-medium">See companies from</span>
+      <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-6 sm:mb-8 justify-center">
+        <div className="flex items-center gap-1 sm:gap-2">
+          <span className="text-sm sm:text-base text-gray-700 font-medium">See companies from</span>
           <div className="relative">
             <button
               onClick={() => setIsFundDropdownOpen(!isFundDropdownOpen)}
-              className="px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors flex items-center gap-2 min-w-[120px] justify-between"
+              className="px-3 sm:px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors flex items-center gap-2 min-w-[100px] sm:min-w-[120px] justify-between text-sm sm:text-base"
             >
               {selectedFund}
               <svg 
@@ -455,12 +455,12 @@ export default function TechnologiesChart() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-gray-700 font-medium">based in</span>
+        <div className="flex items-center gap-1 sm:gap-2">
+          <span className="text-sm sm:text-base text-gray-700 font-medium">based in</span>
           <div className="relative">
             <button
               onClick={() => setIsLocationDropdownOpen(!isLocationDropdownOpen)}
-              className="px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors flex items-center gap-2 min-w-[140px] justify-between"
+              className="px-3 sm:px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors flex items-center gap-2 min-w-[120px] sm:min-w-[140px] justify-between text-sm sm:text-base"
             >
               {selectedLocation}
               <svg 
@@ -494,12 +494,12 @@ export default function TechnologiesChart() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-gray-700 font-medium">in</span>
+        <div className="flex items-center gap-1 sm:gap-2">
+          <span className="text-sm sm:text-base text-gray-700 font-medium">in</span>
           <div className="relative">
             <button
               onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
-              className="px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors flex items-center gap-2 min-w-[160px] justify-between"
+              className="px-3 sm:px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors flex items-center gap-2 min-w-[140px] sm:min-w-[160px] justify-between text-sm sm:text-base"
             >
               {selectedCategory}
               <svg 
@@ -540,10 +540,10 @@ export default function TechnologiesChart() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Company Name</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Description</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Category</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Region</th>
+                <th className="px-3 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">Company Name</th>
+                <th className="px-3 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900 hidden sm:table-cell">Description</th>
+                <th className="px-3 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">Category</th>
+                <th className="px-3 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">Region</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
@@ -555,22 +555,22 @@ export default function TechnologiesChart() {
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   className="hover:bg-gray-50 transition-colors"
                 >
-                  <td className="px-6 py-4">
+                  <td className="px-3 sm:px-6 py-4">
                     <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-3">
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2 sm:gap-3">
                         {/* Logo - visible on all screen sizes */}
                         {tech.logo && (
                           <div className="flex-shrink-0">
                             <Image
                               src={tech.logo}
                               alt={`${tech.name} logo`}
-                              width={32}
-                              height={32}
-                              className="object-contain"
+                              width={24}
+                              height={24}
+                              className="object-contain sm:w-8 sm:h-8"
                             />
                           </div>
                         )}
-                        <span className="text-lg font-semibold text-gray-900">{tech.name}</span>
+                        <span className="text-sm sm:text-lg font-semibold text-gray-900">{tech.name}</span>
                       </div>
                       {/* Fund badge - underneath on mobile, inline on desktop */}
                       <span className={`px-2 py-1 text-xs font-medium rounded-full w-fit ${
@@ -582,18 +582,18 @@ export default function TechnologiesChart() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 sm:px-6 py-4 hidden sm:table-cell">
                     <p className="text-gray-600 text-sm leading-relaxed max-w-md">
                       {tech.description}
                     </p>
                   </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm text-gray-700 font-medium">
+                  <td className="px-3 sm:px-6 py-4">
+                    <span className="text-xs sm:text-sm text-gray-700 font-medium">
                       {tech.category}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm text-gray-700 font-medium">
+                  <td className="px-3 sm:px-6 py-4">
+                    <span className="text-xs sm:text-sm text-gray-700 font-medium">
                       {tech.region}
                     </span>
                   </td>

@@ -178,7 +178,7 @@ export default function ClientTypesChart() {
                 </div>
               )}
 
-              <svg width="600" height="600" viewBox="0 0 600 600" className="transform rotate-0 lg:w-[700px] lg:h-[700px]">
+              <svg width="600" height="600" viewBox="0 0 600 600" className="transform rotate-0 w-full max-w-[400px] h-[400px] sm:max-w-[500px] sm:h-[500px] lg:w-[700px] lg:h-[700px]">
                 {/* Background circle - plain white */}
                 <circle
                   cx="300"

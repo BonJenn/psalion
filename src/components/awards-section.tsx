@@ -57,7 +57,7 @@ export default function AwardsSection() {
 
         {/* Awards Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -70,7 +70,7 @@ export default function AwardsSection() {
               variants={fadeInUp}
             >
               {/* Desktop: Hover to reveal award */}
-              <div className="hidden md:block">
+              <div className="hidden lg:block">
                 <div className="relative h-40 flex items-center justify-center bg-gray-50 rounded-lg border border-gray-200 group-hover:bg-white group-hover:shadow-lg transition-all duration-300">
                   <div className="relative w-32 h-20">
                     <Image
@@ -98,8 +98,8 @@ export default function AwardsSection() {
                 </div>
               </div>
 
-              {/* Mobile: Always show award text */}
-              <div className="md:hidden">
+              {/* Mobile/Tablet: Always show award text */}
+              <div className="lg:hidden">
                 <div className="bg-gray-50 rounded-lg border border-gray-200 p-8">
                   <div className="flex flex-col items-center text-center">
                     <div className="relative w-28 h-16 mb-6">

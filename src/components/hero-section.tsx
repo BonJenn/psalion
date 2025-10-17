@@ -172,7 +172,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative w-full max-w-2xl sm:max-w-3xl lg:max-w-2xl h-[600px] lg:h-[700px] overflow-hidden">
+            <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
               <DirectSpline />
               
               {/* Interactive Labels positioned around the 3D model */}
@@ -268,7 +268,7 @@ export default function HeroSection() {
             className="flex justify-center lg:justify-end"
             variants={fadeInUp}
           >
-            <div className="relative w-full max-w-md lg:max-w-lg h-[400px] lg:h-[500px] overflow-hidden">
+            <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden">
               <SplineErrorBoundary>
                 <Spline
                   scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/funds.splinecode"

@@ -189,7 +189,7 @@ export default function BespokeServicesPage() {
       {/* Hero Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content - Text */}
             <motion.div
               className="space-y-6"
@@ -200,11 +200,11 @@ export default function BespokeServicesPage() {
               <div className="flex items-start gap-4">
               
                 <div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
                     Your vision, our craft:<br />
                     <span className="text-gray-900">Bespoke services</span>
                   </h1>
-                  <p className="text-lg text-gray-600 mt-6 leading-relaxed">
+                  <p className="text-base sm:text-lg text-gray-600 mt-6 leading-relaxed">
                     There are many ways to enter the digital assets realm. We help you find yours.
                   </p>
                 </div>
@@ -218,7 +218,7 @@ export default function BespokeServicesPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="w-full max-w-2xl h-[600px] lg:h-[700px] overflow-hidden">
+              <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
                 <DirectSpline
                   scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/bespoke.splinecode"
                   style={{ 

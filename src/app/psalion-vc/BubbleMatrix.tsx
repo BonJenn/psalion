@@ -44,10 +44,15 @@ const dots: Dot[] = [
 export default function BubbleMatrix() {
   const [hoveredBubble, setHoveredBubble] = useState<{ cat: Cat; row: Row } | null>(null);
 
-  // Canvas + plot geometry
-  const W = 1120;
-  const H = 460;
-  const M = { top: 60, right: 140, bottom: 120, left: 100 }; // Increased top and bottom margins
+  // Canvas + plot geometry - responsive sizing
+  const W = typeof window !== 'undefined' && window.innerWidth < 768 ? 400 : typeof window !== 'undefined' && window.innerWidth < 1024 ? 800 : 1120;
+  const H = typeof window !== 'undefined' && window.innerWidth < 768 ? 300 : typeof window !== 'undefined' && window.innerWidth < 1024 ? 350 : 460;
+  const M = { 
+    top: typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 60, 
+    right: typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : typeof window !== 'undefined' && window.innerWidth < 1024 ? 100 : 140, 
+    bottom: typeof window !== 'undefined' && window.innerWidth < 768 ? 80 : 120, 
+    left: typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : 100 
+  };
   const plotW = W - M.left - M.right;
   const plotH = H - M.top - M.bottom;
 
@@ -69,10 +74,15 @@ export default function BubbleMatrix() {
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center overflow-x-auto">
           <div
             className="relative"
-            style={{ width: W, height: H, fontFamily: "ui-sans-serif, system-ui" }}
+            style={{ 
+              width: W, 
+              height: H, 
+              fontFamily: "ui-sans-serif, system-ui",
+              minWidth: '100%'
+            }}
           >
             <svg width={W} height={H} aria-label="Founders by Category and Fund">
               {/* defs for striped "muted" fill */}
