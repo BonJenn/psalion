@@ -112,6 +112,7 @@ function isChrome(): boolean {
 // Direct Spline component - prevent loading in problematic Chrome environments
 function DirectSpline({ scene, style }: { scene: string; style: any }) {
   const [showFallback, setShowFallback] = useState(false);
+  const [splineLoaded, setSplineLoaded] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -127,14 +128,16 @@ function DirectSpline({ scene, style }: { scene: string; style: any }) {
     // The Error Boundary will catch any runtime errors
     console.log('DirectSpline: Allowing Spline to attempt loading');
     
-    // Set a timeout to show fallback if Spline doesn't load within 8 seconds
+    // Set a timeout to show fallback if Spline doesn't load within 15 seconds
     const timeout = setTimeout(() => {
-      console.log('DirectSpline: Timeout reached, showing fallback');
-      setShowFallback(true);
-    }, 8000);
+      if (!splineLoaded) {
+        console.log('DirectSpline: Timeout reached, showing fallback');
+        setShowFallback(true);
+      }
+    }, 15000);
 
     return () => clearTimeout(timeout);
-  }, []);
+  }, [splineLoaded]);
 
   // Suppress WebGL errors in console without affecting functionality
   useEffect(() => {
@@ -180,6 +183,14 @@ function DirectSpline({ scene, style }: { scene: string; style: any }) {
       <Spline
         scene={scene}
         style={style}
+        onLoad={() => {
+          console.log('DirectSpline: Spline loaded successfully');
+          setSplineLoaded(true);
+        }}
+        onError={(error) => {
+          console.log('DirectSpline: Spline onError triggered:', error);
+          setShowFallback(true);
+        }}
       />
     </SplineErrorBoundary>
   );
