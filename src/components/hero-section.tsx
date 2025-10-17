@@ -217,9 +217,27 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
+        {/* Psalion VC Section Header */}
+        <motion.div
+          className="max-w-6xl mx-auto mt-20"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+        >
+          <motion.div
+            className="text-center"
+            variants={fadeInUp}
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+              Psalion VC
+            </h2>
+          </motion.div>
+        </motion.div>
+
         {/* VC Section */}
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mt-16"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mt-8"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
