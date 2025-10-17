@@ -16,19 +16,29 @@ const Spline = dynamic(() => import('@splinetool/react-spline'), {
   ),
 });
 
-// Safe Spline wrapper that checks WebGL support before loading
+// Safe Spline wrapper that handles loading gracefully
 function SafeSpline({ scene, style, onError }: { scene: string; style: any; onError: () => void }) {
-  const [webglSupported, setWebglSupported] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    if (typeof window !== 'undefined') {
-      setWebglSupported(hasWebGLSupport());
-    }
   }, []);
 
-  if (!mounted || !webglSupported) {
+  const handleError = () => {
+    setHasError(true);
+    onError();
+  };
+
+  if (!mounted) {
+    return (
+      <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
+        <div className="text-gray-500">Loading 3D model...</div>
+      </div>
+    );
+  }
+
+  if (hasError) {
     return <SplineFallback />;
   }
 
@@ -36,19 +46,35 @@ function SafeSpline({ scene, style, onError }: { scene: string; style: any; onEr
     <Spline
       scene={scene}
       style={style}
-      onError={onError}
+      onError={handleError}
     />
   );
 }
 
-// Check for WebGL support
+// Check for WebGL support - more permissive for Chrome
 function hasWebGLSupport() {
   try {
     const canvas = document.createElement('canvas');
-    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    return !!gl;
-  } catch (e) {
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl') || canvas.getContext('webgl2');
+    
+    // If we can create a context, WebGL is supported
+    if (gl) {
+      return true;
+    }
+    
+    // Additional check for Chrome - sometimes context creation fails but WebGL is still available
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isChrome = userAgent.includes('chrome') && !userAgent.includes('edge');
+    
+    // For Chrome, be more permissive - let Spline try to load
+    if (isChrome) {
+      return true;
+    }
+    
     return false;
+  } catch (e) {
+    // If there's an error, assume WebGL might still work
+    return true;
   }
 }
 
