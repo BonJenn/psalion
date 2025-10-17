@@ -45,13 +45,16 @@ export default function BubbleMatrix() {
   const [hoveredBubble, setHoveredBubble] = useState<{ cat: Cat; row: Row } | null>(null);
 
   // Canvas + plot geometry - responsive sizing
-  const W = typeof window !== 'undefined' && window.innerWidth < 768 ? 400 : typeof window !== 'undefined' && window.innerWidth < 1024 ? 800 : 1120;
-  const H = typeof window !== 'undefined' && window.innerWidth < 768 ? 300 : typeof window !== 'undefined' && window.innerWidth < 1024 ? 350 : 460;
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const isTablet = typeof window !== 'undefined' && window.innerWidth < 1024;
+  
+  const W = isMobile ? 350 : isTablet ? 600 : 1120;
+  const H = isMobile ? 400 : isTablet ? 350 : 460;
   const M = { 
-    top: typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 60, 
-    right: typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : typeof window !== 'undefined' && window.innerWidth < 1024 ? 100 : 140, 
-    bottom: typeof window !== 'undefined' && window.innerWidth < 768 ? 80 : 120, 
-    left: typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : 100 
+    top: isMobile ? 30 : 60, 
+    right: isMobile ? 40 : isTablet ? 80 : 140, 
+    bottom: isMobile ? 60 : 120, 
+    left: isMobile ? 40 : 100 
   };
   const plotW = W - M.left - M.right;
   const plotH = H - M.top - M.bottom;
@@ -71,8 +74,17 @@ export default function BubbleMatrix() {
   const selected = dots.find((d) => d.selected);
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 sm:py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Title */}
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 uppercase tracking-wide">
+            Founders by Category and Fund
+          </h2>
+          <p className="text-gray-600 mt-2 text-sm sm:text-base">
+            Hover over circles to see founder counts
+          </p>
+        </div>
     
         <div className="w-full flex justify-center overflow-x-auto">
           <div
@@ -193,13 +205,13 @@ export default function BubbleMatrix() {
                   <text
                     key={i}
                     x={x(c)}
-                    y={H - M.bottom + 48}
+                    y={H - M.bottom + (isMobile ? 35 : 48)}
                     textAnchor="middle"
-                    fontSize="12"
+                    fontSize={isMobile ? "9" : "12"}
                     fill="#6B7280"
                     fontFamily="ui-sans-serif, system-ui"
                   >
-                    {c}
+                    {isMobile ? c.split(' ')[0] : c}
                   </text>
                 ))}
 
@@ -207,10 +219,10 @@ export default function BubbleMatrix() {
                 {rows.map((r, i) => (
                   <text
                     key={i}
-                    x={W - M.right + 54}
+                    x={W - M.right + (isMobile ? 40 : 54)}
                     y={y(r) + 4}
                     textAnchor="start"
-                    fontSize="12"
+                    fontSize={isMobile ? "10" : "12"}
                     fill="#6B7280"
                     fontFamily="ui-sans-serif, system-ui"
                   >
@@ -227,7 +239,7 @@ export default function BubbleMatrix() {
               
               return (
                 <div
-                  className="absolute text-[11px] font-semibold text-white bg-[#2F54EB] rounded-[10px] px-2 py-1"
+                  className={`absolute font-semibold text-white bg-[#2F54EB] rounded-[10px] px-2 py-1 ${isMobile ? 'text-[9px]' : 'text-[11px]'}`}
                   style={{
                     left: `${x(hoveredBubble.cat) + dot.r + 4}px`,
                     top: `${y(hoveredBubble.row) - 6}px`,
