@@ -21,14 +21,26 @@ export default function Navigation() {
     { href: '/psalion-yield', label: 'Psalion Yield' },
     { href: '/psalion-vc', label: 'Psalion VC' },
     { href: '/bespoke-services', label: 'Bespoke Services' },
-    { href: '/team', label: 'Team' },
+    { href: '/#team', label: 'Team' },
     { href: '/press', label: 'Press Mentions' },
     { href: '/clients', label: 'Clients' },
     { href: '/contact', label: 'Contact' },
   ];
 
-  const handleLinkClick = () => {
+  const handleLinkClick = (href: string) => {
     setIsOpen(false);
+    
+    // Handle anchor links with smooth scrolling
+    if (href.startsWith('/#')) {
+      const targetId = href.substring(2); // Remove '/#' to get the ID
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
   };
 
   return (
@@ -77,7 +89,7 @@ export default function Navigation() {
                     key={item.href}
                     href={item.href}
                     className="block px-4 py-3 text-white hover:bg-gray-700 rounded-md transition-colors duration-200 font-medium"
-                    onClick={handleLinkClick}
+                    onClick={() => handleLinkClick(item.href)}
                   >
                     {item.label}
                   </Link>
