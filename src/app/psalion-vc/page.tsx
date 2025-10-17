@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import BubbleMatrix from './BubbleMatrix';
 
 // Dynamically import Spline with better error handling
@@ -34,7 +34,7 @@ function SplineFallback() {
 }
 
 // Error boundary component to catch WebGL errors
-class SplineErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
+class SplineErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
     super(props);
     this.state = { hasError: false };
