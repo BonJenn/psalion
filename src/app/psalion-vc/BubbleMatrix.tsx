@@ -41,6 +41,23 @@ const dots: Dot[] = [
   { cat: "Other",                 row: "Fund I", r: 24, value: 2, muted: true },
 ];
 
+// Mobile-optimized bubble sizes
+const getMobileDots = (): Dot[] => [
+  // Fund II row (top) - much smaller bubbles for mobile
+  { cat: "Decentralized Finance", row: "Fund II", r: 16, value: 5, muted: true },
+  { cat: "Infrastructure",        row: "Fund II", r: 24, value: 12, muted: true },
+  { cat: "NFT",                   row: "Fund II", r: 10, value: 3, muted: true },
+  { cat: "RWA",                   row: "Fund II", r: 12, value: 2, muted: true },
+  { cat: "Other",                 row: "Fund II", r: 14, value: 2, muted: true },
+
+  // Fund I row (bottom) - much smaller bubbles for mobile
+  { cat: "Decentralized Finance", row: "Fund I", r: 18, value: 7, muted: true },
+  { cat: "Infrastructure",        row: "Fund I", r: 22, value: 11, muted: true },
+  { cat: "NFT",                   row: "Fund I", r: 0 }, // none in mock
+  { cat: "RWA",                   row: "Fund I", r: 8, value: 1, muted: true },
+  { cat: "Other",                 row: "Fund I", r: 12, value: 2, muted: true },
+];
+
 export default function BubbleMatrix() {
   const [hoveredBubble, setHoveredBubble] = useState<{ cat: Cat; row: Row } | null>(null);
 
@@ -48,13 +65,16 @@ export default function BubbleMatrix() {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const isTablet = typeof window !== 'undefined' && window.innerWidth < 1024;
   
-  const W = isMobile ? 350 : isTablet ? 600 : 1120;
-  const H = isMobile ? 400 : isTablet ? 350 : 460;
+  // Use mobile-optimized dots on mobile
+  const currentDots = isMobile ? getMobileDots() : dots;
+  
+  const W = isMobile ? 320 : isTablet ? 600 : 1120;
+  const H = isMobile ? 350 : isTablet ? 350 : 460;
   const M = { 
-    top: isMobile ? 30 : 60, 
-    right: isMobile ? 40 : isTablet ? 80 : 140, 
-    bottom: isMobile ? 60 : 120, 
-    left: isMobile ? 40 : 100 
+    top: isMobile ? 25 : 60, 
+    right: isMobile ? 30 : isTablet ? 80 : 140, 
+    bottom: isMobile ? 50 : 120, 
+    left: isMobile ? 30 : 100 
   };
   const plotW = W - M.left - M.right;
   const plotH = H - M.top - M.bottom;
@@ -71,7 +91,7 @@ export default function BubbleMatrix() {
     }
   };
 
-  const selected = dots.find((d) => d.selected);
+  const selected = currentDots.find((d) => d.selected);
 
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-white">
@@ -169,7 +189,7 @@ export default function BubbleMatrix() {
 
               {/* Bubbles */}
               <g>
-                {dots.map((d, i) => {
+                {currentDots.map((d, i) => {
                   if (!d.r) return null;
                   const cx = x(d.cat);
                   const cy = y(d.row);
@@ -234,7 +254,7 @@ export default function BubbleMatrix() {
 
             {/* Tooltip pill for the hovered bubble (HTML overlay so it's crisp) */}
             {hoveredBubble && (() => {
-              const dot = dots.find(d => d.cat === hoveredBubble.cat && d.row === hoveredBubble.row);
+              const dot = currentDots.find(d => d.cat === hoveredBubble.cat && d.row === hoveredBubble.row);
               if (!dot || !dot.value) return null;
               
               return (
