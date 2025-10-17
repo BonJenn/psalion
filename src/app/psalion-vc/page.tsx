@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import BubbleMatrix from './BubbleMatrix';
 
 // Dynamically import Spline with better error handling
@@ -31,6 +31,39 @@ function SplineFallback() {
       </div>
     </div>
   );
+}
+
+// Error boundary component to catch WebGL errors
+class SplineErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: any) {
+    // Check if it's a WebGL-related error
+    if (error.message && (
+      error.message.includes('WebGL') || 
+      error.message.includes('THREE.WebGLRenderer') ||
+      error.message.includes('Error creating WebGL context')
+    )) {
+      return { hasError: true };
+    }
+    return null;
+  }
+
+  componentDidCatch(error: any, errorInfo: any) {
+    // Log the error but don't crash the app
+    console.log('Spline Error Boundary caught an error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <SplineFallback />;
+    }
+
+    return this.props.children;
+  }
 }
 
 // Direct Spline component - let it try to load without interference
@@ -89,10 +122,12 @@ function DirectSpline({ scene, style }: { scene: string; style: any }) {
   }
 
   return (
-    <Spline
-      scene={scene}
-      style={style}
-    />
+    <SplineErrorBoundary>
+      <Spline
+        scene={scene}
+        style={style}
+      />
+    </SplineErrorBoundary>
   );
 }
 
