@@ -23,7 +23,7 @@ export default function Navigation() {
     { href: '/bespoke-services', label: 'Bespoke Services' },
     { href: '/#team', label: 'Team' },
     { href: '/mentions', label: 'Press Mentions' },
-    { href: '/clients', label: 'Clients' },
+    { href: '/#clients', label: 'Clients' },
     { href: '/contact', label: 'Contact' },
   ];
 
