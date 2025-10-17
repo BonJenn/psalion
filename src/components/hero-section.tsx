@@ -245,19 +245,23 @@ export default function HeroSection() {
             </p>
           </motion.div>
 
-          {/* VC Cube Image */}
+          {/* VC Spline 3D Model */}
           <motion.div
             className="flex justify-center lg:justify-end"
             variants={fadeInUp}
           >
-            <div className="relative w-full max-w-md lg:max-w-lg">
-              <Image
-                src="/psalion_vc_cube.png"
-                alt="Psalion VC Cube"
-                width={500}
-                height={500}
-                className="w-full h-auto object-contain"
-              />
+            <div className="relative w-full max-w-md lg:max-w-lg h-[400px] lg:h-[500px] overflow-hidden">
+              <SplineErrorBoundary>
+                <Spline
+                  scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/funds.splinecode"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    transform: 'scale(1.2)',
+                    transformOrigin: 'center'
+                  }}
+                />
+              </SplineErrorBoundary>
             </div>
           </motion.div>
         </motion.div>
