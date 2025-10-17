@@ -186,9 +186,7 @@ export default function HeroSection() {
                   transition={{ delay: 1, duration: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg border border-gray-200 group-hover:bg-white group-hover:shadow-xl transition-all duration-200">
-                    <span className="text-blue-600 font-semibold text-sm">PSALION VC</span>
-                  </div>
+                  <span className="text-blue-600 font-semibold text-sm group-hover:text-blue-800 transition-colors duration-200">PSALION VC</span>
                 </motion.a>
 
                 {/* PSALION YIELD Label - Upper Right */}
@@ -200,9 +198,7 @@ export default function HeroSection() {
                   transition={{ delay: 1.2, duration: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg border border-gray-200 group-hover:bg-white group-hover:shadow-xl transition-all duration-200">
-                    <span className="text-blue-600 font-semibold text-sm">PSALION YIELD</span>
-                  </div>
+                  <span className="text-blue-600 font-semibold text-sm group-hover:text-blue-800 transition-colors duration-200">PSALION YIELD</span>
                 </motion.a>
 
                 {/* BESPOKE SERVICES Label - Lower Center */}
@@ -214,9 +210,7 @@ export default function HeroSection() {
                   transition={{ delay: 1.4, duration: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg border border-gray-200 group-hover:bg-white group-hover:shadow-xl transition-all duration-200">
-                    <span className="text-blue-600 font-semibold text-sm">BESPOKE SERVICES</span>
-                  </div>
+                  <span className="text-blue-600 font-semibold text-sm group-hover:text-blue-800 transition-colors duration-200">BESPOKE SERVICES</span>
                 </motion.a>
               </div>
             </div>
