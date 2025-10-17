@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic'; // Temporarily disabled
 import Image from 'next/image';
 import React, { useState, useEffect, Component } from 'react';
 import BubbleMatrix from './BubbleMatrix';
@@ -46,7 +46,7 @@ class SplineErrorBoundary extends Component<{ children: React.ReactNode }, { has
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: any) {
+  static getDerivedStateFromError(error: Error) {
     // Check if it's a WebGL-related error
     if (error.message && (
       error.message.includes('WebGL') || 
@@ -58,7 +58,7 @@ class SplineErrorBoundary extends Component<{ children: React.ReactNode }, { has
     return null;
   }
 
-  componentDidCatch(error: any, errorInfo: any) {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // Log the error but don't crash the app
     console.log('Spline Error Boundary caught an error:', error, errorInfo);
   }
@@ -107,7 +107,7 @@ function isChrome(): boolean {
 }
 
 // Direct Spline component - prevent loading in problematic Chrome environments
-function DirectSpline({ scene, style }: { scene: string; style: any }) {
+function DirectSpline({ scene, style }: { scene: string; style: React.CSSProperties }) {
   const [showFallback, setShowFallback] = useState(false);
   const [splineLoaded, setSplineLoaded] = useState(false);
   const [mounted, setMounted] = useState(false);

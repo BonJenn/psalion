@@ -147,7 +147,7 @@ export default function ContactPage() {
                 <div className="bg-blue-50 rounded-xl p-6">
                   <h3 className="font-semibold text-gray-900 mb-3">Professional Investors</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    Our investment products are available exclusively to qualified professional investors. We'll verify your status during our initial consultation.
+                    Our investment products are available exclusively to qualified professional investors. We&apos;ll verify your status during our initial consultation.
                   </p>
                 </div>
               </div>
@@ -168,7 +168,7 @@ export default function ContactPage() {
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Visit Our Office</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Located in the heart of New York's Financial District, our office is easily accessible by public transportation and offers convenient parking options.
+              Located in the heart of New York&apos;s Financial District, our office is easily accessible by public transportation and offers convenient parking options.
             </p>
           </motion.div>
 

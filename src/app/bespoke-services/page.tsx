@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect, Component } from 'react';
 import { Compass } from 'lucide-react';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic'; // Temporarily disabled
 
 // Temporarily disable Spline for Vercel deployment
 const Spline = () => (
@@ -25,7 +25,7 @@ function hasWorkingWebGL(): boolean {
     
     (gl as WebGLRenderingContext).deleteProgram(program);
     return true;
-  } catch (e) {
+  } catch {
     return false;
   }
 }
@@ -65,7 +65,7 @@ class SplineErrorBoundary extends Component<{ children: React.ReactNode }, { has
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: any) {
+  static getDerivedStateFromError(error: Error) {
     if (error.message && (
       error.message.includes('WebGL') || 
       error.message.includes('THREE.WebGLRenderer') ||
@@ -76,7 +76,7 @@ class SplineErrorBoundary extends Component<{ children: React.ReactNode }, { has
     return null;
   }
 
-  componentDidCatch(error: any, errorInfo: any) {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.log('Spline Error Boundary caught an error:', error, errorInfo);
   }
 
@@ -89,7 +89,7 @@ class SplineErrorBoundary extends Component<{ children: React.ReactNode }, { has
 }
 
 // Direct Spline Component
-function DirectSpline({ scene, style }: { scene: string; style: any }) {
+function DirectSpline({ scene, style }: { scene: string; style: React.CSSProperties }) {
   const [showFallback, setShowFallback] = useState(false);
   const [splineLoaded, setSplineLoaded] = useState(false);
   const [mounted, setMounted] = useState(false);
