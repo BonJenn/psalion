@@ -14,10 +14,7 @@ export default function MentionsSection() {
   useEffect(() => {
     const fetchMentions = async () => {
       try {
-        console.log('Fetching mentions...');
         const data = await getMentionContent();
-        console.log('Mentions data:', data);
-        console.log('Number of mentions:', data.length);
         setMentions(data);
       } catch (error) {
         console.error('Error fetching mentions:', error);
