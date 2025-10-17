@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 
 // Dynamically import Spline with better error handling
 const Spline = dynamic(() => 
-  import('@splinetool/react-spline').then(mod => ({ default: mod.default })).catch(() => {
+  import('@splinetool/react-spline/dist/index.js').then(mod => ({ default: mod.default })).catch(() => {
     // Fallback if import fails
     return { default: () => <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
       <div className="text-gray-500">3D model unavailable</div>
