@@ -6,7 +6,7 @@ import Image from 'next/image';
 import React, { useState, useEffect, Component } from 'react';
 
 // Dynamically import Spline with better error handling
-const Spline = dynamic(() => import('@splinetool/react-spline'), {
+const Spline = dynamic(() => import('@splinetool/react-spline').then(mod => ({ default: mod.default })), {
   ssr: false,
   loading: () => (
     <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">

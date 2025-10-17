@@ -3,7 +3,17 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect, Component } from 'react';
 import { Compass } from 'lucide-react';
-import Spline from '@splinetool/react-spline';
+import dynamic from 'next/dynamic';
+
+// Dynamically import Spline with better error handling
+const Spline = dynamic(() => import('@splinetool/react-spline').then(mod => ({ default: mod.default })), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
+      <div className="text-gray-500">Loading 3D model...</div>
+    </div>
+  ),
+});
 
 // WebGL detection function
 function hasWorkingWebGL(): boolean {
