@@ -42,26 +42,32 @@ function SmartSpline({ scene, style }: { scene: string; style: any }) {
     setMounted(true);
   }, []);
 
-  // Global error handler for WebGL errors
+  // Suppress WebGL errors in console
   useEffect(() => {
-    const handleWebGLError = (event: ErrorEvent) => {
-      if (event.message.includes('WebGL') || event.message.includes('THREE.WebGLRenderer')) {
+    const originalError = console.error;
+    const originalWarn = console.warn;
+    
+    console.error = (...args) => {
+      const message = args.join(' ');
+      if (message.includes('WebGL') || message.includes('THREE.WebGLRenderer')) {
         setHasError(true);
+        return; // Don't log WebGL errors
       }
+      originalError.apply(console, args);
     };
 
-    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
-      if (event.reason && event.reason.toString().includes('WebGL')) {
+    console.warn = (...args) => {
+      const message = args.join(' ');
+      if (message.includes('WebGL') || message.includes('THREE.WebGLRenderer')) {
         setHasError(true);
+        return; // Don't log WebGL warnings
       }
+      originalWarn.apply(console, args);
     };
-
-    window.addEventListener('error', handleWebGLError);
-    window.addEventListener('unhandledrejection', handleUnhandledRejection);
 
     return () => {
-      window.removeEventListener('error', handleWebGLError);
-      window.removeEventListener('unhandledrejection', handleUnhandledRejection);
+      console.error = originalError;
+      console.warn = originalWarn;
     };
   }, []);
 
