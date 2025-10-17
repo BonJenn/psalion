@@ -14,7 +14,10 @@ export default function MentionsSection() {
   useEffect(() => {
     const fetchMentions = async () => {
       try {
+        console.log('Fetching mentions...');
         const data = await getMentionContent();
+        console.log('Mentions data:', data);
+        console.log('Number of mentions:', data.length);
         setMentions(data);
       } catch (error) {
         console.error('Error fetching mentions:', error);
@@ -48,7 +51,28 @@ export default function MentionsSection() {
   }
 
   if (mentions.length === 0) {
-    return null; // Don't render section if no mentions
+    return (
+      <section className="py-16 bg-white">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 uppercase tracking-wide">
+              Mentions and Featured Content
+            </h2>
+          </motion.div>
+          
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">No mentions available at the moment.</p>
+            <p className="text-gray-400 text-sm mt-2">Check back soon for the latest press coverage.</p>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   const visibleMentions = mentions.slice(0, visibleCount);
