@@ -1,8 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import BubbleMatrix from './BubbleMatrix';
+
+// Dynamically import Spline with better error handling
+const Spline = dynamic(() => import('@splinetool/react-spline'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
+      <div className="text-gray-500">Loading 3D model...</div>
+    </div>
+  ),
+});
 
 // Fallback component for when WebGL fails
 function SplineFallback() {
@@ -18,6 +30,51 @@ function SplineFallback() {
         <p className="text-sm text-gray-500">Interactive 3D visualization</p>
       </div>
     </div>
+  );
+}
+
+// Smart Spline component that tries to load but falls back gracefully
+function SmartSpline({ scene, style }: { scene: string; style: any }) {
+  const [hasError, setHasError] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Global error handler for WebGL errors
+  useEffect(() => {
+    const handleWebGLError = (event: ErrorEvent) => {
+      if (event.message.includes('WebGL') || event.message.includes('THREE.WebGLRenderer')) {
+        setHasError(true);
+      }
+    };
+
+    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
+      if (event.reason && event.reason.toString().includes('WebGL')) {
+        setHasError(true);
+      }
+    };
+
+    window.addEventListener('error', handleWebGLError);
+    window.addEventListener('unhandledrejection', handleUnhandledRejection);
+
+    return () => {
+      window.removeEventListener('error', handleWebGLError);
+      window.removeEventListener('unhandledrejection', handleUnhandledRejection);
+    };
+  }, []);
+
+  if (!mounted || hasError) {
+    return <SplineFallback />;
+  }
+
+  return (
+    <Spline
+      scene={scene}
+      style={style}
+      onError={() => setHasError(true)}
+    />
   );
 }
 
@@ -57,7 +114,15 @@ export default function PsalionVCPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="w-full max-w-2xl h-[600px] lg:h-[700px] overflow-hidden">
-                <SplineFallback />
+                <SmartSpline
+                  scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/funds.splinecode"
+                  style={{ 
+                    width: '100%', 
+                    height: '100%',
+                    transform: 'scale(1.2)',
+                    transformOrigin: 'center'
+                  }}
+                />
               </div>
             </motion.div>
           </div>
