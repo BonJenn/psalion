@@ -2,6 +2,118 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+import React, { useState, useEffect, Component } from 'react';
+
+// Dynamically import Spline with better error handling
+const Spline = dynamic(() => 
+  import('@splinetool/react-spline').catch(() => {
+    // Fallback if import fails
+    return { default: () => <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
+      <div className="text-gray-500">3D model unavailable</div>
+    </div> };
+  }).then(mod => ({ default: mod.default || mod })), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
+      <div className="text-gray-500">Loading 3D model...</div>
+    </div>
+  ),
+});
+
+// Fallback component for when WebGL fails
+function SplineFallback() {
+  return (
+    <div className="w-full h-[600px] lg:h-[700px] bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg flex items-center justify-center relative overflow-hidden">
+      <div className="text-center">
+        <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full flex items-center justify-center">
+          <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+        </div>
+        <h3 className="text-xl font-semibold text-gray-700 mb-2">3D Model</h3>
+        <p className="text-gray-500">Interactive visualization</p>
+      </div>
+    </div>
+  );
+}
+
+// WebGL detection function
+function hasWorkingWebGL(): boolean {
+  try {
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    return !!(gl && gl instanceof WebGLRenderingContext);
+  } catch (e) {
+    return false;
+  }
+}
+
+// Browser detection
+function isChrome(): boolean {
+  if (typeof window === 'undefined') return false;
+  return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+}
+
+// Error boundary for Spline
+class SplineErrorBoundary extends Component<{children: React.ReactNode}, {hasError: boolean}> {
+  constructor(props: {children: React.ReactNode}) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: Error): {hasError: boolean} {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('Spline Error Boundary caught an error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <SplineFallback />;
+    }
+
+    return this.props.children;
+  }
+}
+
+// Direct Spline component with timeout fallback
+function DirectSpline() {
+  const [showFallback, setShowFallback] = useState(false);
+  const [splineLoaded, setSplineLoaded] = useState(false);
+
+  useEffect(() => {
+    // Set a timeout to show fallback if Spline doesn't load
+    const timeout = setTimeout(() => {
+      if (!splineLoaded) {
+        setShowFallback(true);
+      }
+    }, 15000); // 15 second timeout
+
+    return () => clearTimeout(timeout);
+  }, [splineLoaded]);
+
+  if (showFallback) {
+    return <SplineFallback />;
+  }
+
+  return (
+    <SplineErrorBoundary>
+      <Spline
+        scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/home.splinecode"
+        onLoad={() => setSplineLoaded(true)}
+        style={{
+          width: '100%',
+          height: '100%',
+          transform: 'scale(1.2)',
+          transformOrigin: 'center'
+        }}
+      />
+    </SplineErrorBoundary>
+  );
+}
 
 export default function HeroSection() {
   const fadeInUp = {
@@ -53,22 +165,15 @@ export default function HeroSection() {
 
           </motion.div>
 
-          {/* Image */}
+          {/* Spline 3D Model */}
           <motion.div
             className="flex justify-center lg:justify-end order-last lg:order-last"
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative w-full max-w-2xl sm:max-w-3xl lg:max-w-2xl">
-              <Image
-                src="/psalion_cubes.png"
-                alt="Psalion Cubes"
-                width={800}
-                height={800}
-                className="w-full h-auto object-contain"
-                priority
-              />
+            <div className="relative w-full max-w-2xl sm:max-w-3xl lg:max-w-2xl h-[600px] lg:h-[700px] overflow-hidden">
+              <DirectSpline />
             </div>
           </motion.div>
         </div>
