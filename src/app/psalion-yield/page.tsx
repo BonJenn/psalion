@@ -4,18 +4,52 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React, { useState, useEffect, Component } from 'react';
 
-// Import Spline statically with error boundary
-let Spline: any = null;
-try {
-  Spline = require('@splinetool/react-spline').Spline;
-} catch (error) {
-  console.warn('Spline not available:', error);
-  Spline = () => (
-    <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
-      <div className="text-gray-500">3D model unavailable</div>
-    </div>
-  );
-}
+// Custom Spline loader with proper error handling
+const loadSpline = async () => {
+  try {
+    const module = await import('@splinetool/react-spline');
+    return module.Spline || module.default || module;
+  } catch (error) {
+    console.warn('Failed to load Spline:', error);
+    return null;
+  }
+};
+
+// Spline component with loading state
+const SplineComponent = ({ scene, ...props }: any) => {
+  const [Spline, setSpline] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    loadSpline().then((SplineComponent) => {
+      if (SplineComponent) {
+        setSpline(() => SplineComponent);
+      } else {
+        setHasError(true);
+      }
+      setIsLoading(false);
+    });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+      </div>
+    );
+  }
+
+  if (hasError || !Spline) {
+    return (
+      <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
+        <div className="text-gray-500">3D model unavailable</div>
+      </div>
+    );
+  }
+
+  return <Spline scene={scene} {...props} />;
+};
 
 // Loading animation component
 function SplineLoading() {
@@ -190,7 +224,7 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
   return (
     <SplineErrorBoundary>
       {isLoading && <SplineLoading />}
-      <Spline
+      <SplineComponent
         scene={scene}
         style={{
           ...style,
