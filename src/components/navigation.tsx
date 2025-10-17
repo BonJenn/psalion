@@ -4,10 +4,12 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ContactFormModal from './contact-form-modal';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,11 +26,16 @@ export default function Navigation() {
     { href: '/#team', label: 'Team' },
     { href: '/mentions', label: 'Press Mentions' },
     { href: '/#clients', label: 'Clients' },
-    { href: '/contact', label: 'Contact' },
+    { href: 'contact', label: 'Contact', isContact: true },
   ];
 
-  const handleLinkClick = (href: string) => {
+  const handleLinkClick = (href: string, isContact?: boolean) => {
     setIsOpen(false);
+    
+    if (isContact) {
+      setIsContactModalOpen(true);
+      return;
+    }
     
     // Handle anchor links with smooth scrolling
     if (href.startsWith('/#')) {
@@ -85,20 +92,36 @@ export default function Navigation() {
             <div className="p-6">
               <div className="space-y-1">
                 {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block px-4 py-3 text-white hover:bg-gray-700 rounded-md transition-colors duration-200 font-medium"
-                    onClick={() => handleLinkClick(item.href)}
-                  >
-                    {item.label}
-                  </Link>
+                  item.isContact ? (
+                    <button
+                      key={item.href}
+                      className="block w-full text-left px-4 py-3 text-white hover:bg-gray-700 rounded-md transition-colors duration-200 font-medium"
+                      onClick={() => handleLinkClick(item.href, item.isContact)}
+                    >
+                      {item.label}
+                    </button>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block px-4 py-3 text-white hover:bg-gray-700 rounded-md transition-colors duration-200 font-medium"
+                      onClick={() => handleLinkClick(item.href)}
+                    >
+                      {item.label}
+                    </Link>
+                  )
                 ))}
               </div>
             </div>
           </div>
         </div>
       )}
+
+      {/* Contact Form Modal */}
+      <ContactFormModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </>
   );
 }
