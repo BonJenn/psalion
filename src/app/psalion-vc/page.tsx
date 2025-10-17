@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import BubbleMatrix from './BubbleMatrix';
 
 // Dynamically import Spline to avoid SSR issues
 const Spline = dynamic(() => import('@splinetool/react-spline'), {
@@ -15,6 +16,7 @@ const Spline = dynamic(() => import('@splinetool/react-spline'), {
 });
 
 export default function PsalionVCPage() {
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -236,6 +238,9 @@ export default function PsalionVCPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* BubbleMatrix Component */}
+      <BubbleMatrix />
     </div>
   );
 }
