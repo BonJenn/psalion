@@ -31,7 +31,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
     <section className="py-32 bg-gray-50">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="bg-gradient-to-b from-gray-50 to-gray-100 rounded-none">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 py-8">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-12 py-16">
             <div className="flex-1">
               <h3 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight">
                 Receive the latest overview,
