@@ -21,6 +21,18 @@ const Spline = dynamic(() =>
   ),
 });
 
+// Loading animation component
+function SplineLoading() {
+  return (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="w-16 h-16 relative">
+        <div className="absolute inset-0 border-4 border-gray-200 rounded-full"></div>
+        <div className="absolute inset-0 border-4 border-blue-500 rounded-full border-t-transparent animate-spin"></div>
+      </div>
+    </div>
+  );
+}
+
 // Fallback component for when WebGL fails
 function SplineFallback() {
   return (
@@ -117,6 +129,7 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
   const [showFallback, setShowFallback] = useState(false);
   const [splineLoaded, setSplineLoaded] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setMounted(true);
@@ -136,6 +149,7 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
       if (!splineLoaded) {
         console.log('DirectSpline: Timeout reached, showing fallback');
         setShowFallback(true);
+        setIsLoading(false);
       }
     }, 15000);
 
@@ -170,11 +184,7 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
   }, []);
 
   if (!mounted) {
-    return (
-      <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
-        <div className="text-gray-500">Loading 3D model...</div>
-      </div>
-    );
+    return <SplineLoading />;
   }
 
   if (showFallback) {
@@ -183,12 +193,17 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
 
   return (
     <SplineErrorBoundary>
+      {isLoading && <SplineLoading />}
       <Spline
         scene={scene}
-        style={style}
+        style={{
+          ...style,
+          display: isLoading ? 'none' : 'block'
+        }}
         onLoad={() => {
           console.log('DirectSpline: Spline loaded successfully');
           setSplineLoaded(true);
+          setIsLoading(false);
         }}
         onError={(error) => {
           console.log('DirectSpline: Spline onError triggered:', error);

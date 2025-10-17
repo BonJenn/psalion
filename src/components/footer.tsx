@@ -1,7 +1,32 @@
+'use client';
+
 import Link from 'next/link';
+import Image from 'next/image';
+import { useState } from 'react';
+import ContactFormModal from './contact-form-modal';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const handleLinkClick = (href: string, isContact?: boolean) => {
+    if (isContact) {
+      setIsContactModalOpen(true);
+      return;
+    }
+    
+    // Handle anchor links with smooth scrolling
+    if (href.startsWith('/#')) {
+      const targetId = href.substring(2); // Remove '/#' to get the ID
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+  };
 
   const footerSections = [
     {
@@ -15,10 +40,10 @@ export default function Footer() {
     {
       title: 'Company',
       links: [
-        { href: '/team', label: 'Team' },
-        { href: '/clients', label: 'Clients' },
-        { href: '/press', label: 'Press Mentions' },
-        { href: '/contact', label: 'Contact' },
+        { href: '/#team', label: 'Team' },
+        { href: '/#clients', label: 'Clients' },
+        { href: '/mentions', label: 'Press Mentions' },
+        { href: '#', label: 'Contact', isContact: true },
       ],
     },
     {
@@ -37,15 +62,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="md:col-span-1">
-            <Link href="/" className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-black rounded-sm flex items-center justify-center">
-                <span className="text-white font-bold text-sm">P</span>
-              </div>
-              <span className="font-semibold text-lg">Psalion</span>
+            <Link href="/" className="flex items-center mb-4">
+              <Image
+                src="/psalion_logo.png"
+                alt="Psalion"
+                width={160}
+                height={50}
+                className="h-12 w-auto"
+                priority
+              />
             </Link>
-            <p className="text-gray-600 text-sm leading-relaxed">
-              Professional investment solutions for institutional and high-net-worth clients.
-            </p>
+    
           </div>
 
           {/* Footer Links */}
@@ -55,12 +82,28 @@ export default function Footer() {
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-gray-600 hover:text-black transition-colors duration-200 text-sm"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.isContact ? (
+                      <button
+                        onClick={() => handleLinkClick(link.href, link.isContact)}
+                        className="text-gray-600 hover:text-black transition-colors duration-200 text-sm text-left"
+                      >
+                        {link.label}
+                      </button>
+                    ) : link.href.startsWith('/#') ? (
+                      <button
+                        onClick={() => handleLinkClick(link.href)}
+                        className="text-gray-600 hover:text-black transition-colors duration-200 text-sm text-left"
+                      >
+                        {link.label}
+                      </button>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-gray-600 hover:text-black transition-colors duration-200 text-sm"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -95,6 +138,12 @@ export default function Footer() {
           </div>
         </div>
       </div>
+      
+      {/* Contact Form Modal */}
+      <ContactFormModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </footer>
   );
 }

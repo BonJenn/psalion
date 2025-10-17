@@ -21,6 +21,18 @@ const Spline = dynamic(() =>
   ),
 });
 
+// Loading animation component
+function SplineLoading() {
+  return (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="w-16 h-16 relative">
+        <div className="absolute inset-0 border-4 border-gray-200 rounded-full"></div>
+        <div className="absolute inset-0 border-4 border-blue-500 rounded-full border-t-transparent animate-spin"></div>
+      </div>
+    </div>
+  );
+}
+
 // Fallback component for when WebGL fails
 function SplineFallback() {
   return (
@@ -79,18 +91,20 @@ class SplineErrorBoundary extends Component<{children: React.ReactNode}, {hasErr
   }
 }
 
-// Direct Spline component with timeout fallback
+// Direct Spline component with loading animation and timeout fallback
 function DirectSpline() {
   const [showFallback, setShowFallback] = useState(false);
   const [splineLoaded, setSplineLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Set a timeout to show fallback if Spline doesn't load
     const timeout = setTimeout(() => {
       if (!splineLoaded) {
         setShowFallback(true);
+        setIsLoading(false);
       }
-    }, 15000); // 15 second timeout
+    }, 10000); // 10 second timeout
 
     return () => clearTimeout(timeout);
   }, [splineLoaded]);
@@ -101,14 +115,19 @@ function DirectSpline() {
 
   return (
     <SplineErrorBoundary>
+      {isLoading && <SplineLoading />}
       <Spline
         scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/home.splinecode"
-        onLoad={() => setSplineLoaded(true)}
+        onLoad={() => {
+          setSplineLoaded(true);
+          setIsLoading(false);
+        }}
         style={{
           width: '100%',
           height: '100%',
           transform: 'scale(1.2)',
-          transformOrigin: 'center'
+          transformOrigin: 'center',
+          display: isLoading ? 'none' : 'block'
         }}
       />
     </SplineErrorBoundary>

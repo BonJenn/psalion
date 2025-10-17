@@ -47,10 +47,10 @@ export default function MentionsPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:pl-8 lg:pr-16 py-20">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Page Title */}
         <motion.div
-          className="mb-12"
+          className="mb-8"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -62,7 +62,7 @@ export default function MentionsPage() {
         {/* Featured Article */}
         {mentions.length > 0 && (
           <motion.div
-            className="mb-12"
+            className="mb-8"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -140,10 +140,7 @@ export default function MentionsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <div className="text-sm text-gray-500 uppercase tracking-wide mb-6">ALL MENTIONS</div>
-            <div className="text-xs text-gray-400 mb-4">
-              Showing {mentions.slice(1, 1 + visibleCount).length} of {mentions.length - 1} articles (visibleCount: {visibleCount})
-            </div>
+            <div className="text-sm text-gray-500 uppercase tracking-wide mb-4">ALL MENTIONS</div>
             <div className="divide-y divide-gray-200">
               {mentions.slice(1, 1 + visibleCount).map((mention, index) => {
                 console.log(`Rendering mention ${index + 1}:`, mention.articleTitle);
@@ -158,11 +155,11 @@ export default function MentionsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
                 >
-                  <div className="py-12 grid grid-cols-1 md:grid-cols-12 gap-y-10 md:gap-x-28 items-center">
+                  <div className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-y-4 sm:gap-y-6 md:gap-x-16 items-center">
                     {/* Publisher Logo and Name */}
-                    <div className="flex items-center space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
+                    <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                       {mention.publisherData?.publisherLogo ? (
-                        <div className="w-14 h-14 relative flex-shrink-0">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0">
                           <Image
                             src={urlFor(mention.publisherData.publisherLogo).width(56).height(56).url()}
                             alt={`${mention.publisherData.publisherName} logo`}
@@ -171,22 +168,22 @@ export default function MentionsPage() {
                           />
                         </div>
                       ) : (
-                        <div className="w-14 h-14 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
                           <span className="text-base font-medium text-gray-500">
                             {mention.publisherData?.publisherName?.charAt(0) || '?'}
                           </span>
                         </div>
                       )}
-                      <span className="text-sm font-medium text-gray-900 whitespace-nowrap">
+                      <span className="text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap">
                         {mention.publisherData?.publisherName}
                       </span>
                     </div>
 
                     {/* Interview Info (if applicable) */}
                     {mention.isInterview && mention.intervieweeData?.intervieweeName && (
-                      <div className="flex items-center space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
+                      <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
                         {mention.intervieweeData.intervieweeHeadshot && (
-                          <div className="w-14 h-14 relative flex-shrink-0">
+                          <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0">
                             <Image
                               src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(56).height(56).url()}
                               alt={`${mention.intervieweeData.intervieweeName} headshot`}
@@ -195,15 +192,15 @@ export default function MentionsPage() {
                             />
                           </div>
                         )}
-                        <span className="text-sm text-gray-600 whitespace-nowrap">
+                        <span className="text-xs sm:text-sm text-gray-600 leading-tight">
                           Interview with {mention.intervieweeData.intervieweeName}
                         </span>
                       </div>
                     )}
 
                     {/* Article Title */}
-                    <div className="flex-1 min-w-0 mt-3 md:mt-0 md:col-span-6 md:pl-16">
-                      <h3 className="text-base md:text-lg font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
+                    <div className="flex-1 min-w-0 mt-3 md:mt-0 md:col-span-6 md:pl-8">
+                      <h3 className="text-sm sm:text-base md:text-lg font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200 leading-tight">
                         {mention.articleTitle}
                       </h3>
                     </div>

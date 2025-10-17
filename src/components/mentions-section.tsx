@@ -54,11 +54,11 @@ export default function MentionsSection() {
   const visibleMentions = mentions.slice(0, visibleCount);
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:pl-8 lg:pr-16">
+    <section className="py-16 bg-white">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <motion.div
-          className="mb-12"
+          className="mb-8"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -91,7 +91,7 @@ export default function MentionsSection() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="py-8 sm:py-12 grid grid-cols-1 md:grid-cols-12 gap-y-6 sm:gap-y-10 md:gap-x-28 items-center">
+                <div className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-y-4 sm:gap-y-6 md:gap-x-16 items-center">
                   {/* Publisher Logo and Name */}
                   <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                     {mention.publisherData?.publisherLogo ? (
@@ -128,15 +128,15 @@ export default function MentionsSection() {
                           />
                         </div>
                       )}
-                      <span className="text-xs sm:text-sm text-gray-600 whitespace-nowrap">
+                      <span className="text-xs sm:text-sm text-gray-600 leading-tight">
                         Interview with {mention.intervieweeData.intervieweeName}
                       </span>
                     </div>
                   )}
 
                   {/* Article Title */}
-                  <div className="flex-1 min-w-0 mt-3 md:mt-0 md:col-span-6 md:pl-16">
-                    <h3 className="text-sm sm:text-base md:text-lg font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
+                  <div className="flex-1 min-w-0 mt-3 md:mt-0 md:col-span-6 md:pl-8">
+                    <h3 className="text-sm sm:text-base md:text-lg font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200 leading-tight">
                       {mention.articleTitle}
                     </h3>
                   </div>
@@ -148,7 +148,7 @@ export default function MentionsSection() {
           
 
           {/* View All Button */}
-          <div className="mt-8 pt-6 border-t border-gray-200 text-center">
+          <div className="mt-6 pt-4 border-t border-gray-200 text-center">
             <Link 
               href="/mentions"
               className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm uppercase tracking-wide group"
