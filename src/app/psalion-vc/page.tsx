@@ -7,21 +7,12 @@ import React, { useState, useEffect, Component } from 'react';
 import BubbleMatrix from './BubbleMatrix';
 import TechnologiesChart from './TechnologiesChart';
 
-// Dynamically import Spline with better error handling
-const Spline = dynamic(() => 
-  import('@splinetool/react-spline').catch(() => {
-    // Fallback if import fails
-    return { default: () => <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
-      <div className="text-gray-500">3D model unavailable</div>
-    </div> };
-  }).then(mod => ({ default: mod.default || mod })), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
-      <div className="text-gray-500">Loading 3D model...</div>
-    </div>
-  ),
-});
+// Temporarily disable Spline for Vercel deployment
+const Spline = () => (
+  <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
+    <div className="text-gray-500">3D model temporarily disabled</div>
+  </div>
+);
 
 // Fallback component for when WebGL fails
 function SplineFallback() {
