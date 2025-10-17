@@ -32,16 +32,23 @@ function SplineFallback() {
   );
 }
 
-// Smart Spline component that tries to load but falls back gracefully
-function SmartSpline({ scene, style }: { scene: string; style: any }) {
-  const [hasError, setHasError] = useState(false);
+// Direct Spline component - let it try to load without interference
+function DirectSpline({ scene, style }: { scene: string; style: any }) {
+  const [showFallback, setShowFallback] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    
+    // Set a timeout to show fallback if Spline doesn't load within 5 seconds
+    const timeout = setTimeout(() => {
+      setShowFallback(true);
+    }, 5000);
+
+    return () => clearTimeout(timeout);
   }, []);
 
-  // Suppress WebGL errors in console
+  // Suppress WebGL errors in console without affecting functionality
   useEffect(() => {
     const originalError = console.error;
     const originalWarn = console.warn;
@@ -49,8 +56,7 @@ function SmartSpline({ scene, style }: { scene: string; style: any }) {
     console.error = (...args) => {
       const message = args.join(' ');
       if (message.includes('WebGL') || message.includes('THREE.WebGLRenderer')) {
-        setHasError(true);
-        return; // Don't log WebGL errors
+        return; // Just suppress, don't change behavior
       }
       originalError.apply(console, args);
     };
@@ -58,8 +64,7 @@ function SmartSpline({ scene, style }: { scene: string; style: any }) {
     console.warn = (...args) => {
       const message = args.join(' ');
       if (message.includes('WebGL') || message.includes('THREE.WebGLRenderer')) {
-        setHasError(true);
-        return; // Don't log WebGL warnings
+        return; // Just suppress, don't change behavior
       }
       originalWarn.apply(console, args);
     };
@@ -70,7 +75,15 @@ function SmartSpline({ scene, style }: { scene: string; style: any }) {
     };
   }, []);
 
-  if (!mounted || hasError) {
+  if (!mounted) {
+    return (
+      <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
+        <div className="text-gray-500">Loading 3D model...</div>
+      </div>
+    );
+  }
+
+  if (showFallback) {
     return <SplineFallback />;
   }
 
@@ -78,7 +91,6 @@ function SmartSpline({ scene, style }: { scene: string; style: any }) {
     <Spline
       scene={scene}
       style={style}
-      onError={() => setHasError(true)}
     />
   );
 }
@@ -114,7 +126,7 @@ export default function PsalionYieldPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
                   <div className="w-full max-w-4xl h-[600px] lg:h-[700px] overflow-hidden">
-                <SmartSpline
+                <DirectSpline
                   scene="https://prod.spline.design/x7emdz5Mo6GlTTWV/scene.splinecode"
                   style={{ 
                     width: '100%', 
