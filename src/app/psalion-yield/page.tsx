@@ -1,25 +1,21 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useState, useEffect, Component } from 'react';
 
-// Dynamically import Spline with better error handling
-const Spline = dynamic(() => 
-  import('@splinetool/react-spline').then(mod => ({ default: mod.Spline })).catch(() => {
-    // Fallback if import fails
-    return { default: () => <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
-      <div className="text-gray-500">3D model unavailable</div>
-    </div> };
-  }), {
-  ssr: false,
-  loading: () => (
+// Import Spline statically with error boundary
+let Spline: any = null;
+try {
+  Spline = require('@splinetool/react-spline').Spline;
+} catch (error) {
+  console.warn('Spline not available:', error);
+  Spline = () => (
     <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
-      <div className="text-gray-500">Loading 3D model...</div>
+      <div className="text-gray-500">3D model unavailable</div>
     </div>
-  ),
-});
+  );
+}
 
 // Loading animation component
 function SplineLoading() {
