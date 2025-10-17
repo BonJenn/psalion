@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BubbleMatrix from './BubbleMatrix';
 
 // Dynamically import Spline to avoid SSR issues with error handling
@@ -15,6 +15,42 @@ const Spline = dynamic(() => import('@splinetool/react-spline'), {
     </div>
   ),
 });
+
+// Safe Spline wrapper that checks WebGL support before loading
+function SafeSpline({ scene, style, onError }: { scene: string; style: any; onError: () => void }) {
+  const [webglSupported, setWebglSupported] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    if (typeof window !== 'undefined') {
+      setWebglSupported(hasWebGLSupport());
+    }
+  }, []);
+
+  if (!mounted || !webglSupported) {
+    return <SplineFallback />;
+  }
+
+  return (
+    <Spline
+      scene={scene}
+      style={style}
+      onError={onError}
+    />
+  );
+}
+
+// Check for WebGL support
+function hasWebGLSupport() {
+  try {
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    return !!gl;
+  } catch (e) {
+    return false;
+  }
+}
 
 // Fallback component for when WebGL fails
 function SplineFallback() {
@@ -77,7 +113,7 @@ export default function PsalionVCPage() {
                 {splineError ? (
                   <SplineFallback />
                 ) : (
-                  <Spline
+                  <SafeSpline
                     scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/funds.splinecode"
                     style={{ 
                       width: '100%', 
