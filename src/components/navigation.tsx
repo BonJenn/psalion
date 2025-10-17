@@ -22,7 +22,7 @@ export default function Navigation() {
     { href: '/psalion-vc', label: 'Psalion VC' },
     { href: '/bespoke-services', label: 'Bespoke Services' },
     { href: '/#team', label: 'Team' },
-    { href: '/press', label: 'Press Mentions' },
+    { href: '/mentions', label: 'Press Mentions' },
     { href: '/clients', label: 'Clients' },
     { href: '/contact', label: 'Contact' },
   ];
