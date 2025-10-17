@@ -165,7 +165,7 @@ export default function HeroSection() {
 
           </motion.div>
 
-          {/* Spline 3D Model */}
+          {/* Spline 3D Model with Interactive Labels */}
           <motion.div
             className="flex justify-center lg:justify-end order-last lg:order-last"
             initial={{ opacity: 0, x: 60 }}
@@ -174,6 +174,51 @@ export default function HeroSection() {
           >
             <div className="relative w-full max-w-2xl sm:max-w-3xl lg:max-w-2xl h-[600px] lg:h-[700px] overflow-hidden">
               <DirectSpline />
+              
+              {/* Interactive Labels positioned around the 3D model */}
+              <div className="absolute inset-0 pointer-events-none">
+                {/* PSALION VC Label - Upper Left */}
+                <motion.a
+                  href="/psalion-vc"
+                  className="absolute top-8 left-4 pointer-events-auto group"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1, duration: 0.5 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <div className="bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg border border-gray-200 group-hover:bg-white group-hover:shadow-xl transition-all duration-200">
+                    <span className="text-blue-600 font-semibold text-sm">PSALION VC</span>
+                  </div>
+                </motion.a>
+
+                {/* PSALION YIELD Label - Upper Right */}
+                <motion.a
+                  href="/psalion-yield"
+                  className="absolute top-16 right-4 pointer-events-auto group"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.2, duration: 0.5 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <div className="bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg border border-gray-200 group-hover:bg-white group-hover:shadow-xl transition-all duration-200">
+                    <span className="text-blue-600 font-semibold text-sm">PSALION YIELD</span>
+                  </div>
+                </motion.a>
+
+                {/* BESPOKE SERVICES Label - Lower Center */}
+                <motion.a
+                  href="/bespoke-services"
+                  className="absolute bottom-8 left-1/2 transform -translate-x-1/2 pointer-events-auto group"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.4, duration: 0.5 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <div className="bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg border border-gray-200 group-hover:bg-white group-hover:shadow-xl transition-all duration-200">
+                    <span className="text-blue-600 font-semibold text-sm">BESPOKE SERVICES</span>
+                  </div>
+                </motion.a>
+              </div>
             </div>
           </motion.div>
         </div>
