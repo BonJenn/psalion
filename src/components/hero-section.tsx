@@ -229,7 +229,7 @@ export default function HeroSection() {
             className="text-center"
             variants={fadeInUp}
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-400 uppercase tracking-wide">
               Psalion VC
             </h2>
           </motion.div>
