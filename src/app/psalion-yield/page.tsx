@@ -1,81 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
-
-// Dynamically import Spline to avoid SSR issues
-const Spline = dynamic(() => import('@splinetool/react-spline'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
-      <div className="text-gray-500">Loading 3D model...</div>
-    </div>
-  ),
-});
-
-// Safe Spline wrapper that handles loading gracefully
-function SafeSpline({ scene, style, onError }: { scene: string; style: any; onError: () => void }) {
-  const [mounted, setMounted] = useState(false);
-  const [hasError, setHasError] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const handleError = () => {
-    setHasError(true);
-    onError();
-  };
-
-  if (!mounted) {
-    return (
-      <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
-        <div className="text-gray-500">Loading 3D model...</div>
-      </div>
-    );
-  }
-
-  if (hasError) {
-    return <SplineFallback />;
-  }
-
-  return (
-    <Spline
-      scene={scene}
-      style={style}
-      onError={handleError}
-    />
-  );
-}
-
-// Check for WebGL support - more permissive for Chrome
-function hasWebGLSupport() {
-  try {
-    const canvas = document.createElement('canvas');
-    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl') || canvas.getContext('webgl2');
-    
-    // If we can create a context, WebGL is supported
-    if (gl) {
-      return true;
-    }
-    
-    // Additional check for Chrome - sometimes context creation fails but WebGL is still available
-    const userAgent = navigator.userAgent.toLowerCase();
-    const isChrome = userAgent.includes('chrome') && !userAgent.includes('edge');
-    
-    // For Chrome, be more permissive - let Spline try to load
-    if (isChrome) {
-      return true;
-    }
-    
-    return false;
-  } catch (e) {
-    // If there's an error, assume WebGL might still work
-    return true;
-  }
-}
 
 // Fallback component for when WebGL fails
 function SplineFallback() {
@@ -95,11 +21,6 @@ function SplineFallback() {
 }
 
 export default function PsalionYieldPage() {
-  const [splineError, setSplineError] = useState(false);
-
-  const handleSplineError = () => {
-    setSplineError(true);
-  };
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -130,20 +51,7 @@ export default function PsalionYieldPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
                   <div className="w-full max-w-4xl h-[600px] lg:h-[700px] overflow-hidden">
-                {splineError ? (
-                  <SplineFallback />
-                ) : (
-                  <SafeSpline
-                    scene="https://prod.spline.design/x7emdz5Mo6GlTTWV/scene.splinecode"
-                    style={{ 
-                      width: '100%', 
-                      height: '100%',
-                      transform: 'scale(1.5)',
-                      transformOrigin: 'center'
-                    }}
-                    onError={handleSplineError}
-                  />
-                )}
+                <SplineFallback />
               </div>
             </motion.div>
           </div>
