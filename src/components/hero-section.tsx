@@ -330,7 +330,7 @@ export default function HeroSection() {
           >
             <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden">
               <SplineErrorBoundary>
-                <Spline
+                <SplineComponent
                   scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/funds.splinecode"
                   style={{
                     width: '100%',
