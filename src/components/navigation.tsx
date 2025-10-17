@@ -59,15 +59,11 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/psalion_logo.png"
-                alt="Psalion"
-                width={120}
-                height={40}
-                className="h-8 w-auto"
-                priority
-              />
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-black rounded-sm flex items-center justify-center">
+                <span className="text-white font-bold text-sm">P</span>
+              </div>
+              <span className="font-semibold text-lg">Psalion</span>
             </Link>
 
             {/* Hamburger Menu Button */}
