@@ -44,18 +44,18 @@ const dots: Dot[] = [
 // Mobile-optimized bubble sizes
 const getMobileDots = (): Dot[] => [
   // Fund II row (top) - much smaller bubbles for mobile
-  { cat: "Decentralized Finance", row: "Fund II", r: 16, value: 5, muted: true },
-  { cat: "Infrastructure",        row: "Fund II", r: 24, value: 12, muted: true },
-  { cat: "NFT",                   row: "Fund II", r: 10, value: 3, muted: true },
-  { cat: "RWA",                   row: "Fund II", r: 12, value: 2, muted: true },
-  { cat: "Other",                 row: "Fund II", r: 14, value: 2, muted: true },
+  { cat: "Decentralized Finance", row: "Fund II", r: 12, value: 5, muted: true },
+  { cat: "Infrastructure",        row: "Fund II", r: 18, value: 12, muted: true },
+  { cat: "NFT",                   row: "Fund II", r: 8, value: 3, muted: true },
+  { cat: "RWA",                   row: "Fund II", r: 9, value: 2, muted: true },
+  { cat: "Other",                 row: "Fund II", r: 10, value: 2, muted: true },
 
   // Fund I row (bottom) - much smaller bubbles for mobile
-  { cat: "Decentralized Finance", row: "Fund I", r: 18, value: 7, muted: true },
-  { cat: "Infrastructure",        row: "Fund I", r: 22, value: 11, muted: true },
+  { cat: "Decentralized Finance", row: "Fund I", r: 14, value: 7, muted: true },
+  { cat: "Infrastructure",        row: "Fund I", r: 16, value: 11, muted: true },
   { cat: "NFT",                   row: "Fund I", r: 0 }, // none in mock
-  { cat: "RWA",                   row: "Fund I", r: 8, value: 1, muted: true },
-  { cat: "Other",                 row: "Fund I", r: 12, value: 2, muted: true },
+  { cat: "RWA",                   row: "Fund I", r: 6, value: 1, muted: true },
+  { cat: "Other",                 row: "Fund I", r: 9, value: 2, muted: true },
 ];
 
 export default function BubbleMatrix() {
@@ -68,13 +68,13 @@ export default function BubbleMatrix() {
   // Use mobile-optimized dots on mobile
   const currentDots = isMobile ? getMobileDots() : dots;
   
-  const W = isMobile ? 320 : isTablet ? 600 : 1120;
-  const H = isMobile ? 350 : isTablet ? 350 : 460;
+  const W = isMobile ? 300 : isTablet ? 600 : 1120;
+  const H = isMobile ? 380 : isTablet ? 350 : 460;
   const M = { 
-    top: isMobile ? 25 : 60, 
-    right: isMobile ? 30 : isTablet ? 80 : 140, 
-    bottom: isMobile ? 50 : 120, 
-    left: isMobile ? 30 : 100 
+    top: isMobile ? 20 : 60, 
+    right: isMobile ? 50 : isTablet ? 80 : 140, 
+    bottom: isMobile ? 60 : 120, 
+    left: isMobile ? 20 : 100 
   };
   const plotW = W - M.left - M.right;
   const plotH = H - M.top - M.bottom;
@@ -225,9 +225,9 @@ export default function BubbleMatrix() {
                   <text
                     key={i}
                     x={x(c)}
-                    y={H - M.bottom + (isMobile ? 35 : 48)}
+                    y={H - M.bottom + (isMobile ? 30 : 48)}
                     textAnchor="middle"
-                    fontSize={isMobile ? "9" : "12"}
+                    fontSize={isMobile ? "7" : "12"}
                     fill="#6B7280"
                     fontFamily="ui-sans-serif, system-ui"
                   >
@@ -239,10 +239,10 @@ export default function BubbleMatrix() {
                 {rows.map((r, i) => (
                   <text
                     key={i}
-                    x={W - M.right + (isMobile ? 40 : 54)}
+                    x={W - M.right + (isMobile ? 25 : 54)}
                     y={y(r) + 4}
                     textAnchor="start"
-                    fontSize={isMobile ? "10" : "12"}
+                    fontSize={isMobile ? "8" : "12"}
                     fill="#6B7280"
                     fontFamily="ui-sans-serif, system-ui"
                   >
