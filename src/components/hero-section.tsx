@@ -160,15 +160,18 @@ function DirectSpline() {
       <SplineComponent
         scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/home.splinecode"
         onLoad={() => {
+          // Brief delay to avoid skinny -> normal snap, then enable immediately
           setSplineLoaded(true);
-          setIsLoading(false);
+          setTimeout(() => setIsLoading(false), 200);
         }}
         style={{
           width: '100%',
           height: '100%',
           transform: 'scale(1.2)',
           transformOrigin: 'center',
-          display: isLoading ? 'none' : 'block'
+          opacity: isLoading ? 0 : 1,
+          pointerEvents: isLoading ? 'none' : 'auto',
+          transition: 'opacity 200ms ease'
         }}
       />
     </SplineErrorBoundary>

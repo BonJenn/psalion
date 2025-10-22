@@ -239,12 +239,14 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
         scene={scene}
         style={{
           ...style,
-          display: isLoading ? 'none' : 'block'
+          opacity: isLoading ? 0 : 1,
+          pointerEvents: isLoading ? 'none' : 'auto',
+          transition: 'opacity 150ms ease'
         }}
         onLoad={() => {
           console.log('DirectSpline: Spline loaded successfully');
           setSplineLoaded(true);
-          setIsLoading(false);
+          setTimeout(() => setIsLoading(false), 200);
         }}
         onError={(error: any) => {
           console.log('DirectSpline: Spline onError triggered:', error);
@@ -292,7 +294,10 @@ export default function PsalionYieldPage() {
                     width: '100%', 
                     height: '100%',
                     transform: 'scale(1.5)',
-                    transformOrigin: 'center'
+                    transformOrigin: 'center',
+                    visibility: 'hidden',
+                    opacity: 0,
+                    transition: 'opacity 200ms ease'
                   }}
                 />
               </div>
