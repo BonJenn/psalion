@@ -263,10 +263,10 @@ export default function PsalionYieldPage() {
       {/* Hero Section */}
       <section className="pt-16 pb-0 lg:pb-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 md:gap-4 lg:gap-6 items-center">
             {/* Left Column - Text Content */}
             <motion.div
-              className="space-y-4 md:space-y-6 lg:col-span-2"
+              className="space-y-2 md:space-y-3 lg:col-span-2"
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -306,18 +306,18 @@ export default function PsalionYieldPage() {
       </section>
 
       {/* Features Grid Section */}
-      <section className="pt-0 -mt-2 md:mt-0 pb-16 md:pb-20 bg-white">
+      <section className="pt-0 -mt-4 md:mt-0 pb-12 md:pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-4">
             {/* Feature 1: High yields */}
             <motion.div
-              className="border border-gray-200 rounded-lg p-5 md:p-6 hover:shadow-lg transition-shadow duration-300"
+              className="border border-gray-200 rounded-lg p-4 md:p-5 hover:shadow-lg transition-shadow duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="w-16 h-16 mb-4">
+              <div className="w-16 h-16 mb-3">
                 <Image
                   src="/psalion_yield/high_yields.png"
                   alt="High yields icon"
@@ -335,13 +335,13 @@ export default function PsalionYieldPage() {
 
             {/* Feature 2: Strict risk-management strategy */}
             <motion.div
-              className="border border-gray-200 rounded-lg p-5 md:p-6 hover:shadow-lg transition-shadow duration-300"
+              className="border border-gray-200 rounded-lg p-4 md:p-5 hover:shadow-lg transition-shadow duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="w-16 h-16 mb-4">
+              <div className="w-16 h-16 mb-3">
                 <Image
                   src="/psalion_yield/strict_risk_management_strategy.png"
                   alt="Risk management icon"
@@ -360,13 +360,13 @@ export default function PsalionYieldPage() {
 
             {/* Feature 3: Fully liquid */}
             <motion.div
-              className="border border-gray-200 rounded-lg p-5 md:p-6 hover:shadow-lg transition-shadow duration-300"
+              className="border border-gray-200 rounded-lg p-4 md:p-5 hover:shadow-lg transition-shadow duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <div className="w-16 h-16 mb-4">
+              <div className="w-16 h-16 mb-3">
                 <img
                   src="/psalion_yield/fully_liquid.png"
                   alt="Fully liquid icon"
@@ -384,13 +384,13 @@ export default function PsalionYieldPage() {
 
             {/* Feature 4: Top-tier custodians */}
             <motion.div
-              className="border border-gray-200 rounded-lg p-5 md:p-6 hover:shadow-lg transition-shadow duration-300"
+              className="border border-gray-200 rounded-lg p-4 md:p-5 hover:shadow-lg transition-shadow duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <div className="w-16 h-16 mb-4">
+              <div className="w-16 h-16 mb-3">
                 <img
                   src="/psalion_yield/top_tier_custodians.png"
                   alt="Top-tier custodians icon"
@@ -407,13 +407,13 @@ export default function PsalionYieldPage() {
 
             {/* Feature 5: Limited fees */}
             <motion.div
-              className="border border-gray-200 rounded-lg p-5 md:p-6 hover:shadow-lg transition-shadow duration-300"
+              className="border border-gray-200 rounded-lg p-4 md:p-5 hover:shadow-lg transition-shadow duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <div className="w-16 h-16 mb-4">
+              <div className="w-16 h-16 mb-3">
                 <img
                   src="/psalion_yield/limited_fees.png"
                   alt="Limited fees icon"
@@ -433,13 +433,13 @@ export default function PsalionYieldPage() {
 
             {/* Feature 6: Several native currencies */}
             <motion.div
-              className="border border-gray-200 rounded-lg p-5 md:p-6 hover:shadow-lg transition-shadow duration-300"
+              className="border border-gray-200 rounded-lg p-4 md:p-5 hover:shadow-lg transition-shadow duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               viewport={{ once: true }}
             >
-              <div className="w-16 h-16 mb-4">
+              <div className="w-16 h-16 mb-3">
                 <Image
                   src="/psalion_yield/several_native_currencies.png"
                   alt="Native currencies icon"
@@ -462,13 +462,13 @@ export default function PsalionYieldPage() {
 
             {/* Feature 7: Earn yield regardless of market trends */}
             <motion.div
-              className="border border-gray-200 rounded-lg p-5 md:p-6 hover:shadow-lg transition-shadow duration-300"
+              className="border border-gray-200 rounded-lg p-4 md:p-5 hover:shadow-lg transition-shadow duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="w-16 h-16 mb-4">
+              <div className="w-16 h-16 mb-3">
                 <Image
                   src="/psalion_yield/earn_yield_regardless_of_market_trends.png"
                   alt="Market trends icon"
@@ -486,13 +486,13 @@ export default function PsalionYieldPage() {
 
             {/* Feature 8: Account transparency & frequent reporting */}
             <motion.div
-              className="border border-gray-200 rounded-lg p-5 md:p-6 hover:shadow-lg transition-shadow duration-300"
+              className="border border-gray-200 rounded-lg p-4 md:p-5 hover:shadow-lg transition-shadow duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
               viewport={{ once: true }}
             >
-              <div className="w-16 h-16 mb-4">
+              <div className="w-16 h-16 mb-3">
                 <Image
                   src="/psalion_yield/account_transparency_&_frequent_reporting.png"
                   alt="Transparency icon"
@@ -516,13 +516,13 @@ export default function PsalionYieldPage() {
 
             {/* Feature 9: Regulatory & Licensing */}
             <motion.div
-              className="border border-gray-200 rounded-lg p-5 md:p-6 hover:shadow-lg transition-shadow duration-300"
+              className="border border-gray-200 rounded-lg p-4 md:p-5 hover:shadow-lg transition-shadow duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="w-16 h-16 mb-4">
+              <div className="w-16 h-16 mb-3">
                 <Image
                   src="/psalion_yield/regulatory_&_licensing.png"
                   alt="Regulatory icon"
@@ -540,7 +540,7 @@ export default function PsalionYieldPage() {
 
           {/* Bottom text */}
           <motion.div
-            className="text-center mt-8 md:mt-12"
+            className="text-center mt-4 md:mt-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
