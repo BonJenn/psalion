@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   description: "Psalion provides unique instituional-level investment products tailored to private clients, family offices, and professional investors.",
   keywords: ["blockchain", "cryptocurrency", "digital assets", "crypto investment", "institutional crypto", "blockchain investment", "crypto strategies", "digital asset management"],
   authors: [{ name: "Psalion" }],
+  icons: {
+    icon: "/psalion_logos/Psalion/favicon/psalion_cube.png",
+    shortcut: "/psalion_logos/Psalion/favicon/psalion_cube.png",
+    apple: "/psalion_logos/Psalion/favicon/psalion_cube.png",
+  },
   openGraph: {
     title: "Psalion - Capital multipliers across the blockchain asset class",
     description: "Psalion provides unique instituional-level investment products tailored to private clients, family offices, and professional investors.",
