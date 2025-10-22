@@ -303,7 +303,6 @@ export default function PsalionVCPage() {
                     height: '100%',
                     transform: 'scale(1.2)',
                     transformOrigin: 'center',
-                    visibility: 'hidden',
                     opacity: 0,
                     transition: 'opacity 200ms ease'
                   }}
