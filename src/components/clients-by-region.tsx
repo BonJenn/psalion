@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+// react-simple-maps types may be missing in this project
+// @ts-expect-error - no type defs available
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 
 export default function ClientsByRegion() {
@@ -112,14 +114,17 @@ export default function ClientsByRegion() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-400 uppercase tracking-wide">
-            Clients by Region
-          </h2>
+          <div className="flex items-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-black uppercase tracking-wide">
+              Clients by Region
+            </h2>
+            <div className="flex-1 ml-4 border-t border-dashed border-gray-300"></div>
+          </div>
         </motion.div>
 
         {/* World Map Container */}
         <motion.div
-          className="relative"
+          className="relative mt-8"
           variants={fadeInUp}
           initial="initial"
           whileInView="animate"
@@ -142,8 +147,8 @@ export default function ClientsByRegion() {
               }}
             >
               <Geographies geography="https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json">
-                {({ geographies }) =>
-                  geographies.map((geo) => {
+                {({ geographies }: { geographies: any[] }) =>
+                  geographies.map((geo: any) => {
                     const countryName = geo.properties.NAME || geo.properties.name || geo.properties.NAME_EN || geo.properties.ADMIN;
                     
                         // Find which region this country belongs to

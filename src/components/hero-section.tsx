@@ -7,8 +7,8 @@ import React, { useState, useEffect, Component } from 'react';
 // Custom Spline loader with proper error handling
 const loadSpline = async () => {
   try {
-    const module = await import('@splinetool/react-spline');
-    return module.Spline || module.default || module;
+    const { default: Spline } = (await import('@splinetool/react-spline')) as any;
+    return Spline;
   } catch (error) {
     console.warn('Failed to load Spline:', error);
     return null;
@@ -203,14 +203,14 @@ export default function HeroSection() {
           >
             {/* Main Heading */}
             <motion.h1
-              className="text-3xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight"
+              className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mb-4 leading-tight"
               variants={fadeInUp}
             >
               Capital multipliers
               <br />
               across the
               <br />
-              <span className="text-black">blockchain</span>
+              <span className="text-gray-800">blockchain</span>
               <br />
               asset class.
             </motion.h1>
@@ -232,7 +232,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
+              <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
               <DirectSpline />
               
               {/* Interactive Labels positioned around the 3D model */}
@@ -240,37 +240,37 @@ export default function HeroSection() {
                 {/* PSALION VC Label - Upper Left */}
                 <motion.a
                   href="/psalion-vc"
-                  className="absolute top-8 left-4 pointer-events-auto group"
+                  className="absolute top-[6%] left-[14%] pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1, duration: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <span className="text-blue-600 font-semibold text-sm group-hover:text-blue-800 transition-colors duration-200">PSALION VC</span>
+                  <span className="relative inline-block px-1 rounded text-blue-500 font-semibold text-base group-hover:text-blue-800 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">PSALION VC</span>
                 </motion.a>
 
                 {/* PSALION YIELD Label - Upper Right */}
                 <motion.a
                   href="/psalion-yield"
-                  className="absolute top-16 right-4 pointer-events-auto group"
+                  className="absolute top-[10%] right-[5%] pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <span className="text-blue-600 font-semibold text-sm group-hover:text-blue-800 transition-colors duration-200">PSALION YIELD</span>
+                  <span className="relative inline-block px-1 rounded text-blue-500 font-semibold text-base group-hover:text-blue-800 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">PSALION YIELD</span>
                 </motion.a>
 
                 {/* BESPOKE SERVICES Label - Lower Center */}
                 <motion.a
                   href="/bespoke-services"
-                  className="absolute bottom-8 left-1/2 transform -translate-x-1/2 pointer-events-auto group"
+                  className="absolute bottom-[15%] left-[12%] pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.4, duration: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <span className="text-blue-600 font-semibold text-sm group-hover:text-blue-800 transition-colors duration-200">BESPOKE SERVICES</span>
+                  <span className="relative inline-block px-1 rounded text-blue-500 font-semibold text-base group-hover:text-blue-800 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">BESPOKE SERVICES</span>
                 </motion.a>
               </div>
             </div>
@@ -279,7 +279,7 @@ export default function HeroSection() {
 
         {/* Psalion VC Section Header */}
         <motion.div
-          className="max-w-6xl mx-auto mt-20"
+          className="max-w-6xl mx-auto mt-0"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -289,15 +289,18 @@ export default function HeroSection() {
             className="text-left"
             variants={fadeInUp}
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-400 uppercase tracking-wide">
-              Psalion VC
-            </h2>
+            <div className="flex items-center">
+              <h2 className="text-2xl md:text-3xl font-bold text-black uppercase tracking-wide mb-0">
+                Psalion VC
+              </h2>
+              <div className="flex-1 ml-4 border-t border-dashed border-gray-300"></div>
+            </div>
           </motion.div>
         </motion.div>
 
         {/* VC Section */}
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mt-8"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto -mt-12"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -308,7 +311,7 @@ export default function HeroSection() {
             className="text-left"
             variants={fadeInUp}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 mb-6 leading-tight">
               Driving innovation
               <br />
               in digital assets.
@@ -394,7 +397,7 @@ export default function HeroSection() {
               <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">AAVE</span>
             </a>
 
-            {/* SushiSwap */}
+            {/* Sushi */}
             <a
               href="https://sushi.com"
               target="_blank"
@@ -404,13 +407,13 @@ export default function HeroSection() {
               <div className="w-16 h-16 flex items-center justify-center mb-3">
                 <Image
                   src="/asset_logos/3.sushiswap_logo.png"
-                  alt="SushiSwap"
+                  alt="Sushi"
                   width={64}
                   height={64}
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">SushiSwap</span>
+              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Sushi</span>
             </a>
 
             {/* Polkadot */}

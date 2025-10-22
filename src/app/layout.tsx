@@ -5,6 +5,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import NewsletterCTA from "@/components/newsletter-cta";
 import { Toaster } from "@/components/ui/sonner";
+import InvestorRestriction from "@/components/investor-restriction";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased">
+        <InvestorRestriction />
         <Navigation />
         <main className="min-h-screen">
           {children}

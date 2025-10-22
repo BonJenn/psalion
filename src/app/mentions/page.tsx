@@ -159,16 +159,16 @@ export default function MentionsPage() {
                     {/* Publisher Logo and Name */}
                     <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                       {mention.publisherData?.publisherLogo ? (
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 relative flex-shrink-0">
                           <Image
-                            src={urlFor(mention.publisherData.publisherLogo).width(56).height(56).url()}
+                            src={urlFor(mention.publisherData.publisherLogo).width(56).fit('max').url()}
                             alt={`${mention.publisherData.publisherName} logo`}
                             fill
                             className="object-contain"
                           />
                         </div>
                       ) : (
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
                           <span className="text-base font-medium text-gray-500">
                             {mention.publisherData?.publisherName?.charAt(0) || '?'}
                           </span>

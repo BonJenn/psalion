@@ -9,8 +9,8 @@ import TechnologiesChart from './TechnologiesChart';
 // Custom Spline loader with proper error handling
 const loadSpline = async () => {
   try {
-    const module = await import('@splinetool/react-spline');
-    return module.Spline || module.default || module;
+    const { default: Spline } = (await import('@splinetool/react-spline')) as any;
+    return Spline;
   } catch (error) {
     console.warn('Failed to load Spline:', error);
     return null;
@@ -249,7 +249,7 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
           setSplineLoaded(true);
           setIsLoading(false);
         }}
-        onError={(error) => {
+        onError={(error: any) => {
           console.log('DirectSpline: Spline onError triggered:', error);
           setShowFallback(true);
         }}
@@ -273,7 +273,7 @@ export default function PsalionVCPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 leading-tight">
                 Driving innovation in digital assets.
               </h1>
               
@@ -359,7 +359,7 @@ export default function PsalionVCPage() {
               <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">AAVE</span>
             </motion.a>
 
-            {/* SushiSwap */}
+            {/* Sushi */}
             <motion.a
               href="https://sushi.com"
               target="_blank"
@@ -371,12 +371,12 @@ export default function PsalionVCPage() {
               <div className="w-16 h-16 relative">
                 <Image
                   src="/asset_logos/3.sushiswap_logo.png"
-                  alt="SushiSwap logo"
+                  alt="Sushi logo"
                   fill
                   className="object-contain"
                 />
               </div>
-              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">SushiSwap</span>
+              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Sushi</span>
             </motion.a>
 
             {/* Polkadot */}

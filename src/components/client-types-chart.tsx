@@ -113,7 +113,7 @@ export default function ClientTypesChart() {
             </motion.p>
             
             <motion.p
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-12"
+              className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 leading-tight mb-12"
               variants={fadeInUp}
               transition={{ delay: 0.1 }}
             >

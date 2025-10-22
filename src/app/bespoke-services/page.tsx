@@ -7,8 +7,8 @@ import { Compass } from 'lucide-react';
 // Custom Spline loader with proper error handling
 const loadSpline = async () => {
   try {
-    const module = await import('@splinetool/react-spline');
-    return module.Spline || module.default || module;
+    const { default: Spline } = (await import('@splinetool/react-spline')) as any;
+    return Spline;
   } catch (error) {
     console.warn('Failed to load Spline:', error);
     return null;
@@ -230,7 +230,7 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
           setSplineLoaded(true);
           setIsLoading(false);
         }}
-        onError={(error) => {
+        onError={(error: any) => {
           console.log('DirectSpline: Spline onError triggered:', error);
           setShowFallback(true);
         }}
@@ -256,9 +256,9 @@ export default function BespokeServicesPage() {
               <div className="flex items-start gap-4">
               
                 <div>
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-gray-800 leading-tight">
                     Your vision, our craft:<br />
-                    <span className="text-gray-900">Bespoke services</span>
+                    <span className="text-gray-800">Bespoke services</span>
                   </h1>
                   <p className="text-base sm:text-lg text-gray-600 mt-6 leading-relaxed">
                     There are many ways to enter the digital assets realm. We help you find yours.

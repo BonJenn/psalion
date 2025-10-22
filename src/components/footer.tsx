@@ -32,8 +32,8 @@ export default function Footer() {
     {
       title: 'Products',
       links: [
-        { href: '/psalion-yield', label: 'Psalion Yield' },
         { href: '/psalion-vc', label: 'Psalion VC' },
+        { href: '/psalion-yield', label: 'Psalion Yield' },
         { href: '/bespoke-services', label: 'Bespoke Services' },
       ],
     },
@@ -85,23 +85,29 @@ export default function Footer() {
                     {link.isContact ? (
                       <button
                         onClick={() => handleLinkClick(link.href, link.isContact)}
-                        className="text-gray-600 hover:text-black transition-colors duration-200 text-sm text-left"
+                        className="group text-gray-600 hover:text-black transition-colors duration-200 text-sm text-left"
                       >
-                        {link.label}
+                        <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">
+                          {link.label}
+                        </span>
                       </button>
                     ) : link.href.startsWith('/#') ? (
                       <button
                         onClick={() => handleLinkClick(link.href)}
-                        className="text-gray-600 hover:text-black transition-colors duration-200 text-sm text-left"
+                        className="group text-gray-600 hover:text-black transition-colors duration-200 text-sm text-left"
                       >
-                        {link.label}
+                        <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">
+                          {link.label}
+                        </span>
                       </button>
                     ) : (
                       <Link
                         href={link.href}
-                        className="text-gray-600 hover:text-black transition-colors duration-200 text-sm"
+                        className="group text-gray-600 hover:text-black transition-colors duration-200 text-sm"
                       >
-                        {link.label}
+                        <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">
+                          {link.label}
+                        </span>
                       </Link>
                     )}
                   </li>
@@ -119,21 +125,21 @@ export default function Footer() {
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link
               href="/legal/privacy"
-              className="text-gray-500 hover:text-gray-700 text-sm transition-colors duration-200"
+              className="group text-gray-500 hover:text-gray-700 text-sm transition-colors duration-200"
             >
-              Privacy
+              <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">Privacy</span>
             </Link>
             <Link
               href="/legal/terms"
-              className="text-gray-500 hover:text-gray-700 text-sm transition-colors duration-200"
+              className="group text-gray-500 hover:text-gray-700 text-sm transition-colors duration-200"
             >
-              Terms
+              <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">Terms</span>
             </Link>
             <Link
               href="/legal/cookies"
-              className="text-gray-500 hover:text-gray-700 text-sm transition-colors duration-200"
+              className="group text-gray-500 hover:text-gray-700 text-sm transition-colors duration-200"
             >
-              Cookies
+              <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">Cookies</span>
             </Link>
           </div>
         </div>

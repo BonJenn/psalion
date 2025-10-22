@@ -7,8 +7,8 @@ import React, { useState, useEffect, Component } from 'react';
 // Custom Spline loader with proper error handling
 const loadSpline = async () => {
   try {
-    const module = await import('@splinetool/react-spline');
-    return module.Spline || module.default || module;
+    const { default: Spline } = (await import('@splinetool/react-spline')) as any;
+    return Spline;
   } catch (error) {
     console.warn('Failed to load Spline:', error);
     return null;
@@ -246,7 +246,7 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
           setSplineLoaded(true);
           setIsLoading(false);
         }}
-        onError={(error) => {
+        onError={(error: any) => {
           console.log('DirectSpline: Spline onError triggered:', error);
           setShowFallback(true);
         }}
@@ -259,7 +259,7 @@ export default function PsalionYieldPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="pt-16 pb-8 lg:pb-12">
+      <section className="pt-16 pb-0 lg:pb-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-center">
             {/* Left Column - Text Content */}
@@ -269,7 +269,7 @@ export default function PsalionYieldPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 leading-tight">
                 Psalion Yield is a unique, fully liquid strategy that offers attractive returns for investment, cash management or white-label distribution.
               </h1>
               
@@ -302,7 +302,7 @@ export default function PsalionYieldPage() {
       </section>
 
       {/* Features Grid Section */}
-      <section className="py-20 bg-white">
+      <section className="pt-0 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Feature 1: High yields */}
@@ -323,9 +323,9 @@ export default function PsalionYieldPage() {
                 />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">High yields</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Consistent performance</li>
-                <li>• 4-year track record</li>
+              <ul className="text-sm text-gray-600 space-y-1 list-disc pl-5">
+                <li>Consistent performance</li>
+                <li>5-year track record</li>
               </ul>
             </motion.div>
 
@@ -347,10 +347,10 @@ export default function PsalionYieldPage() {
                 />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Strict risk-management strategy</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Structural</li>
-                <li>• Operational</li>
-                <li>• Managerial</li>
+              <ul className="text-sm text-gray-600 space-y-1 list-disc pl-5">
+                <li>Structural</li>
+                <li>Operational</li>
+                <li>Managerial</li>
               </ul>
             </motion.div>
 
@@ -370,11 +370,11 @@ export default function PsalionYieldPage() {
                 />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Fully liquid</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• SMAs:</li>
-                <li>• 6-hour liquidity</li>
-                <li>• Yield Funds:</li>
-                <li>• 24-hour liquidity</li>
+              <ul className="text-sm text-gray-600 space-y-1 list-disc pl-5">
+                <li>SMAs:</li>
+                <li>6-hour liquidity</li>
+                <li>Yield Funds:</li>
+                <li>24-hour liquidity</li>
               </ul>
             </motion.div>
 
@@ -394,10 +394,10 @@ export default function PsalionYieldPage() {
                 />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Top-tier custodians</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• 100% Custodial</li>
-                <li>• SMAs:</li>
-                <li>• Investor can retain ownership and possession of assets</li>
+              <ul className="text-sm text-gray-600 space-y-1 list-disc pl-5">
+                <li>100% Custodial</li>
+                <li>SMAs:</li>
+                <li>Investor can retain ownership and possession of assets</li>
               </ul>
             </motion.div>
 
@@ -417,13 +417,13 @@ export default function PsalionYieldPage() {
                 />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Limited fees</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• SMAs:</li>
-                <li>• No deposit, withdrawal, entry, exit or management fees</li>
-                <li>• Only a performance fee</li>
-                <li>• Yield Funds:</li>
-                <li>• 1.5% / 20% Fee structure</li>
-                <li>• No deposit, withdrawal, entry or exit fees</li>
+              <ul className="text-sm text-gray-600 space-y-1 list-disc pl-5">
+                <li>SMAs:</li>
+                <li>No deposit, withdrawal, entry, exit or management fees</li>
+                <li>Only a performance fee</li>
+                <li>Yield Funds:</li>
+                <li>1.5% / 20% Fee structure</li>
+                <li>No deposit, withdrawal, entry or exit fees</li>
               </ul>
             </motion.div>
 
@@ -445,14 +445,14 @@ export default function PsalionYieldPage() {
                 />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Several native currencies</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• SMAs:</li>
-                <li>• Earn more dollars by opening a USDC or USDT account</li>
-                <li>• Earn more euros by opening a EURC account</li>
-                <li>• Earn more cryptocurrency by opening a BTC, ETH or SOL account</li>
-                <li>• Other currencies on demand</li>
-                <li>• Yield Funds:</li>
-                <li>• Only available for dollar yield at this stage</li>
+              <ul className="text-sm text-gray-600 space-y-1 list-disc pl-5">
+                <li>SMAs:</li>
+                <li>Earn more dollars by opening a USDC or USDT account</li>
+                <li>Earn more euros by opening a EURC account</li>
+                <li>Earn more cryptocurrency by opening a BTC, ETH or SOL account</li>
+                <li>Other currencies on demand</li>
+                <li>Yield Funds:</li>
+                <li>Only available for dollar yield at this stage</li>
               </ul>
             </motion.div>
 
@@ -474,9 +474,9 @@ export default function PsalionYieldPage() {
                 />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Earn yield regardless of market trends</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Zero market exposure (only exposure is to the chosen native currency of the SMA)</li>
-                <li>• No Impermanent loss</li>
+              <ul className="text-sm text-gray-600 space-y-1 list-disc pl-5">
+                <li>Zero market exposure (only exposure is to the chosen native currency of the SMA)</li>
+                <li>No Impermanent loss</li>
               </ul>
             </motion.div>
 
@@ -498,15 +498,15 @@ export default function PsalionYieldPage() {
                 />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Account transparency & frequent reporting</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• SMAs:</li>
-                <li>• Personal dashboard</li>
-                <li>• On-chain transparency</li>
-                <li>• Daily performance email</li>
-                <li>• Monthly statement</li>
-                <li>• Live third-party valuation</li>
-                <li>• Yield Funds:</li>
-                <li>• Third-party administration and reporting</li>
+              <ul className="text-sm text-gray-600 space-y-1 list-disc pl-5">
+                <li>SMAs:</li>
+                <li>Personal dashboard</li>
+                <li>On-chain transparency</li>
+                <li>Daily performance email</li>
+                <li>Monthly statement</li>
+                <li>Live third-party valuation</li>
+                <li>Yield Funds:</li>
+                <li>Third-party administration and reporting</li>
               </ul>
             </motion.div>
 
@@ -528,8 +528,8 @@ export default function PsalionYieldPage() {
                 />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Regulatory & Licensing</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Bitcoin Service Provider (El Salvador)</li>
+              <ul className="text-sm text-gray-600 space-y-1 list-disc pl-5">
+                <li>Bitcoin Service Provider (El Salvador)</li>
               </ul>
             </motion.div>
           </div>

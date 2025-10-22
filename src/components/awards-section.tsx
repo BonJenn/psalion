@@ -48,7 +48,7 @@ export default function AwardsSection() {
           viewport={{ once: true }}
         >
           <div className="flex items-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-400 uppercase tracking-wide">
+            <h2 className="text-2xl md:text-3xl font-bold text-black uppercase tracking-wide">
               Awards
             </h2>
             <div className="flex-1 ml-4 border-t border-dashed border-gray-300"></div>
