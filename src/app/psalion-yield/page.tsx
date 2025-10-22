@@ -306,7 +306,7 @@ export default function PsalionYieldPage() {
       </section>
 
       {/* Features Grid Section */}
-      <section className="pt-0 -mt-4 md:mt-0 pb-12 md:pb-16 bg-white">
+      <section className="pt-0 -mt-2 md:mt-0 pb-12 md:pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-4">
             {/* Feature 1: High yields */}
