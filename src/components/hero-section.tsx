@@ -267,7 +267,7 @@ export default function HeroSection() {
                 {/* BESPOKE SERVICES Label - Lower Center */}
                 <motion.a
                   href="/bespoke-services"
-                  className="absolute bottom-[12%] sm:bottom-[12%] left-[12%] pointer-events-auto group"
+                  className="absolute bottom-[8%] sm:bottom-[12%] left-[12%] pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.4, duration: 0.5 }}
@@ -303,7 +303,7 @@ export default function HeroSection() {
 
         {/* VC Section */}
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center max-w-6xl mx-auto -mt-6 md:-mt-12"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center max-w-6xl mx-auto mt-2 md:-mt-12"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
