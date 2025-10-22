@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   keywords: ["blockchain", "cryptocurrency", "digital assets", "crypto investment", "institutional crypto", "blockchain investment", "crypto strategies", "digital asset management"],
   authors: [{ name: "Psalion" }],
   icons: {
-    icon: "/psalion_logos/Psalion/favicon/psalion_cube.png",
-    shortcut: "/psalion_logos/Psalion/favicon/psalion_cube.png",
-    apple: "/psalion_logos/Psalion/favicon/psalion_cube.png",
+    icon: "/favicon.ico.png",
+    shortcut: "/favicon.ico.png",
+    apple: "/favicon.ico.png",
   },
   openGraph: {
     title: "Psalion - Capital multipliers across the blockchain asset class",
