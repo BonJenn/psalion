@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -12,6 +12,8 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const [menuPos, setMenuPos] = useState<{ top: number; left: number }>({ top: 64, left: 16 });
   const pathname = usePathname();
   const isHome = pathname === '/' || pathname === null;
 
@@ -22,6 +24,34 @@ export default function Navigation() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Position the dropdown directly beneath the hamburger button
+  useEffect(() => {
+    if (!isOpen) return;
+    const computePos = () => {
+      const btn = buttonRef.current;
+      if (!btn) return;
+      const rect = btn.getBoundingClientRect();
+      const gap = 8; // small vertical offset
+      const panelMaxWidth = 320; // matches max-w-[320px]
+      const viewportPadding = 16; // keep away from the edges
+      const top = rect.bottom + window.scrollY + gap;
+      const leftRaw = rect.left + window.scrollX;
+      const left = Math.min(
+        Math.max(viewportPadding, leftRaw),
+        window.innerWidth - panelMaxWidth - viewportPadding
+      );
+      setMenuPos({ top, left });
+    };
+
+    computePos();
+    window.addEventListener('resize', computePos);
+    window.addEventListener('scroll', computePos);
+    return () => {
+      window.removeEventListener('resize', computePos);
+      window.removeEventListener('scroll', computePos);
+    };
+  }, [isOpen]);
 
   const navItems = [
     { href: '/psalion-vc', label: 'Psalion VC' },
@@ -104,6 +134,7 @@ export default function Navigation() {
               }`}
               aria-label="Toggle menu"
               onClick={() => setIsOpen(!isOpen)}
+              ref={buttonRef}
             >
               {isOpen ? (
                 <X className="size-[22px] text-white" />
@@ -128,8 +159,11 @@ export default function Navigation() {
             onClick={() => setIsOpen(false)}
           />
           
-          {/* Dark Gray Menu Panel */}
-          <div className="absolute top-16 left-4 right-4 md:right-auto md:left-4 rounded-lg shadow-xl min-w-[280px] max-w-[320px] border border-gray-800 bg-[#2a2a2a] text-white">
+          {/* Dark Gray Menu Panel - fixed positioned under the button */}
+          <div
+            className="fixed rounded-lg shadow-xl min-w-[280px] max-w-[320px] border border-gray-800 bg-[#2a2a2a] text-white"
+            style={{ top: menuPos.top, left: menuPos.left }}
+          >
             <div className="p-6">
               <div className="space-y-1">
                 {navItems.map((item) => (
