@@ -37,10 +37,11 @@ export default function Navigation() {
       const panelMaxWidth = 320; // desired max width
       const viewportPadding = 16; // keep away from the edges
       const top = rect.bottom + window.scrollY + gap;
-      const leftRaw = rect.left + window.scrollX;
+      // Align panel's right edge with button's right edge by default
       const allowedWidth = Math.max(200, Math.min(panelMaxWidth, window.innerWidth - viewportPadding * 2));
+      const leftAlignedToRight = rect.right + window.scrollX - allowedWidth;
       const left = Math.min(
-        Math.max(viewportPadding, leftRaw),
+        Math.max(viewportPadding, leftAlignedToRight),
         window.innerWidth - allowedWidth - viewportPadding
       );
       setMenuPos({ top, left });
