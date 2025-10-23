@@ -99,7 +99,7 @@ export default function Navigation() {
             <Button
               variant="ghost"
               size="icon-sm"
-              className={`p-0 size-[40px] rounded-lg border transition-colors duration-200 translate-y-[6px] group ${
+              className={`p-0 size-[40px] rounded-lg border transition-colors duration-200 translate-y-[10px] group ${
                 isOpen ? 'bg-black border-black text-white' : 'bg-white border-gray-200 hover:bg-black hover:border-black'
               }`}
               aria-label="Toggle menu"
