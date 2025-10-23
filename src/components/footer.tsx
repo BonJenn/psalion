@@ -2,12 +2,31 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import ContactFormModal from './contact-form-modal';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Match header logo selection
+  const logoSrc = (() => {
+    if (pathname === '/' || pathname === null) {
+      return '/psalion_logos/Psalion/vertical/on%20white/2025.svg';
+    }
+    if (pathname.startsWith('/bespoke-services')) {
+      return '/psalion_logos/Services/vertical/on%20white.svg';
+    }
+    if (pathname.startsWith('/psalion-vc')) {
+      return '/psalion_logos/VC/vertical/on%20white.svg';
+    }
+    if (pathname.startsWith('/psalion-yield')) {
+      return '/psalion_logos/Yield/vertical/on%20white.svg';
+    }
+    return '/psalion_logos/Psalion/vertical/on%20white/2025.svg';
+  })();
 
   const handleLinkClick = (href: string, isContact?: boolean) => {
     if (isContact) {
@@ -64,7 +83,7 @@ export default function Footer() {
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center mb-4">
               <Image
-                src="/psalion_logo.png"
+                src={logoSrc}
                 alt="Psalion"
                 width={160}
                 height={50}
