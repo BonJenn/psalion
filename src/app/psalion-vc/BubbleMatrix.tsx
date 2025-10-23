@@ -96,23 +96,14 @@ export default function BubbleMatrix() {
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Title */}
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 uppercase tracking-wide">
-            Founders by Category and Fund
-          </h2>
-          <p className="text-gray-600 mt-2 text-sm sm:text-base">
-            Hover over circles to see founder counts
-          </p>
-        </div>
     
         <div className="w-full flex justify-center overflow-x-auto">
-          <div
+            <div
             className="relative"
             style={{ 
               width: W, 
               height: H, 
-              fontFamily: "ui-sans-serif, system-ui",
+              fontFamily: "IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
               minWidth: '100%'
             }}
           >
@@ -229,7 +220,7 @@ export default function BubbleMatrix() {
                     textAnchor="middle"
                     fontSize={isMobile ? "7" : "12"}
                     fill="#6B7280"
-                    fontFamily="ui-sans-serif, system-ui"
+                    fontFamily="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
                   >
                     {isMobile ? c.split(' ')[0] : c}
                   </text>
@@ -244,7 +235,7 @@ export default function BubbleMatrix() {
                     textAnchor="start"
                     fontSize={isMobile ? "8" : "12"}
                     fill="#6B7280"
-                    fontFamily="ui-sans-serif, system-ui"
+                    fontFamily="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
                   >
                     {r}
                   </text>
