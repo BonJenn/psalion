@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 function LogoBox({ src, alt, isForbes = false }: { src: string; alt: string; isForbes?: boolean }) {
   return (
     <div
-      className={`relative w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 overflow-hidden ${
+      className={`relative w-6 h-6 flex-shrink-0 overflow-hidden ${
         isForbes ? '' : 'rounded-md bg-white border border-gray-200'
       }`}
     >
@@ -135,12 +135,12 @@ export default function MentionsSection() {
                   <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                     {mention.publisherData?.publisherLogo ? (
                       <LogoBox
-                        src={urlFor(mention.publisherData.publisherLogo).height(48).fit('max').url()}
+                        src={urlFor(mention.publisherData.publisherLogo).height(24).fit('max').url()}
                         alt={`${mention.publisherData.publisherName} logo`}
                         isForbes={(mention.publisherData?.publisherName || '').toLowerCase().includes('forbes')}
                       />
                     ) : (
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
+                      <div className="w-6 h-6 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
                         <span className="text-base font-medium text-gray-500">
                           {mention.publisherData?.publisherName?.charAt(0) || '?'}
                         </span>
@@ -155,9 +155,9 @@ export default function MentionsSection() {
                   {mention.isInterview && mention.intervieweeData?.intervieweeName && (
                     <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
                       {mention.intervieweeData.intervieweeHeadshot && (
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0 rounded-md overflow-hidden">
+                        <div className="w-6 h-6 relative flex-shrink-0 rounded-md overflow-hidden">
                           <Image
-                            src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(56).height(56).url()}
+                            src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(24).height(24).url()}
                             alt={`${mention.intervieweeData.intervieweeName} headshot`}
                             fill
                             className="object-cover grayscale"
