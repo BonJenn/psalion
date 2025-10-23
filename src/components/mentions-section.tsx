@@ -122,16 +122,16 @@ export default function MentionsSection() {
                   {/* Publisher Logo and Name */}
                   <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                     {mention.publisherData?.publisherLogo ? (
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0 rounded-md overflow-hidden bg-white">
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 relative flex-shrink-0 rounded-md overflow-hidden bg-white">
                         <Image
-                          src={urlFor(mention.publisherData.publisherLogo).width(56).fit('max').url()}
+                          src={urlFor(mention.publisherData.publisherLogo).width(64).fit('max').url()}
                           alt={`${mention.publisherData.publisherName} logo`}
                           fill
                           className="object-contain"
                         />
                       </div>
                     ) : (
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 bg-gray-200 rounded-md flex items-center justify-center">
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-gray-200 rounded-md flex items-center justify-center">
                         <span className="text-base font-medium text-gray-500">
                           {mention.publisherData?.publisherName?.charAt(0) || '?'}
                         </span>
