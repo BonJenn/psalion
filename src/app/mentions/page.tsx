@@ -7,23 +7,11 @@ import { useEffect, useState } from 'react';
 
 export default function MentionsPage() {
   const LogoBox = ({ src, alt, small = false, isForbes = false }: { src: string; alt: string; small?: boolean; isForbes?: boolean }) => {
-    const [aspectRatio, setAspectRatio] = useState<number | null>(null);
     return (
       <div
-        className={`${small ? 'h-6' : 'h-10 sm:h-12'} relative flex-shrink-0 overflow-hidden ${isForbes ? '' : 'rounded-md bg-white border border-gray-200'}`}
-        style={{ aspectRatio: aspectRatio || 1 }}
+        className={`${small ? 'w-6 h-6' : 'w-10 h-10 sm:w-12 sm:h-12'} relative flex-shrink-0 overflow-hidden ${isForbes ? '' : 'rounded-md bg-white border border-gray-200'}`}
       >
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className="object-contain"
-          onLoadingComplete={(img) => {
-            if (img.naturalHeight > 0) {
-              setAspectRatio(img.naturalWidth / img.naturalHeight);
-            }
-          }}
-        />
+        <Image src={src} alt={alt} fill className="object-contain" />
       </div>
     );
   };
