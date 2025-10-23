@@ -96,52 +96,54 @@ export default function BoardOfDirectors() {
 
           {/* Director Description */}
           <motion.div
-            className="lg:pl-8 mt-8 lg:mt-0 h-[360px] sm:h-[380px] md:h-[420px] lg:h-[460px] overflow-y-auto pr-2"
+            className="lg:pl-8 mt-8 lg:mt-0 h-[360px] sm:h-[380px] md:h-[420px] lg:h-[460px] pr-2 relative overflow-hidden"
             key={selectedDirector}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-gray-900">
-                {directors[selectedDirector].title}
-              </h3>
-              <div className="text-gray-700 leading-relaxed space-y-4">
-                {directors[selectedDirector].description.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="text-base">
-                    {paragraph}
-                  </p>
-                ))}
-                
-                {/* Regular commentator section for Timothy Enneking */}
-                {directors[selectedDirector].isTimothy && (
-                  <div className="mt-6 pt-4 border-t border-gray-200">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-sm text-gray-600">Regular commentator for</span>
-                      <div className="relative w-20 h-8">
-                        <Image
-                          src="/forbes_logo.png"
-                          alt="Forbes"
-                          width={80}
-                          height={32}
-                          className="object-contain"
-                        />
-                      </div>
-                      <span className="text-gray-400 text-sm">and</span>
-                      <div className="relative w-24 h-8">
-                        <Image
-                          src="/business_insider_logo.png"
-                          alt="Business Insider"
-                          width={96}
-                          height={32}
-                          className="object-contain"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )}
+            <div className="absolute inset-0 overflow-y-auto pb-16 pr-2">
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-gray-900">
+                  {directors[selectedDirector].title}
+                </h3>
+                <div className="text-gray-700 leading-relaxed space-y-4">
+                  {directors[selectedDirector].description.split('\n\n').map((paragraph, index) => (
+                    <p key={index} className="text-base">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
+
+            {/* Always-visible regular commentator row for Timothy Enneking */}
+            {directors[selectedDirector].isTimothy && (
+              <div className="absolute bottom-0 left-0 right-0 bg-white pt-4 border-t border-gray-200">
+                <div className="flex items-center space-x-2 pl-0.5">
+                  <span className="text-sm text-gray-600">Regular commentator for</span>
+                  <div className="relative w-20 h-8">
+                    <Image
+                      src="/forbes_logo.png"
+                      alt="Forbes"
+                      width={80}
+                      height={32}
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="text-gray-400 text-sm">and</span>
+                  <div className="relative w-24 h-8">
+                    <Image
+                      src="/business_insider_logo.png"
+                      alt="Business Insider"
+                      width={96}
+                      height={32}
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
           </motion.div>
         </div>
       </div>
