@@ -129,7 +129,7 @@ export default function Navigation() {
           />
           
           {/* Dark Gray Menu Panel */}
-          <div className="absolute top-16 right-4 rounded-lg shadow-xl min-w-[280px] max-w-[320px] border border-gray-800 bg-[#2a2a2a] text-white">
+          <div className="absolute top-16 left-4 right-4 md:right-auto md:left-4 rounded-lg shadow-xl min-w-[280px] max-w-[320px] border border-gray-800 bg-[#2a2a2a] text-white">
             <div className="p-6">
               <div className="space-y-1">
                 {navItems.map((item) => (
