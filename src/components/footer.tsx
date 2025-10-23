@@ -85,9 +85,9 @@ export default function Footer() {
               <Image
                 src={logoSrc}
                 alt="Psalion"
-                width={160}
-                height={50}
-                className="h-12 w-auto"
+                width={80}
+                height={25}
+                className="h-6 w-auto"
                 priority
               />
             </Link>
