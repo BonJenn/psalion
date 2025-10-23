@@ -14,6 +14,7 @@ export default function Navigation() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const [menuPos, setMenuPos] = useState<{ top: number; left: number }>({ top: 64, left: 16 });
+  const [menuWidth, setMenuWidth] = useState<number>(320);
   const pathname = usePathname();
   const isHome = pathname === '/' || pathname === null;
 
@@ -33,15 +34,17 @@ export default function Navigation() {
       if (!btn) return;
       const rect = btn.getBoundingClientRect();
       const gap = 8; // small vertical offset
-      const panelMaxWidth = 320; // matches max-w-[320px]
+      const panelMaxWidth = 320; // desired max width
       const viewportPadding = 16; // keep away from the edges
       const top = rect.bottom + window.scrollY + gap;
       const leftRaw = rect.left + window.scrollX;
+      const allowedWidth = Math.max(200, Math.min(panelMaxWidth, window.innerWidth - viewportPadding * 2));
       const left = Math.min(
         Math.max(viewportPadding, leftRaw),
-        window.innerWidth - panelMaxWidth - viewportPadding
+        window.innerWidth - allowedWidth - viewportPadding
       );
       setMenuPos({ top, left });
+      setMenuWidth(allowedWidth);
     };
 
     computePos();
@@ -155,14 +158,14 @@ export default function Navigation() {
         <div className="fixed inset-0 z-50">
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/30"
             onClick={() => setIsOpen(false)}
           />
           
           {/* Dark Gray Menu Panel - fixed positioned under the button */}
           <div
-            className="fixed rounded-lg shadow-xl min-w-[280px] max-w-[320px] border border-gray-800 bg-[#2a2a2a] text-white"
-            style={{ top: menuPos.top, left: menuPos.left }}
+            className="fixed rounded-lg shadow-xl border border-gray-800 bg-[#2a2a2a] text-white"
+            style={{ top: menuPos.top, left: menuPos.left, width: menuWidth }}
           >
             <div className="p-6">
               <div className="space-y-1">
