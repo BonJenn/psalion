@@ -9,7 +9,7 @@ export default function MentionsPage() {
   const LogoBox = ({ src, alt, small = false, isForbes = false }: { src: string; alt: string; small?: boolean; isForbes?: boolean }) => {
     return (
       <div
-        className={`${small ? 'w-6 h-6' : 'w-10 h-10 sm:w-12 sm:h-12'} relative flex-shrink-0 overflow-hidden ${isForbes ? '' : 'rounded-md bg-white border border-gray-200'}`}
+        className={`${small ? 'w-6 h-6' : 'w-12 h-12 sm:w-14 sm:h-14'} relative flex-shrink-0 overflow-hidden ${isForbes ? '' : 'rounded-md bg-white border border-gray-200'}`}
       >
         <Image src={src} alt={alt} fill className="object-contain" />
       </div>
@@ -187,9 +187,9 @@ export default function MentionsPage() {
                     {mention.isInterview && mention.intervieweeData?.intervieweeName && (
                       <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
                         {mention.intervieweeData.intervieweeHeadshot && (
-                          <div className="w-10 h-10 sm:w-12 sm:h-12 relative flex-shrink-0 rounded-md overflow-hidden">
+                          <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0 rounded-md overflow-hidden">
                             <Image
-                              src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(48).height(48).url()}
+                              src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(56).height(56).url()}
                               alt={`${mention.intervieweeData.intervieweeName} headshot`}
                               fill
                               className="object-cover grayscale"
