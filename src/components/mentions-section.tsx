@@ -127,7 +127,7 @@ export default function MentionsSection() {
                           src={urlFor(mention.publisherData.publisherLogo).width(48).fit('max').url()}
                           alt={`${mention.publisherData.publisherName} logo`}
                           fill
-                          className="object-contain"
+                          className="object-cover"
                         />
                       </div>
                     ) : (

@@ -88,12 +88,12 @@ export default function MentionsPage() {
                     {/* Publisher Logo */}
                       {mentions[0].publisherData?.publisherLogo ? (
                         <div className="w-6 h-6 relative flex-shrink-0 rounded-md overflow-hidden bg-white border border-gray-200">
-                        <Image
+                          <Image
                             src={urlFor(mentions[0].publisherData.publisherLogo).width(24).height(24).url()}
-                          alt={`${mentions[0].publisherData.publisherName} logo`}
-                          fill
-                            className="object-contain"
-                        />
+                            alt={`${mentions[0].publisherData.publisherName} logo`}
+                            fill
+                            className="object-cover"
+                          />
                       </div>
                     ) : (
                         <div className="w-6 h-6 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
@@ -164,7 +164,7 @@ export default function MentionsPage() {
                             src={urlFor(mention.publisherData.publisherLogo).width(48).fit('max').url()}
                             alt={`${mention.publisherData.publisherName} logo`}
                             fill
-                            className="object-contain"
+                            className="object-cover"
                           />
                         </div>
                       ) : (
