@@ -124,7 +124,7 @@ export default function ClientsByRegion() {
 
         {/* World Map Container */}
         <motion.div
-          className="relative mt-8"
+          className="relative mt-16"
           variants={fadeInUp}
           initial="initial"
           whileInView="animate"
