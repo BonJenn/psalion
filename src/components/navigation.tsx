@@ -99,19 +99,19 @@ export default function Navigation() {
             <Button
               variant="ghost"
               size="icon-sm"
-              className={`p-0 size-[30px] rounded-lg border transition-colors duration-200 translate-y-[2px] group ${
+              className={`p-0 size-[40px] rounded-lg border transition-colors duration-200 translate-y-[6px] group ${
                 isOpen ? 'bg-black border-black text-white' : 'bg-white border-gray-200 hover:bg-black hover:border-black'
               }`}
               aria-label="Toggle menu"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? (
-                <X className="size-[20px] text-white" />
+                <X className="size-[22px] text-white" />
               ) : (
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-stretch justify-center px-[8px]">
                   <span className="block h-[2px] w-[18px] rounded-full bg-gray-900 group-hover:bg-white transition-colors duration-200" />
                   <span className="block h-[2px] w-[18px] rounded-full bg-gray-900 group-hover:bg-white transition-colors duration-200 mt-[4px]" />
-                  <span className="block h-[2px] w-[9px] rounded-full bg-gray-900 group-hover:bg-white transition-colors duration-200 mt-[4px] self-center" />
+                  <span className="block h-[2px] w-[9px] rounded-full bg-gray-900 group-hover:bg-white transition-colors duration-200 mt-[4px] self-end" />
                 </div>
               )}
             </Button>
