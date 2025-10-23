@@ -122,7 +122,7 @@ export default function MentionsSection() {
                   {/* Publisher Logo and Name */}
                   <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                     {mention.publisherData?.publisherLogo ? (
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 relative flex-shrink-0">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 relative flex-shrink-0 rounded-md overflow-hidden bg-white">
                         <Image
                           src={urlFor(mention.publisherData.publisherLogo).width(56).fit('max').url()}
                           alt={`${mention.publisherData.publisherName} logo`}
@@ -131,13 +131,13 @@ export default function MentionsSection() {
                         />
                       </div>
                     ) : (
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 bg-gray-200 rounded-md flex items-center justify-center">
                         <span className="text-base font-medium text-gray-500">
                           {mention.publisherData?.publisherName?.charAt(0) || '?'}
                         </span>
                       </div>
                     )}
-                    <span className="text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap">
+                    <span className="text-sm font-medium text-gray-900 whitespace-nowrap">
                       {mention.publisherData?.publisherName}
                     </span>
                   </div>
@@ -146,16 +146,16 @@ export default function MentionsSection() {
                   {mention.isInterview && mention.intervieweeData?.intervieweeName && (
                     <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
                       {mention.intervieweeData.intervieweeHeadshot && (
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0 rounded-md overflow-hidden">
                           <Image
                             src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(56).height(56).url()}
                             alt={`${mention.intervieweeData.intervieweeName} headshot`}
                             fill
-                            className="object-cover rounded-full grayscale"
+                            className="object-cover grayscale"
                           />
                         </div>
                       )}
-                      <span className="text-xs sm:text-sm text-gray-600 leading-tight">
+                      <span className="text-sm text-gray-600 leading-tight">
                         Interview with {mention.intervieweeData.intervieweeName}
                       </span>
                     </div>
@@ -163,7 +163,7 @@ export default function MentionsSection() {
 
                   {/* Article Title */}
                   <div className="flex-1 min-w-0 mt-3 md:mt-0 md:col-span-6 md:pl-8">
-                    <h3 className="text-sm sm:text-base md:text-lg font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200 leading-tight">
+                    <h3 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200 leading-tight">
                       {mention.articleTitle}
                     </h3>
                   </div>
