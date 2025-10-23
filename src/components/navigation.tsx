@@ -129,14 +129,14 @@ export default function Navigation() {
           />
           
           {/* Dark Gray Menu Panel */}
-          <div className="absolute top-16 right-4 bg-gray-800 rounded-lg shadow-xl min-w-[280px] max-w-[320px]">
+          <div className="absolute top-16 right-4 bg-gray-900 rounded-lg shadow-xl min-w-[280px] max-w-[320px] border border-gray-800">
             <div className="p-6">
               <div className="space-y-1">
                 {navItems.map((item) => (
                   item.isContact ? (
                     <button
                       key={item.href}
-                      className="block w-full text-left px-4 py-3 text-white hover:bg-gray-700 rounded-md transition-colors duration-200 font-medium"
+                      className="block w-full text-left px-4 py-3 text-white hover:bg-gray-800 rounded-md transition-colors duration-200 font-medium"
                       onClick={() => handleLinkClick(item.href, item.isContact)}
                     >
                       {item.label}
@@ -145,7 +145,7 @@ export default function Navigation() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="block px-4 py-3 text-white hover:bg-gray-700 rounded-md transition-colors duration-200 font-medium"
+                      className="block px-4 py-3 text-white hover:bg-gray-800 rounded-md transition-colors duration-200 font-medium"
                       onClick={() => handleLinkClick(item.href)}
                     >
                       {item.label}
