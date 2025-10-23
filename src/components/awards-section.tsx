@@ -48,10 +48,13 @@ export default function AwardsSection() {
           viewport={{ once: true }}
         >
           <div className="flex items-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-black uppercase tracking-wide">
+            <h2
+              className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-400 uppercase tracking-wide"
+              style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
+            >
               Awards
             </h2>
-            <div className="flex-1 ml-4 border-t border-dashed border-gray-300"></div>
+            <div className="flex-1 ml-4 border-t border-dashed border-gray-200"></div>
           </div>
         </motion.div>
 
