@@ -206,7 +206,7 @@ export default function HeroSection() {
           >
             {/* Main Heading */}
             <motion.h1
-              className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mb-4 leading-tight"
+              className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mb-4 leading-tight tracking-tight"
               variants={fadeInUp}
             >
               Capital multipliers
