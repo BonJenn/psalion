@@ -11,7 +11,7 @@ export default function MentionsPage() {
       <div
         className={`w-6 h-6 relative flex-shrink-0 overflow-hidden ${isForbes ? '' : 'rounded-md bg-white border border-gray-200'}`}
       >
-        <Image src={src} alt={alt} fill className="object-contain" />
+        <Image src={src} alt={alt} fill className={isForbes ? "object-cover" : "object-contain"} />
       </div>
     );
   };

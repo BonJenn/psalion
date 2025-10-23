@@ -13,7 +13,7 @@ function LogoBox({ src, alt, isForbes = false }: { src: string; alt: string; isF
         isForbes ? '' : 'rounded-md bg-white border border-gray-200'
       }`}
     >
-      <Image src={src} alt={alt} fill className="object-contain" />
+      <Image src={src} alt={alt} fill className={isForbes ? "object-cover" : "object-contain"} />
     </div>
   );
 }
