@@ -6,11 +6,11 @@ import { MentionContent, getMentionContent, urlFor } from '@/lib/sanity';
 import { useEffect, useState } from 'react';
 
 export default function MentionsPage() {
-  const LogoBox = ({ src, alt, small = false }: { src: string; alt: string; small?: boolean }) => {
+  const LogoBox = ({ src, alt, small = false, isForbes = false }: { src: string; alt: string; small?: boolean; isForbes?: boolean }) => {
     const [aspectRatio, setAspectRatio] = useState<number | null>(null);
     return (
       <div
-        className={`${small ? 'h-6' : 'h-10 sm:h-12'} relative flex-shrink-0 rounded-md overflow-hidden bg-white border border-gray-200`}
+        className={`${small ? 'h-6' : 'h-10 sm:h-12'} relative flex-shrink-0 overflow-hidden ${isForbes ? '' : 'rounded-md bg-white border border-gray-200'}`}
         style={{ aspectRatio: aspectRatio || 1 }}
       >
         <Image
@@ -112,6 +112,7 @@ export default function MentionsPage() {
                           src={urlFor(mentions[0].publisherData.publisherLogo).height(24).fit('max').url()}
                           alt={`${mentions[0].publisherData.publisherName} logo`}
                           small
+                          isForbes={(mentions[0].publisherData?.publisherName || '').toLowerCase().includes('forbes')}
                         />
                       ) : (
                         <div className="w-6 h-6 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
@@ -180,6 +181,7 @@ export default function MentionsPage() {
                         <LogoBox
                           src={urlFor(mention.publisherData.publisherLogo).height(48).fit('max').url()}
                           alt={`${mention.publisherData.publisherName} logo`}
+                          isForbes={(mention.publisherData?.publisherName || '').toLowerCase().includes('forbes')}
                         />
                       ) : (
                         <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
