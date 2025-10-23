@@ -275,15 +275,15 @@ export default function PsalionVCPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 leading-tight">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mb-4 leading-tight tracking-tight">
                 Driving innovation in digital assets.
               </h1>
               
-              <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
+              <p className="text-sm md:text-base text-gray-600 mb-4 leading-snug">
                 Psalion VC is committed to empowering the next generation of blockchain and digital asset innovators.
               </p>
               
-              <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
+              <p className="text-sm md:text-base text-gray-600 mb-4 leading-snug">
                 By investing in cutting-edge startups, we drive the development of technologies that enhance transparency, security, and efficiency across various industries.
               </p>
             </motion.div>
