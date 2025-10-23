@@ -221,11 +221,11 @@ export default function HeroSection() {
               className="text-sm md:text-base text-gray-600 mb-4 max-w-3xl leading-snug"
               variants={fadeInUp}
             >
-              Psalion provides unique institutional-level
+              Psalion provides unique institutional-level investment
               <br />
-              investment products tailored to private clients,
+              products tailored to private clients, family offices and
               <br />
-              family offices and professional investors.
+              professional investors.
             </motion.p>
 
           </motion.div>
