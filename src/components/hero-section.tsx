@@ -218,7 +218,7 @@ export default function HeroSection() {
 
             {/* Subtitle */}
             <motion.p
-              className="text-base md:text-lg text-gray-600 mb-6 max-w-3xl leading-snug"
+              className="text-sm md:text-base text-gray-600 mb-4 max-w-3xl leading-snug"
               variants={fadeInUp}
             >
               Psalion provides unique institutional-level
