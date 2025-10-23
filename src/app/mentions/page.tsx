@@ -86,18 +86,18 @@ export default function MentionsPage() {
                 >
                   <div className="flex items-start space-x-4 mb-4">
                     {/* Publisher Logo */}
-                    {mentions[0].publisherData?.publisherLogo ? (
-                        <div className="w-8 h-8 relative flex-shrink-0 rounded-md overflow-hidden bg-white">
+                      {mentions[0].publisherData?.publisherLogo ? (
+                        <div className="w-6 h-6 relative flex-shrink-0 rounded-md overflow-hidden bg-white">
                         <Image
-                          src={urlFor(mentions[0].publisherData.publisherLogo).width(32).height(32).url()}
+                            src={urlFor(mentions[0].publisherData.publisherLogo).width(24).height(24).url()}
                           alt={`${mentions[0].publisherData.publisherName} logo`}
                           fill
                             className="object-contain"
                         />
                       </div>
                     ) : (
-                        <div className="w-8 h-8 flex-shrink-0 bg-gray-200 rounded-md flex items-center justify-center">
-                        <span className="text-xs font-medium text-gray-500">
+                        <div className="w-6 h-6 flex-shrink-0 bg-gray-200 rounded-md flex items-center justify-center">
+                          <span className="text-[10px] font-medium text-gray-500">
                           {mentions[0].publisherData?.publisherName?.charAt(0) || '?'}
                         </span>
                       </div>
@@ -159,7 +159,7 @@ export default function MentionsPage() {
                     {/* Publisher Logo and Name */}
                     <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                       {mention.publisherData?.publisherLogo ? (
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 relative flex-shrink-0 rounded-md overflow-hidden bg-white">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0 rounded-md overflow-hidden bg-white">
                           <Image
                             src={urlFor(mention.publisherData.publisherLogo).width(56).fit('max').url()}
                             alt={`${mention.publisherData.publisherName} logo`}
@@ -168,7 +168,7 @@ export default function MentionsPage() {
                           />
                         </div>
                       ) : (
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 bg-gray-200 rounded-md flex items-center justify-center">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 bg-gray-200 rounded-md flex items-center justify-center">
                           <span className="text-base font-medium text-gray-500">
                             {mention.publisherData?.publisherName?.charAt(0) || '?'}
                           </span>
