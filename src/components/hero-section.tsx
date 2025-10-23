@@ -211,9 +211,7 @@ export default function HeroSection() {
             >
               Capital multipliers
               <br />
-              across the
-              <br />
-              <span className="text-gray-800">blockchain</span>
+              across the <span className="text-gray-800">blockchain</span>
               <br />
               asset class.
             </motion.h1>
@@ -223,7 +221,11 @@ export default function HeroSection() {
               className="text-lg md:text-xl text-gray-600 mb-6 max-w-3xl leading-snug"
               variants={fadeInUp}
             >
-              Psalion provides unique institutional-level investment products tailored to private clients, family offices and professional investors.
+              Psalion provides unique institutional-level
+              <br />
+              investment products tailored to private clients,
+              <br />
+              family offices and professional investors.
             </motion.p>
 
           </motion.div>
