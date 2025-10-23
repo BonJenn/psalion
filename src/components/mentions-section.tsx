@@ -106,9 +106,7 @@ export default function MentionsSection() {
           
           {/* Mentions List */}
           <div className="divide-y divide-gray-200">
-            {visibleMentions.map((mention, index) => {
-              const isForbes = (mention.publisherData?.publisherName || '').toLowerCase().includes('forbes');
-              return (
+            {visibleMentions.map((mention, index) => (
               <motion.a
                 key={mention._id}
                 href={mention.articleUrl}
@@ -124,16 +122,16 @@ export default function MentionsSection() {
                   {/* Publisher Logo and Name */}
                   <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                     {mention.publisherData?.publisherLogo ? (
-                      <div className={`${isForbes ? 'w-14 h-14 sm:w-16 sm:h-16 scale-125' : 'w-12 h-12 sm:w-14 sm:h-14'} relative flex-shrink-0 rounded-md overflow-hidden bg-white border border-gray-200`}>
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 relative flex-shrink-0 rounded-md overflow-hidden bg-white border border-gray-200">
                         <Image
-                          src={urlFor(mention.publisherData.publisherLogo).width(isForbes ? 80 : 56).fit('max').url()}
+                          src={urlFor(mention.publisherData.publisherLogo).width(48).fit('max').url()}
                           alt={`${mention.publisherData.publisherName} logo`}
                           fill
                           className="object-contain"
                         />
                       </div>
                     ) : (
-                      <div className={`${isForbes ? 'w-14 h-14 sm:w-16 sm:h-16 scale-125' : 'w-12 h-12 sm:w-14 sm:h-14'} flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center`}>
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
                         <span className="text-base font-medium text-gray-500">
                           {mention.publisherData?.publisherName?.charAt(0) || '?'}
                         </span>
@@ -148,9 +146,9 @@ export default function MentionsSection() {
                   {mention.isInterview && mention.intervieweeData?.intervieweeName && (
                     <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
                       {mention.intervieweeData.intervieweeHeadshot && (
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0 rounded-md overflow-hidden">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 relative flex-shrink-0 rounded-md overflow-hidden">
                           <Image
-                            src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(56).height(56).url()}
+                            src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(48).height(48).url()}
                             alt={`${mention.intervieweeData.intervieweeName} headshot`}
                             fill
                             className="object-cover grayscale"
@@ -171,8 +169,7 @@ export default function MentionsSection() {
                   </div>
                 </div>
               </motion.a>
-            );
-            })}
+            ))}
           </div>
 
           

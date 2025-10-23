@@ -87,17 +87,17 @@ export default function MentionsPage() {
                   <div className="flex items-start space-x-4 mb-4">
                     {/* Publisher Logo */}
                       {mentions[0].publisherData?.publisherLogo ? (
-                        <div className="w-7 h-7 relative flex-shrink-0 rounded-md overflow-hidden bg-white">
+                        <div className="w-6 h-6 relative flex-shrink-0 rounded-md overflow-hidden bg-white border border-gray-200">
                         <Image
-                            src={urlFor(mentions[0].publisherData.publisherLogo).width(28).height(28).url()}
+                            src={urlFor(mentions[0].publisherData.publisherLogo).width(24).height(24).url()}
                           alt={`${mentions[0].publisherData.publisherName} logo`}
                           fill
                             className="object-contain"
                         />
                       </div>
                     ) : (
-                        <div className="w-7 h-7 flex-shrink-0 bg-gray-200 rounded-md flex items-center justify-center">
-                          <span className="text-[11px] font-medium text-gray-500">
+                        <div className="w-6 h-6 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
+                          <span className="text-[10px] font-medium text-gray-500">
                           {mentions[0].publisherData?.publisherName?.charAt(0) || '?'}
                         </span>
                       </div>
@@ -144,7 +144,6 @@ export default function MentionsPage() {
             <div className="divide-y divide-gray-200">
               {mentions.slice(1, 1 + visibleCount).map((mention, index) => {
                 console.log(`Rendering mention ${index + 1}:`, mention.articleTitle);
-                const isForbes = (mention.publisherData?.publisherName || '').toLowerCase().includes('forbes');
                 return (
                 <motion.a
                   key={mention._id}
@@ -160,16 +159,16 @@ export default function MentionsPage() {
                     {/* Publisher Logo and Name */}
                     <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                       {mention.publisherData?.publisherLogo ? (
-                        <div className={`${isForbes ? 'w-16 h-16 sm:w-18 sm:h-18 scale-125' : 'w-14 h-14 sm:w-16 sm:h-16'} relative flex-shrink-0 rounded-md overflow-hidden bg-white border border-gray-200`}>
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 relative flex-shrink-0 rounded-md overflow-hidden bg-white border border-gray-200">
                           <Image
-                            src={urlFor(mention.publisherData.publisherLogo).width(isForbes ? 88 : 64).fit('max').url()}
+                            src={urlFor(mention.publisherData.publisherLogo).width(48).fit('max').url()}
                             alt={`${mention.publisherData.publisherName} logo`}
                             fill
                             className="object-contain"
                           />
                         </div>
                       ) : (
-                        <div className={`${isForbes ? 'w-16 h-16 sm:w-18 sm:h-18 scale-125' : 'w-14 h-14 sm:w-16 sm:h-16'} flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center`}>
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
                           <span className="text-base font-medium text-gray-500">
                             {mention.publisherData?.publisherName?.charAt(0) || '?'}
                           </span>
@@ -184,9 +183,9 @@ export default function MentionsPage() {
                     {mention.isInterview && mention.intervieweeData?.intervieweeName && (
                       <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
                         {mention.intervieweeData.intervieweeHeadshot && (
-                          <div className="w-12 h-12 sm:w-14 sm:h-14 relative flex-shrink-0 rounded-md overflow-hidden">
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 relative flex-shrink-0 rounded-md overflow-hidden">
                             <Image
-                              src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(56).height(56).url()}
+                              src={urlFor(mention.intervieweeData.intervieweeHeadshot).width(48).height(48).url()}
                               alt={`${mention.intervieweeData.intervieweeName} headshot`}
                               fill
                               className="object-cover grayscale"
