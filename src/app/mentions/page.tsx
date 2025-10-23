@@ -144,6 +144,7 @@ export default function MentionsPage() {
             <div className="divide-y divide-gray-200">
               {mentions.slice(1, 1 + visibleCount).map((mention, index) => {
                 console.log(`Rendering mention ${index + 1}:`, mention.articleTitle);
+                const isForbes = (mention.publisherData?.publisherName || '').toLowerCase().includes('forbes');
                 return (
                 <motion.a
                   key={mention._id}
@@ -159,16 +160,16 @@ export default function MentionsPage() {
                     {/* Publisher Logo and Name */}
                     <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                       {mention.publisherData?.publisherLogo ? (
-                        <div className="w-14 h-14 sm:w-16 sm:h-16 relative flex-shrink-0 rounded-md overflow-hidden bg-white">
+                        <div className={`${isForbes ? 'w-16 h-16 sm:w-18 sm:h-18 scale-110' : 'w-14 h-14 sm:w-16 sm:h-16'} relative flex-shrink-0 rounded-md overflow-hidden bg-white`}>
                           <Image
-                            src={urlFor(mention.publisherData.publisherLogo).width(64).fit('max').url()}
+                            src={urlFor(mention.publisherData.publisherLogo).width(isForbes ? 80 : 64).fit('max').url()}
                             alt={`${mention.publisherData.publisherName} logo`}
                             fill
                             className="object-contain"
                           />
                         </div>
                       ) : (
-                        <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-gray-200 rounded-md flex items-center justify-center">
+                        <div className={`${isForbes ? 'w-16 h-16 sm:w-18 sm:h-18 scale-110' : 'w-14 h-14 sm:w-16 sm:h-16'} flex-shrink-0 bg-gray-200 rounded-md flex items-center justify-center`}>
                           <span className="text-base font-medium text-gray-500">
                             {mention.publisherData?.publisherName?.charAt(0) || '?'}
                           </span>
