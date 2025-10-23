@@ -6,6 +6,27 @@ import { MentionContent, getMentionContent, urlFor } from '@/lib/sanity';
 import { useEffect, useState } from 'react';
 
 export default function MentionsPage() {
+  const LogoBox = ({ src, alt, small = false }: { src: string; alt: string; small?: boolean }) => {
+    const [aspectRatio, setAspectRatio] = useState<number | null>(null);
+    return (
+      <div
+        className={`${small ? 'h-6' : 'h-10 sm:h-12'} relative flex-shrink-0 rounded-md overflow-hidden bg-white border border-gray-200`}
+        style={{ aspectRatio: aspectRatio || 1 }}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-contain"
+          onLoadingComplete={(img) => {
+            if (img.naturalHeight > 0) {
+              setAspectRatio(img.naturalWidth / img.naturalHeight);
+            }
+          }}
+        />
+      </div>
+    );
+  };
   const [mentions, setMentions] = useState<MentionContent[]>([]);
   const [loading, setLoading] = useState(true);
   const [visibleCount, setVisibleCount] = useState(5);
@@ -87,15 +108,12 @@ export default function MentionsPage() {
                   <div className="flex items-start space-x-4 mb-4">
                     {/* Publisher Logo */}
                       {mentions[0].publisherData?.publisherLogo ? (
-                        <div className="w-6 h-6 relative flex-shrink-0 rounded-md overflow-hidden bg-white border border-gray-200">
-                          <Image
-                            src={urlFor(mentions[0].publisherData.publisherLogo).width(24).height(24).url()}
-                            alt={`${mentions[0].publisherData.publisherName} logo`}
-                            fill
-                            className="object-cover"
-                          />
-                      </div>
-                    ) : (
+                        <LogoBox
+                          src={urlFor(mentions[0].publisherData.publisherLogo).height(24).fit('max').url()}
+                          alt={`${mentions[0].publisherData.publisherName} logo`}
+                          small
+                        />
+                      ) : (
                         <div className="w-6 h-6 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
                           <span className="text-[10px] font-medium text-gray-500">
                           {mentions[0].publisherData?.publisherName?.charAt(0) || '?'}
@@ -159,14 +177,10 @@ export default function MentionsPage() {
                     {/* Publisher Logo and Name */}
                     <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                       {mention.publisherData?.publisherLogo ? (
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 relative flex-shrink-0 rounded-md overflow-hidden bg-white border border-gray-200">
-                          <Image
-                            src={urlFor(mention.publisherData.publisherLogo).width(48).fit('max').url()}
-                            alt={`${mention.publisherData.publisherName} logo`}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
+                        <LogoBox
+                          src={urlFor(mention.publisherData.publisherLogo).height(48).fit('max').url()}
+                          alt={`${mention.publisherData.publisherName} logo`}
+                        />
                       ) : (
                         <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
                           <span className="text-base font-medium text-gray-500">
