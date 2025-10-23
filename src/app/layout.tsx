@@ -42,7 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="font-sans antialiased">
+      <body className="antialiased">
         <InvestorRestriction />
         <Navigation />
         <main className="min-h-screen">
