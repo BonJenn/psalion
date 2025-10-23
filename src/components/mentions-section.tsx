@@ -124,16 +124,16 @@ export default function MentionsSection() {
                   {/* Publisher Logo and Name */}
                   <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                     {mention.publisherData?.publisherLogo ? (
-                      <div className={`${isForbes ? 'w-14 h-14 sm:w-16 sm:h-16 scale-110' : 'w-12 h-12 sm:w-14 sm:h-14'} relative flex-shrink-0 rounded-md overflow-hidden bg-white`}>
+                      <div className={`${isForbes ? 'w-14 h-14 sm:w-16 sm:h-16 scale-125' : 'w-12 h-12 sm:w-14 sm:h-14'} relative flex-shrink-0 rounded-md overflow-hidden bg-white border border-gray-200`}>
                         <Image
-                          src={urlFor(mention.publisherData.publisherLogo).width(isForbes ? 72 : 56).fit('max').url()}
+                          src={urlFor(mention.publisherData.publisherLogo).width(isForbes ? 80 : 56).fit('max').url()}
                           alt={`${mention.publisherData.publisherName} logo`}
                           fill
                           className="object-contain"
                         />
                       </div>
                     ) : (
-                      <div className={`${isForbes ? 'w-14 h-14 sm:w-16 sm:h-16 scale-110' : 'w-12 h-12 sm:w-14 sm:h-14'} flex-shrink-0 bg-gray-200 rounded-md flex items-center justify-center`}>
+                      <div className={`${isForbes ? 'w-14 h-14 sm:w-16 sm:h-16 scale-125' : 'w-12 h-12 sm:w-14 sm:h-14'} flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center`}>
                         <span className="text-base font-medium text-gray-500">
                           {mention.publisherData?.publisherName?.charAt(0) || '?'}
                         </span>
