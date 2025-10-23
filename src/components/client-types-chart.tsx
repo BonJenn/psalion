@@ -251,7 +251,7 @@ export default function ClientTypesChart() {
 
             {/* Client Types Title - Underneath chart */}
             <motion.h2
-              className="text-lg font-bold text-gray-700 uppercase tracking-wide mt-2 text-center lg:mr-4"
+              className="text-lg font-bold text-gray-700 uppercase tracking-wide mt-0 text-center"
               variants={fadeInUp}
               transition={{ delay: 0.4 }}
             >
