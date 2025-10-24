@@ -271,11 +271,21 @@ export default function PsalionYieldPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 leading-tight">
-                Psalion Yield is a unique, fully liquid strategy that offers attractive returns for investment, cash management or white-label distribution.
+              <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-800 leading-tight tracking-tight">
+                Psalion Yield is a unique,
+                <br />
+                fully liquid strategy that
+                <br />
+                offers attractive returns
+                <br />
+                for investment, cash
+                <br />
+                management or white-
+                <br />
+                label distribution.
               </h1>
-              
-              <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
+
+              <p className="text-sm md:text-base text-gray-600 leading-snug max-w-3xl">
                 The strategy can be accessed either via Separately Managed Accounts (SMAs) or via Psalion's Yield Funds.
               </p>
             </motion.div>
