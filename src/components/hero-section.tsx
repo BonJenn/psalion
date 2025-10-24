@@ -186,6 +186,25 @@ export default function HeroSection() {
     transition: { duration: 0.6 }
   };
 
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mql = window.matchMedia('(pointer: coarse), (max-width: 640px)');
+    const handler = (e: MediaQueryListEvent | MediaQueryList) => {
+      // MediaQueryListEvent for modern, MediaQueryList for initial set
+      const matches = 'matches' in e ? (e as MediaQueryListEvent).matches : (e as MediaQueryList).matches;
+      setIsMobile(matches);
+    };
+    setIsMobile(mql.matches);
+    // add/remove listeners compatibly
+    if (mql.addEventListener) mql.addEventListener('change', handler as (ev: Event) => void);
+    else (mql as any).addListener(handler);
+    return () => {
+      if (mql.removeEventListener) mql.removeEventListener('change', handler as (ev: Event) => void);
+      else (mql as any).removeListener(handler);
+    };
+  }, []);
+
   const staggerContainer = {
     animate: {
       transition: {
@@ -239,7 +258,11 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
               <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
-              <DirectSpline />
+              {isMobile ? (
+                <Image src="/psalion_cubes.png" alt="Psalion visualization" fill className="object-contain" priority />
+              ) : (
+                <DirectSpline />
+              )}
               
               {/* Interactive Labels positioned around the 3D model */}
               <div className="absolute inset-0 pointer-events-none">

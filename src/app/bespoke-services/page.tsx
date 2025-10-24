@@ -240,6 +240,23 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
 }
 
 export default function BespokeServicesPage() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mql = window.matchMedia('(pointer: coarse), (max-width: 640px)');
+    const handler = (e: MediaQueryListEvent | MediaQueryList) => {
+      const matches = 'matches' in e ? (e as MediaQueryListEvent).matches : (e as MediaQueryList).matches;
+      setIsMobile(matches);
+    };
+    setIsMobile(mql.matches);
+    if (mql.addEventListener) mql.addEventListener('change', handler as (ev: Event) => void);
+    else (mql as any).addListener(handler);
+    return () => {
+      if (mql.removeEventListener) mql.removeEventListener('change', handler as (ev: Event) => void);
+      else (mql as any).removeListener(handler);
+    };
+  }, []);
+
   return (
     <div className="pt-16">
       {/* Hero Section */}
@@ -275,16 +292,20 @@ export default function BespokeServicesPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
-                <DirectSpline
-                  scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/bespoke.splinecode"
-                  style={{ 
-                    width: '100%', 
-                    height: '100%',
-                    transform: 'scale(1.2)',
-                    transformOrigin: 'center',
-                    touchAction: 'pan-y'
-                  }}
-                />
+                {isMobile ? (
+                  <img src="/psalion_cubes.png" alt="Psalion visualization" className="w-full h-full object-contain" />
+                ) : (
+                  <DirectSpline
+                    scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/bespoke.splinecode"
+                    style={{ 
+                      width: '100%', 
+                      height: '100%',
+                      transform: 'scale(1.2)',
+                      transformOrigin: 'center',
+                      touchAction: 'pan-y'
+                    }}
+                  />
+                )}
               </div>
             </motion.div>
           </div>

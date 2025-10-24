@@ -258,6 +258,23 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
 }
 
 export default function PsalionYieldPage() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mql = window.matchMedia('(pointer: coarse), (max-width: 640px)');
+    const handler = (e: MediaQueryListEvent | MediaQueryList) => {
+      const matches = 'matches' in e ? (e as MediaQueryListEvent).matches : (e as MediaQueryList).matches;
+      setIsMobile(matches);
+    };
+    setIsMobile(mql.matches);
+    if (mql.addEventListener) mql.addEventListener('change', handler as (ev: Event) => void);
+    else (mql as any).addListener(handler);
+    return () => {
+      if (mql.removeEventListener) mql.removeEventListener('change', handler as (ev: Event) => void);
+      else (mql as any).removeListener(handler);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -299,19 +316,23 @@ export default function PsalionYieldPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-                  <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-4xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
-                <DirectSpline
-                  scene="https://prod.spline.design/x7emdz5Mo6GlTTWV/scene.splinecode"
-                  style={{ 
-                    width: '100%', 
-                    height: '100%',
-                    transform: 'scale(1.5)',
-                    transformOrigin: 'center',
-                    touchAction: 'pan-y',
-                    opacity: 0,
-                    transition: 'opacity 200ms ease'
-                  }}
-                />
+              <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-4xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
+                {isMobile ? (
+                  <Image src="/psalion_cubes.png" alt="Psalion visualization" fill className="object-contain" priority />
+                ) : (
+                  <DirectSpline
+                    scene="https://prod.spline.design/x7emdz5Mo6GlTTWV/scene.splinecode"
+                    style={{ 
+                      width: '100%', 
+                      height: '100%',
+                      transform: 'scale(1.5)',
+                      transformOrigin: 'center',
+                      touchAction: 'pan-y',
+                      opacity: 0,
+                      transition: 'opacity 200ms ease'
+                    }}
+                  />
+                )}
               </div>
             </motion.div>
           </div>
