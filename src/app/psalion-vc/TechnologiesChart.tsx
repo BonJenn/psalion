@@ -419,6 +419,7 @@ export default function TechnologiesChart() {
             <button
               onClick={() => setIsFundDropdownOpen(!isFundDropdownOpen)}
               className="px-3 sm:px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors flex items-center gap-2 min-w-[100px] sm:min-w-[120px] justify-between text-sm sm:text-base"
+              style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
             >
               {selectedFund}
               <svg 
@@ -443,6 +444,7 @@ export default function TechnologiesChart() {
                     className={`w-full px-4 py-2 text-left hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg ${
                       selectedFund === fund ? 'bg-blue-500 text-white hover:bg-blue-600' : 'text-gray-700'
                     }`}
+                    style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
                   >
                     {fund}
                   </button>
@@ -458,6 +460,7 @@ export default function TechnologiesChart() {
             <button
               onClick={() => setIsLocationDropdownOpen(!isLocationDropdownOpen)}
               className="px-3 sm:px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors flex items-center gap-2 min-w-[120px] sm:min-w-[140px] justify-between text-sm sm:text-base"
+              style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
             >
               {selectedLocation}
               <svg 
@@ -482,6 +485,7 @@ export default function TechnologiesChart() {
                     className={`w-full px-4 py-2 text-left hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg ${
                       selectedLocation === location ? 'bg-blue-500 text-white hover:bg-blue-600' : 'text-gray-700'
                     }`}
+                    style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
                   >
                     {location}
                   </button>
@@ -497,6 +501,7 @@ export default function TechnologiesChart() {
             <button
               onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
               className="px-3 sm:px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors flex items-center gap-2 min-w-[140px] sm:min-w-[160px] justify-between text-sm sm:text-base"
+              style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
             >
               {selectedCategory}
               <svg 
@@ -521,6 +526,7 @@ export default function TechnologiesChart() {
                     className={`w-full px-4 py-2 text-left hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg ${
                       selectedCategory === category ? 'bg-blue-500 text-white hover:bg-blue-600' : 'text-gray-700'
                     }`}
+                    style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
                   >
                     {category}
                   </button>
