@@ -286,7 +286,9 @@ export default function PsalionYieldPage() {
               </h1>
 
               <p className="text-sm md:text-base text-gray-600 leading-snug max-w-3xl">
-                The strategy can be accessed either via Separately Managed Accounts (SMAs) or via Psalion's Yield Funds.
+                The strategy can be accessed either via Separately Managed
+                <br />
+                Accounts (SMAs) or via Psalion's Yield Funds.
               </p>
             </motion.div>
 
