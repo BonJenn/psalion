@@ -27,7 +27,7 @@ const technologies: Technology[] = [
     description: 'A decentralized infrastructure platform designed to transform Web3 storage, AI computation, and streaming services.',
     category: 'Other',
     region: 'Asia',
-    fund: 'Fund II',
+    fund: 'Fund I',
     logo: '/psalion_vc/aioz_logo.png'
   },
   {
@@ -83,7 +83,7 @@ const technologies: Technology[] = [
     description: 'Bitbond enables financial institutions to issue tokenized bonds and assets on blockchain networks.',
     category: 'RWA',
     region: 'Europe',
-    fund: 'Fund II',
+    fund: 'Fund I',
     logo: '/psalion_vc/bitbond_logo.png'
   },
   {
@@ -115,7 +115,7 @@ const technologies: Technology[] = [
     description: 'Flow is a blockchain designed for mainstream adoption, featuring high throughput and developer-friendly tools for applications like NBA Top Shot.',
     category: 'Infrastructure',
     region: 'North America',
-    fund: 'Fund II',
+    fund: 'Fund I',
     logo: '/psalion_vc/flow_logo.png'
   },
   {
@@ -123,7 +123,7 @@ const technologies: Technology[] = [
     description: 'Opium Network is a decentralized derivatives platform for the creation, trading, and settlement of on-chain financial products.',
     category: 'Decentralized Finance',
     region: 'N/A',
-    fund: 'Fund II',
+    fund: 'Fund I',
     logo: '/psalion_vc/opium_logo.png'
   },
   {
@@ -147,7 +147,7 @@ const technologies: Technology[] = [
     description: 'Quantfury is a global trading platform that allows users to trade stocks, digital assets, forex, and commodities at real market prices.',
     category: 'Infrastructure',
     region: 'North America',
-    fund: 'Fund II',
+    fund: 'Fund I',
     logo: '/psalion_vc/quantfury_logo.png'
   },
   {
@@ -163,7 +163,7 @@ const technologies: Technology[] = [
     description: 'Radix is a Layer-1 smart contract platform tailored for decentralized finance, emphasizing scalability, security, and developer accessibility.',
     category: 'Infrastructure',
     region: 'Europe',
-    fund: 'Fund II',
+    fund: 'Fund I',
     logo: '/psalion_vc/radix_logo.png'
   },
   {
@@ -179,7 +179,7 @@ const technologies: Technology[] = [
     description: 'Serum is a decentralized exchange that offers fully on-chain, high-speed order book trading within the decentralized finance ecosystem.',
     category: 'Decentralized Finance',
     region: 'N/A',
-    fund: 'Fund II',
+    fund: 'Fund I',
     logo: '/psalion_vc/serum_logo.png'
   },
   {
@@ -211,7 +211,7 @@ const technologies: Technology[] = [
     description: 'VeChain is a Layer-1 blockchain platform dedicated to real-world enterprise adoption.',
     category: 'Infrastructure',
     region: 'Asia',
-    fund: 'Fund II',
+    fund: 'Fund I',
     logo: '/psalion_vc/vechain_logo.png'
   },
   {
