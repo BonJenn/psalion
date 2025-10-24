@@ -309,6 +309,7 @@ export default function PsalionVCPage() {
                     height: '100%',
                     transform: 'scale(1.2)',
                     transformOrigin: 'center',
+                    touchAction: 'pan-y',
                     opacity: 0,
                     transition: 'opacity 200ms ease'
                   }}

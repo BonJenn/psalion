@@ -307,6 +307,7 @@ export default function PsalionYieldPage() {
                     height: '100%',
                     transform: 'scale(1.5)',
                     transformOrigin: 'center',
+                    touchAction: 'pan-y',
                     opacity: 0,
                     transition: 'opacity 200ms ease'
                   }}

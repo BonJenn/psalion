@@ -171,6 +171,7 @@ function DirectSpline() {
           transformOrigin: 'center',
           opacity: isLoading ? 0 : 1,
           pointerEvents: isLoading ? 'none' : 'auto',
+          touchAction: 'pan-y',
           transition: 'opacity 200ms ease'
         }}
       />
