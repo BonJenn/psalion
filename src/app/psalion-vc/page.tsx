@@ -263,7 +263,7 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
 export default function PsalionVCPage() {
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white" style={{ fontFamily: 'Khteka, var(--font-inter), ui-sans-serif, system-ui' }}>
       {/* Hero Section */}
       <section className="pt-16 pb-4 lg:pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

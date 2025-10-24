@@ -400,16 +400,13 @@ export default function TechnologiesChart() {
 
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" style={{ fontFamily: 'Khteka, var(--font-inter), ui-sans-serif, system-ui' }}>
       {/* Header */}
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          Portfolio Technologies
-        </h2>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+      <div className="text-left mb-12">
+        <p className="text-sm md:text-base text-gray-600 max-w-3xl">
           Our experienced team leverages deep industry knowledge and strategic insights to deliver unparalleled growth opportunities. Our portfolio companies benefit from our extensive network, expertise, and strategic resources, ensuring they achieve their full potential.
         </p>
-        <p className="text-lg text-gray-600 mt-4">
+        <p className="text-sm md:text-base text-gray-600 mt-4">
           Invest with us and be part of the digital revolution that is shaping the world of tomorrow.
         </p>
       </div>
