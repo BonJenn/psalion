@@ -35,7 +35,7 @@ const technologies: Technology[] = [
     description: 'A decentralized finance platform providing innovative lending and borrowing solutions.',
     category: 'Decentralized Finance',
     region: 'Europe',
-    fund: 'Fund I',
+    fund: 'Fund II',
     logo: '/psalion_vc/arcadia_logo.png'
   },
   {
@@ -51,7 +51,7 @@ const technologies: Technology[] = [
     description: 'A decentralized asset management platform providing institutional-grade DeFi strategies.',
     category: 'Decentralized Finance',
     region: 'Europe',
-    fund: 'Fund I',
+    fund: 'Fund II',
     logo: '/psalion_vc/arkis_logo.png'
   },
   {
@@ -67,7 +67,7 @@ const technologies: Technology[] = [
     description: 'A decentralized stablecoin protocol maintaining price stability through algorithmic mechanisms.',
     category: 'Decentralized Finance',
     region: 'North America',
-    fund: 'Fund I',
+    fund: 'Fund II',
     logo: '/psalion_vc/beans_logo.jpg'
   },
   {
@@ -235,7 +235,7 @@ const technologies: Technology[] = [
     description: 'A decentralized lending protocol providing capital efficiency and yield optimization for DeFi users.',
     category: 'Decentralized Finance',
     region: 'Europe',
-    fund: 'Fund I',
+    fund: 'Fund II',
     logo: '/psalion_vc/deltaprime_logo.png'
   },
   {
@@ -251,7 +251,7 @@ const technologies: Technology[] = [
     description: 'A decentralized AI platform enabling creators to monetize their content and intellectual property.',
     category: 'Other',
     region: 'North America',
-    fund: 'Fund I',
+    fund: 'Fund II',
     logo: '/psalion_vc/genius_logo.svg'
   },
   {
@@ -267,7 +267,7 @@ const technologies: Technology[] = [
     description: 'A decentralized oracle network providing secure and reliable data feeds for blockchain applications.',
     category: 'Infrastructure',
     region: 'Asia',
-    fund: 'Fund I',
+    fund: 'Fund II',
     logo: '/psalion_vc/hyperion_logo.png'
   },
   {
@@ -283,7 +283,7 @@ const technologies: Technology[] = [
     description: 'A platform for creating and managing NFT collections with advanced customization and analytics tools.',
     category: 'Other',
     region: 'Europe',
-    fund: 'Fund I',
+    fund: 'Fund II',
     logo: '/psalion_vc/mintifiy_logo.png'
   },
   {
@@ -299,7 +299,7 @@ const technologies: Technology[] = [
     description: 'A cross-chain infrastructure platform enabling seamless asset transfers and interoperability.',
     category: 'Infrastructure',
     region: 'North America',
-    fund: 'Fund I',
+    fund: 'Fund II',
     logo: '/psalion_vc/orbital_logo.png'
   },
   {
@@ -315,7 +315,7 @@ const technologies: Technology[] = [
     description: 'A digital asset management firm providing institutional-grade custody and trading solutions.',
     category: 'Infrastructure',
     region: 'Europe',
-    fund: 'Fund I',
+    fund: 'Fund II',
     logo: '/psalion_vc/sts_digital_logo.png'
   },
   {
@@ -331,7 +331,7 @@ const technologies: Technology[] = [
     description: 'A platform for authenticating and trading luxury goods using blockchain technology.',
     category: 'RWA',
     region: 'North America',
-    fund: 'Fund I',
+    fund: 'Fund II',
     logo: '/psalion_vc/top_tier_authentics_logo.png'
   },
   {
@@ -347,7 +347,7 @@ const technologies: Technology[] = [
     description: 'A decentralized stablecoin protocol maintaining price stability through algorithmic mechanisms.',
     category: 'Decentralized Finance',
     region: 'Europe',
-    fund: 'Fund I',
+    fund: 'Fund II',
     logo: '/psalion_vc/usual_logo.png'
   },
   {
@@ -363,7 +363,7 @@ const technologies: Technology[] = [
     description: 'A decentralized vector database platform providing AI and machine learning infrastructure.',
     category: 'Other',
     region: 'North America',
-    fund: 'Fund I',
+    fund: 'Fund II',
     logo: '/psalion_vc/vektor_logo.png'
   },
   {
