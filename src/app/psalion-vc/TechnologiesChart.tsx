@@ -425,13 +425,15 @@ export default function TechnologiesChart() {
   }, [isFundDropdownOpen, isLocationDropdownOpen, isCategoryDropdownOpen]);
 
   const filteredTechnologies = useMemo(() => {
-    return technologies.filter(tech => {
-      const fundMatch = selectedFund === 'All Funds' || tech.fund === selectedFund;
-      const locationMatch = selectedLocation === 'All Locations' || tech.region === selectedLocation;
-      const categoryMatch = selectedCategory === 'All Categories' || tech.category === selectedCategory;
-      
-      return fundMatch && locationMatch && categoryMatch;
-    });
+    return technologies
+      .filter(tech => {
+        const fundMatch = selectedFund === 'All Funds' || tech.fund === selectedFund;
+        const locationMatch = selectedLocation === 'All Locations' || tech.region === selectedLocation;
+        const categoryMatch = selectedCategory === 'All Categories' || tech.category === selectedCategory;
+        
+        return fundMatch && locationMatch && categoryMatch;
+      })
+      .sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
   }, [selectedFund, selectedLocation, selectedCategory]);
 
 
