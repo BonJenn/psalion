@@ -112,7 +112,7 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className={`fixed left-0 right-0 z-50 transition-all duration-300 top-0 ${
+      <nav className={`relative z-50 transition-all duration-300 ${
         scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

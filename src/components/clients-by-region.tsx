@@ -10,6 +10,15 @@ export default function ClientsByRegion() {
   const [activeRegion, setActiveRegion] = useState(0);
   const [hoveredRegion, setHoveredRegion] = useState<number | null>(null);
 
+  // Hard blocklist for South America features to avoid any accidental highlighting when Europe is active
+  const SOUTH_AMERICA_BLOCKLIST = new Set<string>([
+    'French Guiana', 'Fr. Guiana', 'Guyane',
+    'Guyana', 'Suriname', 'Venezuela', 'Colombia', 'Ecuador', 'Peru', 'Brazil', 'Bolivia', 'Paraguay', 'Uruguay', 'Argentina', 'Chile',
+    'Falkland Is.', 'Falkland Islands', 'South Georgia and the South Sandwich Islands', 'S. Geo. and S. Sandw. Is.'
+  ]);
+
+  // No continent gating helper; rely on blocklist + explicit country list
+
   const regions = [
     {
       name: 'NORTH AMERICA',
@@ -23,7 +32,17 @@ export default function ClientsByRegion() {
       clients: '50 CLIENTS',
       color: '#3B82F6',
       countries: ['United Kingdom', 'France', 'Germany', 'Italy', 'Spain', 'Netherlands', 'Belgium', 'Switzerland', 'Austria', 'Sweden', 'Norway', 'Denmark', 'Finland', 'Poland', 'Czechia', 'Hungary', 'Romania', 'Bulgaria', 'Croatia', 'Slovenia', 'Slovakia', 'Lithuania', 'Latvia', 'Estonia', 'Ireland', 'Portugal', 'Greece', 'Cyprus', 'Malta', 'Luxembourg', 'Liechtenstein', 'Monaco', 'Andorra', 'San Marino', 'Vatican', 'Moldova', 'Ukraine', 'Belarus', 'Serbia', 'Montenegro', 'Bosnia and Herz.', 'North Macedonia', 'Albania', 'Kosovo'],
-      exclude: ['French Guiana', 'Guadeloupe', 'Martinique', 'Réunion', 'Mayotte', 'New Caledonia', 'French Polynesia', 'Wallis and Futuna', 'Saint Pierre and Miquelon', 'Saint Barthélemy', 'Saint Martin', 'Iceland'] // Exclude overseas territories and Iceland
+      exclude: [
+        // South America and South Atlantic overseas territories
+        'French Guiana', 'Fr. Guiana', 'Guyane',
+        'Falkland Is.', 'Falkland Islands',
+        'South Georgia and the South Sandwich Islands', 'S. Geo. and S. Sandw. Is.',
+        // Caribbean/other overseas territories
+        'Guadeloupe', 'Martinique', 'Réunion', 'Mayotte', 'New Caledonia', 'French Polynesia', 'Wallis and Futuna', 'Saint Pierre and Miquelon', 'Saint Barthélemy', 'Saint Martin', 'Clipperton I.',
+        // Non-European special cases we want to ensure never highlight for Europe
+        'Greenland', 'Bermuda', 'Cayman Is.', 'Anguilla', 'Montserrat', 'Aruba', 'Curaçao', 'Bonaire, Sint Eustatius and Saba',
+        // Keep Iceland in include (so remove from excludes)
+      ] // Aggressive excludes for Europe
     },
     {
       name: 'ASIA-PACIFIC',
@@ -65,42 +84,37 @@ export default function ClientsByRegion() {
 
       // Function to determine if a country should be highlighted
       const getCountryFill = (geo: any) => {
-        // Check what properties are available
         if (!geo.properties) {
           return '#f8fafc';
         }
-        
-        // Try different possible property names for country name
-        const countryName = geo.properties.NAME || geo.properties.name || geo.properties.NAME_EN || geo.properties.ADMIN;
-        
-        if (!countryName) {
-          return '#f8fafc'; // Light gray for countries without names
+        const featureName = geo.properties.NAME || geo.properties.name || geo.properties.NAME_EN;
+        const adminName = geo.properties.ADMIN;
+        const continent = geo.properties.CONTINENT;
+        const resolvedName = featureName || adminName;
+        if (!resolvedName) {
+          return '#f8fafc';
         }
-        
-        // Check if this country belongs to the hovered region
         if (hoveredRegion !== null) {
           const currentRegion = regions[hoveredRegion];
-          
-          // First check if this country is explicitly excluded
-          const isExcluded = currentRegion.exclude.some(excludedCountry => 
-            countryName === excludedCountry
-          );
-          
-          if (isExcluded) {
-            return '#f8fafc'; // Light gray for excluded countries
+          // For Europe: gate by continent; allow Cyprus explicitly (often tagged Asia)
+          if (currentRegion.name === 'EUROPE') {
+            if (featureName && SOUTH_AMERICA_BLOCKLIST.has(featureName)) {
+              return '#f8fafc';
+            }
+            // fall through; rely on explicit includes/excludes
           }
-          
-          // Then check if this country is included
-          const isMatch = currentRegion.countries.some(country => 
-            countryName === country
-          );
-          
+          // Exclude if either the feature name or admin name matches an excluded territory
+          const isExcluded = currentRegion.exclude.some((ex: string) => ex === featureName || ex === adminName);
+          if (isExcluded) {
+            return '#f8fafc';
+          }
+          // Only include when the FEATURE name is listed (prevents overseas territories matching by ADMIN)
+          const isMatch = currentRegion.countries.includes(featureName);
           if (isMatch) {
-            return '#3B82F6'; // Blue for highlighted countries
+            return '#3B82F6';
           }
         }
-        
-        return '#f8fafc'; // Light gray for unhighlighted countries
+        return '#f8fafc';
       };
 
   return (
@@ -152,23 +166,30 @@ export default function ClientsByRegion() {
               <Geographies geography="https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json">
                 {({ geographies }: { geographies: any[] }) =>
                   geographies.map((geo: any) => {
-                    const countryName = geo.properties.NAME || geo.properties.name || geo.properties.NAME_EN || geo.properties.ADMIN;
+                    const featureName = geo.properties.NAME || geo.properties.name || geo.properties.NAME_EN;
+                    const adminName = geo.properties.ADMIN;
+                    const continent = geo.properties.CONTINENT;
                     
                         // Find which region this country belongs to
                         const belongsToRegion = regions.findIndex(region => {
-                          // Check if country is excluded from this region
+                          // Exclude if name or admin matches excluded territories
                           const isExcluded = region.exclude.some(excludedCountry => 
-                            countryName === excludedCountry
+                            excludedCountry === featureName || excludedCountry === adminName
                           );
                           
                           if (isExcluded) {
                             return false; // Don't belong to this region if excluded
                           }
                           
+                          // For Europe: gate by continent; allow Cyprus explicitly
+                          if (region.name === 'EUROPE') {
+                            if (featureName && SOUTH_AMERICA_BLOCKLIST.has(featureName)) {
+                              return false;
+                            }
+                          }
+
                           // Check if country is included in this region
-                          return region.countries.some(country => 
-                            countryName === country
-                          );
+                          return region.countries.includes(featureName);
                         });
                     
                     return (
@@ -213,6 +234,8 @@ export default function ClientsByRegion() {
               </Geographies>
             </ComposableMap>
 
+            {/* Europe overlay removed; rely on explicit includes/excludes */}
+
             {/* Region Label - Only show when hovering */}
             {hoveredRegion !== null && (
               <motion.div
@@ -220,7 +243,7 @@ export default function ClientsByRegion() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
-                className="absolute bg-white px-6 py-4 rounded-lg shadow-lg border border-gray-200"
+                className="absolute bg-white px-6 py-4 rounded-lg shadow-lg border border-gray-200 pointer-events-none"
                 style={{
                   left: hoveredRegion === 0 ? '20%' : hoveredRegion === 1 ? '50%' : hoveredRegion === 2 ? '75%' : hoveredRegion === 3 ? '60%' : '50%',
                   top: hoveredRegion === 0 ? '25%' : hoveredRegion === 1 ? '20%' : hoveredRegion === 2 ? '15%' : hoveredRegion === 3 ? '30%' : '55%',

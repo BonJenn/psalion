@@ -205,10 +205,11 @@ export default function MentionsSection() {
           
 
           {/* View All Button */}
-          <div className="mt-6 pt-4 border-t border-gray-200 text-center">
+          <div className="mt-8 pt-6 border-t border-gray-200 text-center">
             <Link 
               href="/mentions"
-              className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm uppercase tracking-wide group"
+              className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-[10px] sm:text-xs md:text-sm uppercase tracking-wide group"
+              style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
             >
               <span>VIEW ALL</span>
               <svg 
