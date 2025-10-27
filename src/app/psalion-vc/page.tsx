@@ -320,7 +320,7 @@ export default function PsalionVCPage() {
             >
               <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
                 {isMobile ? (
-                  <Image src="/psalion_cubes.png" alt="Psalion visualization" fill className="object-contain" priority />
+                  <Image src="/psalion_vc_cube.png" alt="Psalion VC visualization" fill className="object-contain" priority style={{ touchAction: 'pan-y' }} />
                 ) : (
                   <DirectSpline
                     scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/funds.splinecode"
