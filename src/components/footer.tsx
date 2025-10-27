@@ -76,12 +76,12 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-50 border-t border-gray-200">
+    <footer className="bg-gray-50 border-t border-gray-200" style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="md:col-span-1">
-            <Link href="/" className="flex items-center mb-4">
+            <Link href="/" className="flex items-center mb-4 justify-center md:justify-start">
               <Image
                 src={logoSrc}
                 alt="Psalion"
@@ -96,15 +96,15 @@ export default function Footer() {
 
           {/* Footer Links */}
           {footerSections.map((section) => (
-            <div key={section.title}>
-              <h3 className="font-semibold text-gray-900 mb-4">{section.title}</h3>
+            <div key={section.title} className="text-center md:text-left">
+              <h3 className="font-semibold text-gray-900 mb-4 text-center md:text-left">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.href}>
                     {link.isContact ? (
                       <button
                         onClick={() => handleLinkClick(link.href, link.isContact)}
-                        className="group text-gray-600 hover:text-black transition-colors duration-200 text-sm text-left"
+                        className="group text-gray-600 hover:text-black transition-colors duration-200 text-sm text-center md:text-left"
                       >
                         <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">
                           {link.label}
@@ -113,7 +113,7 @@ export default function Footer() {
                     ) : link.href.startsWith('/#') ? (
                       <button
                         onClick={() => handleLinkClick(link.href)}
-                        className="group text-gray-600 hover:text-black transition-colors duration-200 text-sm text-left"
+                        className="group text-gray-600 hover:text-black transition-colors duration-200 text-sm text-center md:text-left"
                       >
                         <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">
                           {link.label}
@@ -137,11 +137,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm">
+        <div className="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+          <p className="text-gray-500 text-sm text-center md:text-left">
             © {currentYear} Psalion. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          <div className="flex space-x-6 mt-4 md:mt-0 justify-center md:justify-end">
             <Link
               href="/legal/privacy"
               className="group text-gray-500 hover:text-gray-700 text-sm transition-colors duration-200"
