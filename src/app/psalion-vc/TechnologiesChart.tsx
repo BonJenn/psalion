@@ -401,18 +401,8 @@ export default function TechnologiesChart() {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" style={{ fontFamily: 'Khteka, var(--font-inter), ui-sans-serif, system-ui' }}>
-      {/* Header */}
-      <div className="text-left mb-12">
-        <p className="text-sm md:text-base text-gray-600 max-w-3xl">
-          Our experienced team leverages deep industry knowledge and strategic insights to deliver unparalleled growth opportunities. Our portfolio companies benefit from our extensive network, expertise, and strategic resources, ensuring they achieve their full potential.
-        </p>
-        <p className="text-sm md:text-base text-gray-600 mt-4">
-          Invest with us and be part of the digital revolution that is shaping the world of tomorrow.
-        </p>
-      </div>
-
       {/* Filter Bar */}
-      <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-6 sm:mb-8 justify-center">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-6 sm:mb-8 justify-start">
         <div className="flex items-center gap-1 sm:gap-2">
           <span className="text-sm sm:text-base text-gray-700 font-medium">See companies from</span>
           <div className="relative">
@@ -535,6 +525,16 @@ export default function TechnologiesChart() {
             )}
           </div>
         </div>
+      </div>
+
+      {/* Header */}
+      <div className="text-left mb-12">
+        <p className="text-sm md:text-base text-gray-600 max-w-3xl">
+          Our experienced team leverages deep industry knowledge and strategic insights to deliver unparalleled growth opportunities. Our portfolio companies benefit from our extensive network, expertise, and strategic resources, ensuring they achieve their full potential.
+        </p>
+        <p className="text-sm md:text-base text-gray-600 mt-4">
+          Invest with us and be part of the digital revolution that is shaping the world of tomorrow.
+        </p>
       </div>
 
       {/* Technologies Table */}
