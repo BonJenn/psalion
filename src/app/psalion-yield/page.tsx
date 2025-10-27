@@ -329,9 +329,10 @@ export default function PsalionYieldPage() {
                       className="object-contain"
                       priority
                       style={{ touchAction: 'pan-y' }}
-                      onError={() => setMobileYieldSrc(prev => prev === '/psalion_yield/hero.png' ? '/psalion_yield_hero.png' : '/psalion_cubes.png')}
+                    onError={() => setMobileYieldSrc(prev => prev === '/psalion_yield/hero.png' ? '/psalion_yield_hero.png' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==')}
                     />
-                    {!capturedSrc && (
+                    {/* Offscreen Spline capture is disabled for now to avoid flash; leaving block for future use */}
+                    {false && !capturedSrc && (
                       <div ref={offscreenRef} style={{ position: 'fixed', top: -9999, left: -9999, width: 600, height: 600, opacity: 0, pointerEvents: 'none' }}>
                         <SplineComponent
                           scene="https://prod.spline.design/x7emdz5Mo6GlTTWV/scene.splinecode"
