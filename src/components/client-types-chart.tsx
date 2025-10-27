@@ -95,7 +95,7 @@ export default function ClientTypesChart() {
   return (
     <section id="clients" className="py-12 md:py-14 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center mb-1.5">
+        <div className="flex items-center mb-0">
           <h2
             className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-400 uppercase tracking-wide"
             style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
@@ -104,7 +104,7 @@ export default function ClientTypesChart() {
           </h2>
           <div className="flex-1 ml-4 border-t border-dashed border-gray-200"></div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center -mt-2">
           {/* Text Content */}
           <motion.div
             className="text-left"
