@@ -335,6 +335,9 @@ export default function PsalionYieldPage() {
                 )}
                 {/* Bottom fade gradient */}
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 sm:h-28 md:h-32 bg-gradient-to-b from-transparent to-white" />
+                {/* Side fade gradients */}
+                <div className="pointer-events-none absolute left-0 top-0 h-full w-10 sm:w-12 md:w-16 bg-gradient-to-r from-white to-transparent" />
+                <div className="pointer-events-none absolute right-0 top-0 h-full w-10 sm:w-12 md:w-16 bg-gradient-to-l from-white to-transparent" />
               </div>
             </motion.div>
           </div>
