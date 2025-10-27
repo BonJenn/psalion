@@ -316,7 +316,7 @@ export default function PsalionYieldPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-4xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
+              <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-4xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden mx-auto lg:mx-0 lg:-translate-x-24 xl:-translate-x-32 2xl:-translate-x-40">
                 {isMobile ? (
                   <Image src="/psalion_cubes.png" alt="Psalion visualization" fill className="object-contain" priority />
                 ) : (
