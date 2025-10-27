@@ -351,10 +351,10 @@ export default function PsalionYieldPage() {
             {/* Feature 1: High yields */}
             <motion.div
               className="border border-gray-200 rounded-lg p-4 md:p-5 hover:shadow-lg transition-shadow duration-300"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.35 }}
+              viewport={{ once: true, amount: 0.15 }}
             >
               <div className="w-16 h-16 mb-3">
                 <Image
@@ -363,6 +363,7 @@ export default function PsalionYieldPage() {
                   width={48}
                   height={48}
                   className="w-full h-full object-contain"
+                  priority
                 />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">High yields</h3>
@@ -375,10 +376,10 @@ export default function PsalionYieldPage() {
             {/* Feature 2: Strict risk-management strategy */}
             <motion.div
               className="border border-gray-200 rounded-lg p-4 md:p-5 hover:shadow-lg transition-shadow duration-300"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: 0.05 }}
+              viewport={{ once: true, amount: 0.15 }}
             >
               <div className="w-16 h-16 mb-3">
                 <Image
@@ -387,6 +388,7 @@ export default function PsalionYieldPage() {
                   width={48}
                   height={48}
                   className="w-full h-full object-contain"
+                  priority
                 />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Strict risk-management strategy</h3>
@@ -400,16 +402,19 @@ export default function PsalionYieldPage() {
             {/* Feature 3: Fully liquid */}
             <motion.div
               className="border border-gray-200 rounded-lg p-4 md:p-5 hover:shadow-lg transition-shadow duration-300"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: 0.1 }}
+              viewport={{ once: true, amount: 0.15 }}
             >
               <div className="w-16 h-16 mb-3">
-                <img
+                <Image
                   src="/psalion_yield/fully_liquid.png"
                   alt="Fully liquid icon"
+                  width={48}
+                  height={48}
                   className="w-full h-full object-contain"
+                  priority
                 />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">Fully liquid</h3>
