@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -22,6 +22,9 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string>('');
+  const turnstileContainerRef = useRef<HTMLDivElement | null>(null);
+  const widgetIdRef = useRef<any>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -43,7 +46,10 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
     setIsSubmitting(true);
 
     try {
-      await saveContactForm(formData);
+      if (!captchaToken) {
+        throw new Error('Please complete the captcha');
+      }
+      await saveContactForm({ ...formData, captchaToken });
       setIsSubmitted(true);
       // Reset form after 2 seconds
       setTimeout(() => {
@@ -55,6 +61,13 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
           userType: 'investor',
           message: ''
         });
+        setCaptchaToken('');
+        try {
+          // Reset captcha widget if available
+          if (typeof window !== 'undefined' && (window as any).turnstile && widgetIdRef.current !== null) {
+            (window as any).turnstile.reset(widgetIdRef.current);
+          }
+        } catch {}
         onClose();
       }, 2000);
     } catch (error) {
@@ -65,6 +78,42 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
   };
 
   if (!isOpen) return null;
+
+  // Lazy-load and render Cloudflare Turnstile
+  useEffect(() => {
+    if (!isOpen) return;
+    const render = () => {
+      try {
+        if (!turnstileContainerRef.current) return;
+        if ((window as any).turnstile) {
+          // @ts-ignore
+          widgetIdRef.current = (window as any).turnstile.render(turnstileContainerRef.current, {
+            sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+            callback: (token: string) => setCaptchaToken(token),
+            'error-callback': () => setCaptchaToken(''),
+            theme: 'dark',
+          });
+        }
+      } catch {
+        // no-op
+      }
+    };
+
+    // Load script if needed
+    if (typeof window !== 'undefined' && !(window as any).turnstile) {
+      const s = document.createElement('script');
+      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      s.async = true;
+      s.defer = true;
+      s.onload = render;
+      document.body.appendChild(s);
+      return () => {
+        try { document.body.removeChild(s); } catch {}
+      };
+    } else {
+      render();
+    }
+  }, [isOpen]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -187,6 +236,11 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
                 rows={4}
                 className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-gray-600 resize-none"
               />
+            </div>
+
+            {/* Captcha */}
+            <div>
+              <div ref={turnstileContainerRef} className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}></div>
             </div>
 
             {/* Submit Button */}
