@@ -285,7 +285,7 @@ export default function PsalionVCPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left Column - Text Content */}
             <motion.div
-              className="space-y-6"
+              className="space-y-6 -mt-2 md:-mt-3"
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
