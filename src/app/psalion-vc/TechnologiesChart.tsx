@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -388,6 +388,42 @@ export default function TechnologiesChart() {
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
 
+  // Refs for click-outside handling
+  const fundRef = useRef<HTMLDivElement | null>(null);
+  const locationRef = useRef<HTMLDivElement | null>(null);
+  const categoryRef = useRef<HTMLDivElement | null>(null);
+
+  // Close dropdowns when clicking outside or pressing Escape
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (isFundDropdownOpen && fundRef.current && !fundRef.current.contains(target)) {
+        setIsFundDropdownOpen(false);
+      }
+      if (isLocationDropdownOpen && locationRef.current && !locationRef.current.contains(target)) {
+        setIsLocationDropdownOpen(false);
+      }
+      if (isCategoryDropdownOpen && categoryRef.current && !categoryRef.current.contains(target)) {
+        setIsCategoryDropdownOpen(false);
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsFundDropdownOpen(false);
+        setIsLocationDropdownOpen(false);
+        setIsCategoryDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isFundDropdownOpen, isLocationDropdownOpen, isCategoryDropdownOpen]);
+
   const filteredTechnologies = useMemo(() => {
     return technologies.filter(tech => {
       const fundMatch = selectedFund === 'All Funds' || tech.fund === selectedFund;
@@ -403,7 +439,7 @@ export default function TechnologiesChart() {
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" style={{ fontFamily: 'Khteka, var(--font-inter), ui-sans-serif, system-ui' }}>
       {/* Filter Bar */}
       <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-6 sm:mb-8 justify-start">
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-2" ref={fundRef}>
           <span className="text-sm sm:text-base text-gray-700 font-medium">See companies from</span>
           <div className="relative">
             <button
@@ -444,7 +480,7 @@ export default function TechnologiesChart() {
           </div>
         </div>
 
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-2" ref={locationRef}>
           <span className="text-sm sm:text-base text-gray-700 font-medium">based in</span>
           <div className="relative">
             <button
@@ -485,7 +521,7 @@ export default function TechnologiesChart() {
           </div>
         </div>
 
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-2" ref={categoryRef}>
           <span className="text-sm sm:text-base text-gray-700 font-medium">in</span>
           <div className="relative">
             <button
