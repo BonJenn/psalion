@@ -253,9 +253,9 @@ export default function HeroSection() {
           {/* Spline 3D Model with Interactive Labels */}
           <motion.div
             className="flex justify-center lg:justify-center order-last lg:order-last"
-            initial={{ opacity: 0, x: 60 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.45, delay: 0.1 }}
           >
             <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-visible mx-auto lg:-translate-x-4 xl:-translate-x-6">
               {isMobile ? (

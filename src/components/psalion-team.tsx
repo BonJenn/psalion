@@ -77,10 +77,10 @@ export default function PsalionTeam() {
         {/* Section Title */}
         <motion.div
           className="mb-8"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <div className="flex items-center">
             <h2
@@ -99,7 +99,7 @@ export default function PsalionTeam() {
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.15 }}
         >
           {teamMembers.map((member, index) => (
             <motion.div

@@ -109,10 +109,10 @@ export default function ClientTypesChart() {
           <motion.div
             className="text-left"
             variants={staggerContainer}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.45 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <motion.p
               className="text-base text-gray-500 mb-6"
@@ -154,8 +154,8 @@ export default function ClientTypesChart() {
             variants={fadeInUp}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ delay: 0.15, duration: 0.45 }}
           >
             {/* Subheading moved to top of section */}
             <div

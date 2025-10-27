@@ -41,10 +41,10 @@ export default function BoardOfDirectors() {
         {/* Section Title */}
         <motion.div
           className="mb-8"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <div className="flex items-center mb-8">
             <h2
@@ -64,7 +64,7 @@ export default function BoardOfDirectors() {
             variants={fadeInUp}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             {directors.map((director, index) => (
               <motion.div

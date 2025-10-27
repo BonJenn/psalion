@@ -74,10 +74,10 @@ export default function MentionsSection() {
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="mb-8"
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.45 }}
+            viewport={{ once: true, amount: 0.15 }}
           >
             <div className="flex items-center">
               <h2
@@ -132,10 +132,10 @@ export default function MentionsSection() {
 
         {/* Mentions List */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.45 }}
+          viewport={{ once: true, amount: 0.15 }}
         >
           
           {/* Mentions List */}
@@ -149,7 +149,7 @@ export default function MentionsSection() {
                 className="block group"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
+                transition={{ duration: 0.35, delay: Math.min(index * 0.05, 0.35) }}
                 viewport={{ once: true }}
               >
                 <div className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-y-4 sm:gap-y-6 md:gap-x-16 items-center">
