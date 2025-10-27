@@ -281,7 +281,7 @@ export default function HeroSection() {
                 {/* PSALION YIELD Label - Upper Right */}
                 <motion.a
                   href="/psalion-yield"
-                  className="absolute top-1/2 right-2 md:right-4 lg:right-6 -translate-y-1/2 transform pointer-events-auto group"
+                  className="absolute top-1/2 right-[-24px] md:right-[-40px] lg:right-[-64px] -translate-y-1/2 transform pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
