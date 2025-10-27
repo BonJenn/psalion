@@ -257,7 +257,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
+            <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden mx-auto">
               {isMobile ? (
                 <Image src="/psalion_cubes.png" alt="Psalion visualization" fill className="object-contain" priority />
               ) : (
@@ -269,7 +269,7 @@ export default function HeroSection() {
                 {/* PSALION VC Label - Upper Left */}
                 <motion.a
                   href="/psalion-vc"
-                  className="absolute top-[6%] left-[14%] pointer-events-auto group"
+                  className="absolute top-1/2 right-[6%] -translate-y-1/2 transform pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1, duration: 0.5 }}
@@ -306,7 +306,6 @@ export default function HeroSection() {
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 sm:h-28 md:h-32 bg-gradient-to-b from-transparent to-white" />
               {/* Side fade gradients */}
               <div className="pointer-events-none absolute left-0 top-0 h-full w-10 sm:w-12 md:w-16 bg-gradient-to-r from-white to-transparent" />
-              <div className="pointer-events-none absolute right-0 top-0 h-full w-10 sm:w-12 md:w-16 bg-gradient-to-l from-white to-transparent" />
             </div>
           </motion.div>
         </div>
