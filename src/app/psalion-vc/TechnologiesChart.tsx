@@ -387,6 +387,8 @@ export default function TechnologiesChart() {
   const [isFundDropdownOpen, setIsFundDropdownOpen] = useState(false);
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
   // Refs for click-outside handling
   const fundRef = useRef<HTMLDivElement | null>(null);
@@ -423,6 +425,23 @@ export default function TechnologiesChart() {
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [isFundDropdownOpen, isLocationDropdownOpen, isCategoryDropdownOpen]);
+
+  // Mobile detection for rendering an expandable list instead of the table
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mql = window.matchMedia('(max-width: 640px)');
+    const handler = (e: MediaQueryListEvent | MediaQueryList) => {
+      const matches = 'matches' in e ? (e as MediaQueryListEvent).matches : (e as MediaQueryList).matches;
+      setIsMobile(matches);
+    };
+    setIsMobile(mql.matches);
+    if (mql.addEventListener) mql.addEventListener('change', handler as unknown as EventListener);
+    else (mql as any).addListener(handler);
+    return () => {
+      if (mql.removeEventListener) mql.removeEventListener('change', handler as unknown as EventListener);
+      else (mql as any).removeListener(handler);
+    };
+  }, []);
 
   const filteredTechnologies = useMemo(() => {
     return technologies
@@ -575,76 +594,117 @@ export default function TechnologiesChart() {
         </p>
       </div>
 
-      {/* Technologies Table */}
-      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
-              <tr>
-                <th className="px-3 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">Company Name</th>
-                <th className="px-3 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900 hidden sm:table-cell">Description</th>
-                <th className="px-3 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">Category</th>
-                <th className="px-3 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">Region</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {filteredTechnologies.map((tech, index) => (
-                <motion.tr
-                  key={tech.name}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="hover:bg-gray-50 transition-colors"
+      {/* Technologies - Mobile accordion vs Desktop table */}
+      {isMobile ? (
+        <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm divide-y divide-dashed divide-gray-200">
+          {filteredTechnologies.map((tech, index) => {
+            const isOpen = !!expanded[tech.name];
+            return (
+              <div key={tech.name} className="">
+                <button
+                  className="w-full px-4 py-4 flex items-center justify-between"
+                  onClick={() => setExpanded(prev => ({ ...prev, [tech.name]: !prev[tech.name] }))}
+                  aria-expanded={isOpen}
                 >
-                  <td className="px-3 sm:px-6 py-4">
-                    <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-3">
-                      <div className="flex items-center gap-2 sm:gap-3">
-                        {/* Logo - visible on all screen sizes */}
-                        {tech.logo && (
-                          <div className="flex-shrink-0">
-                            <Image
-                              src={tech.logo}
-                              alt={`${tech.name} logo`}
-                              width={24}
-                              height={24}
-                              className="object-contain sm:w-8 sm:h-8"
-                            />
-                          </div>
-                        )}
-                        <span className="text-sm sm:text-lg font-semibold text-gray-900">{tech.name}</span>
-                      </div>
-                      {/* Fund badge - underneath on mobile, inline on desktop */}
-                      <span className={`px-2 py-1 text-xs font-medium rounded-full w-fit ${
-                        tech.fund === 'Fund I' 
-                          ? 'bg-blue-100 text-blue-800' 
-                          : 'bg-green-100 text-green-800'
-                      }`}>
-                        {tech.fund}
-                      </span>
+                  <div className="flex items-center gap-3">
+                    {tech.logo && (
+                      <Image src={tech.logo} alt={`${tech.name} logo`} width={32} height={32} className="object-contain rounded-full" />
+                    )}
+                    <div className="text-left">
+                      <div className="text-base font-semibold text-gray-900">{tech.name}</div>
                     </div>
-                  </td>
-                  <td className="px-3 sm:px-6 py-4 hidden sm:table-cell">
-                    <p className="text-gray-600 text-sm leading-relaxed max-w-md">
-                      {tech.description}
-                    </p>
-                  </td>
-                  <td className="px-3 sm:px-6 py-4">
-                    <span className="text-xs sm:text-sm text-gray-700 font-medium">
-                      {tech.category}
-                    </span>
-                  </td>
-                  <td className="px-3 sm:px-6 py-4">
-                    <span className="text-xs sm:text-sm text-gray-700 font-medium">
-                      {tech.region}
-                    </span>
-                  </td>
-                </motion.tr>
-              ))}
-            </tbody>
-          </table>
+                  </div>
+                  <svg
+                    className={`w-5 h-5 text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {isOpen && (
+                  <div className="px-4 pb-4 pt-0 text-gray-700">
+                    <div className="text-sm mb-2">{tech.description}</div>
+                    <div className="flex items-center gap-2 text-xs">
+                      <span className={`px-2 py-1 rounded-full ${tech.fund === 'Fund I' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}`}>{tech.fund}</span>
+                      <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-700">{tech.category}</span>
+                      <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-700">{tech.region}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
-
-      </div>
+      ) : (
+        <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50 border-b border-gray-200">
+                <tr>
+                  <th className="px-3 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">Company Name</th>
+                  <th className="px-3 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900 hidden sm:table-cell">Description</th>
+                  <th className="px-3 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">Category</th>
+                  <th className="px-3 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">Region</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {filteredTechnologies.map((tech, index) => (
+                  <motion.tr
+                    key={tech.name}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className="hover:bg-gray-50 transition-colors"
+                  >
+                    <td className="px-3 sm:px-6 py-4">
+                      <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-3">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          {tech.logo && (
+                            <div className="flex-shrink-0">
+                              <Image
+                                src={tech.logo}
+                                alt={`${tech.name} logo`}
+                                width={24}
+                                height={24}
+                                className="object-contain sm:w-8 sm:h-8"
+                              />
+                            </div>
+                          )}
+                          <span className="text-sm sm:text-lg font-semibold text-gray-900">{tech.name}</span>
+                        </div>
+                        <span className={`px-2 py-1 text-xs font-medium rounded-full w-fit ${
+                          tech.fund === 'Fund I' 
+                            ? 'bg-blue-100 text-blue-800' 
+                            : 'bg-green-100 text-green-800'
+                        }`}>
+                          {tech.fund}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="px-3 sm:px-6 py-4 hidden sm:table-cell">
+                      <p className="text-gray-600 text-sm leading-relaxed max-w-md">
+                        {tech.description}
+                      </p>
+                    </td>
+                    <td className="px-3 sm:px-6 py-4">
+                      <span className="text-xs sm:text-sm text-gray-700 font-medium">
+                        {tech.category}
+                      </span>
+                    </td>
+                    <td className="px-3 sm:px-6 py-4">
+                      <span className="text-xs sm:text-sm text-gray-700 font-medium">
+                        {tech.region}
+                      </span>
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
       {/* Results Count */}
       <div className="text-center mt-8">
