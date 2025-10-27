@@ -259,6 +259,7 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
 
 export default function PsalionYieldPage() {
   const [isMobile, setIsMobile] = useState(false);
+  const [mobileYieldSrc, setMobileYieldSrc] = useState<string>('/psalion_yield/hero.png');
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const mql = window.matchMedia('(pointer: coarse), (max-width: 640px)');
@@ -318,7 +319,15 @@ export default function PsalionYieldPage() {
             >
               <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-4xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden mx-auto lg:mx-0 lg:-translate-x-24 xl:-translate-x-32 2xl:-translate-x-40">
                 {isMobile ? (
-                  <Image src="/psalion_cubes.png" alt="Psalion Yield visualization" fill className="object-contain" priority style={{ touchAction: 'pan-y' }} />
+                  <Image
+                    src={mobileYieldSrc}
+                    alt="Psalion Yield visualization"
+                    fill
+                    className="object-contain"
+                    priority
+                    style={{ touchAction: 'pan-y' }}
+                    onError={() => setMobileYieldSrc(prev => prev === '/psalion_yield/hero.png' ? '/psalion_yield_hero.png' : '/psalion_cubes.png')}
+                  />
                 ) : (
                   <DirectSpline
                     scene="https://prod.spline.design/x7emdz5Mo6GlTTWV/scene.splinecode"
