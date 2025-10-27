@@ -548,21 +548,7 @@ export default function HeroSection() {
           </motion.div>
         </motion.div>
 
-        {/* Learn More Button */}
-        <motion.div
-          className="flex justify-center mt-8 md:mt-12"
-          variants={fadeInUp}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-        >
-          <a
-            href="/psalion-vc"
-            className="inline-flex items-center px-8 py-4 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-200 shadow-lg hover:shadow-xl"
-          >
-            Learn More
-          </a>
-        </motion.div>
+        {/* Learn More button removed */}
       </div>
     </section>
   );

@@ -36,7 +36,7 @@ export default function BoardOfDirectors() {
   ];
 
   return (
-    <section id="team" className="pt-16 pb-16 md:py-20 bg-white">
+    <section id="team" className="pt-16 pb-2 md:pt-20 md:pb-2.5 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <motion.div
@@ -99,30 +99,28 @@ export default function BoardOfDirectors() {
 
           {/* Director Description */}
           <motion.div
-            className="lg:pl-8 mt-8 lg:mt-0 h-[360px] sm:h-[380px] md:h-[420px] lg:h-[460px] pr-2 relative overflow-hidden"
+            className="lg:pl-8 mt-8 lg:mt-0 pr-2"
             key={selectedDirector}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="absolute inset-0 overflow-y-auto pb-16 pr-2">
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-gray-900">
-                  {directors[selectedDirector].title}
-                </h3>
-                <div className="text-gray-700 leading-relaxed space-y-4">
-                  {directors[selectedDirector].description.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="text-base">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-gray-900">
+                {directors[selectedDirector].title}
+              </h3>
+              <div className="text-gray-700 leading-relaxed space-y-4">
+                {directors[selectedDirector].description.split('\n\n').map((paragraph, index) => (
+                  <p key={index} className="text-base">
+                    {paragraph}
+                  </p>
+                ))}
               </div>
             </div>
 
-            {/* Always-visible regular commentator row for Timothy Enneking */}
+            {/* Regular commentator row for Timothy Enneking (non-sticky) */}
             {directors[selectedDirector].isTimothy && (
-              <div className="absolute bottom-0 left-0 right-0 bg-white pt-4 border-t border-gray-200">
+              <div className="bg-white pt-4 border-t border-gray-200 mt-4">
                 <div className="flex items-center space-x-2 pl-0.5">
                   <span className="text-sm text-gray-600">Regular commentator for</span>
                   <div className="relative w-20 h-8">

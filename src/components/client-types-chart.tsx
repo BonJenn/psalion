@@ -95,6 +95,15 @@ export default function ClientTypesChart() {
   return (
     <section id="clients" className="pt-12 pb-20 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center mb-2">
+          <h2
+            className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-400 uppercase tracking-wide"
+            style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
+          >
+            Clients
+          </h2>
+          <div className="flex-1 ml-4 border-t border-dashed border-gray-200"></div>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Text Content */}
           <motion.div
@@ -106,7 +115,7 @@ export default function ClientTypesChart() {
             viewport={{ once: true }}
           >
             <motion.p
-              className="text-xl text-gray-500 mb-6"
+              className="text-base text-gray-500 mb-6"
               variants={fadeInUp}
             >
               With offices strategically located in North America, Asia, and Europe
@@ -141,14 +150,14 @@ export default function ClientTypesChart() {
 
           {/* Pie Chart Container */}
           <motion.div
-            className="flex flex-col items-center lg:items-center lg:ml-8"
+            className="flex flex-col items-start lg:items-start lg:ml-8"
             variants={fadeInUp}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            {/* Pie Chart */}
+            {/* Subheading moved to top of section */}
             <div
               className="relative"
               onMouseMove={(e) => {

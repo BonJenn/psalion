@@ -72,7 +72,7 @@ export default function PsalionTeam() {
   ];
 
   return (
-    <section className="pt-14 pb-16 md:py-20 bg-white">
+    <section className="pt-1.5 pb-16 md:pt-2.5 md:pb-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <motion.div
