@@ -280,9 +280,9 @@ export default function PsalionVCPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: 'Khteka, var(--font-inter), ui-sans-serif, system-ui' }}>
       {/* Hero Section */}
-      <section className="pt-16 pb-4 lg:pb-8">
+      <section className="pt-16 section-y pb-0 lg:pb-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
             {/* Left Column - Text Content */}
             <motion.div
               className="space-y-6 -mt-4 md:-mt-6"
@@ -290,7 +290,7 @@ export default function PsalionVCPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mb-4 leading-tight tracking-tight">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-800 leading-tight tracking-tight">
                 Driving innovation
                 <br />
                 in digital assets.

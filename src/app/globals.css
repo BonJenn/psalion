@@ -124,3 +124,35 @@
     font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   }
 }
+
+@layer components {
+  .section-y {
+    @apply py-10 sm:py-12 md:py-16;
+  }
+  .stack-tight > * + * {
+    margin-top: 0.5rem;
+  }
+  @screen sm {
+    .stack-tight > * + * {
+      margin-top: 0.75rem;
+    }
+  }
+  @screen md {
+    .stack-tight > * + * {
+      margin-top: 1rem;
+    }
+  }
+  .stack > * + * {
+    margin-top: 1rem;
+  }
+  @screen sm {
+    .stack > * + * {
+      margin-top: 1.25rem;
+    }
+  }
+  @screen md {
+    .stack > * + * {
+      margin-top: 1.5rem;
+    }
+  }
+}

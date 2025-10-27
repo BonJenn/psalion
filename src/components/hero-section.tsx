@@ -214,9 +214,9 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+    <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden section-y">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center">
           {/* Text Content */}
           <motion.div
             className="text-left"
@@ -226,7 +226,7 @@ export default function HeroSection() {
           >
             {/* Main Heading */}
             <motion.h1
-              className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mb-4 leading-tight tracking-tight"
+              className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-800 leading-tight tracking-tight"
               variants={fadeInUp}
             >
               Capital multipliers
@@ -238,7 +238,7 @@ export default function HeroSection() {
 
             {/* Subtitle */}
             <motion.p
-              className="text-sm md:text-base text-gray-600 mb-4 max-w-3xl leading-snug"
+              className="text-sm md:text-base text-gray-600 max-w-3xl leading-snug"
               variants={fadeInUp}
             >
               Psalion provides unique institutional-level investment
