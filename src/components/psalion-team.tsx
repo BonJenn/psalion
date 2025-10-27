@@ -72,11 +72,11 @@ export default function PsalionTeam() {
   ];
 
   return (
-    <section className="pt-1.5 pb-16 md:pt-2.5 md:pb-20 bg-white">
+    <section className="py-12 md:py-14 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <motion.div
-          className="mb-16"
+          className="mb-8"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}

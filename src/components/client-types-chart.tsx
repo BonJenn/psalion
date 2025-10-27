@@ -93,7 +93,7 @@ export default function ClientTypesChart() {
   const shouldShowSegmentInfo = currentSegment >= 0;
 
   return (
-    <section id="clients" className="pt-12 pb-20 md:py-20 bg-white">
+    <section id="clients" className="py-12 md:py-14 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center mb-2">
           <h2
@@ -122,7 +122,7 @@ export default function ClientTypesChart() {
             </motion.p>
             
             <motion.p
-              className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 leading-tight mb-12"
+              className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 leading-tight mb-8"
               variants={fadeInUp}
               transition={{ delay: 0.1 }}
             >

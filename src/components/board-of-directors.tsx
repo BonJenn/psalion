@@ -36,11 +36,11 @@ export default function BoardOfDirectors() {
   ];
 
   return (
-    <section id="team" className="pt-16 pb-2 md:pt-20 md:pb-2.5 bg-white">
+    <section id="team" className="py-12 md:py-14 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <motion.div
-          className="mb-12"
+          className="mb-8"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}

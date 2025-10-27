@@ -53,7 +53,7 @@ export default function MentionsSection() {
 
   if (loading) {
     return (
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-200 rounded w-64 mb-12"></div>
@@ -70,7 +70,7 @@ export default function MentionsSection() {
 
   if (mentions.length === 0) {
     return (
-      <section className="py-16 bg-white">
+      <section className="py-12 bg-white">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="mb-8"
@@ -108,7 +108,7 @@ export default function MentionsSection() {
   const visibleMentions = uniqueMentions.slice(0, visibleCount);
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-12 bg-white">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <motion.div
