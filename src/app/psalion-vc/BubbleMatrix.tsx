@@ -68,6 +68,98 @@ export default function BubbleMatrix() {
   // Use mobile-optimized dots on mobile
   const currentDots = isMobile ? getMobileDots() : dots;
   
+  // Mobile-only vertical redesign: 2 columns (Fund I, Fund II)
+  if (isMobile) {
+    const getDot = (cat: Cat, row: Row) => currentDots.find(d => d.cat === cat && d.row === row);
+
+    return (
+      <section className="py-10 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="w-full" style={{ fontFamily: "IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" }}>
+            {/* Column headers */}
+            <div className="grid grid-cols-2 gap-6 mb-3">
+              <div className="text-center text-[10px] text-gray-600">Fund I</div>
+              <div className="text-center text-[10px] text-gray-600">Fund II</div>
+            </div>
+
+            {/* Category rows */}
+            <div className="space-y-3">
+              {categories.map((cat) => {
+                const dFundI = getDot(cat, 'Fund I');
+                const dFundII = getDot(cat, 'Fund II');
+                return (
+                  <div key={cat} className="grid grid-cols-2 gap-6 items-center py-3 border-t border-dashed border-gray-200 first:border-t-0">
+                    {/* Fund I cell */}
+                    <div className="relative flex items-center justify-center h-16">
+                      {dFundI && dFundI.r > 0 && (
+                        <button
+                          aria-label={`${cat} – ${dFundI.value ?? 0} founders in Fund I`}
+                          className="relative"
+                          onMouseEnter={() => setHoveredBubble({ cat, row: 'Fund I' })}
+                          onMouseLeave={() => setHoveredBubble(null)}
+                          onTouchStart={() => setHoveredBubble({ cat, row: 'Fund I' })}
+                        >
+                          <span
+                            className="block rounded-full border"
+                            style={{
+                              width: dFundI.r * 2,
+                              height: dFundI.r * 2,
+                              background: hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund I' ? '#2F54EB' : '#E9F0FF',
+                              borderColor: hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund I' ? '#2F54EB' : '#D8E1FF'
+                            }}
+                          />
+                        </button>
+                      )}
+
+                      {/* Hover label */}
+                      {hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund I' && dFundI?.value ? (
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2F54EB] text-white rounded-md px-2 py-1 text-[9px] font-semibold whitespace-nowrap">
+                          <div>{cat.toUpperCase()}</div>
+                          <div>{dFundI.value} FOUNDERS</div>
+                        </div>
+                      ) : null}
+                    </div>
+
+                    {/* Fund II cell */}
+                    <div className="relative flex items-center justify-center h-16">
+                      {dFundII && dFundII.r > 0 && (
+                        <button
+                          aria-label={`${cat} – ${dFundII.value ?? 0} founders in Fund II`}
+                          className="relative"
+                          onMouseEnter={() => setHoveredBubble({ cat, row: 'Fund II' })}
+                          onMouseLeave={() => setHoveredBubble(null)}
+                          onTouchStart={() => setHoveredBubble({ cat, row: 'Fund II' })}
+                        >
+                          <span
+                            className="block rounded-full border"
+                            style={{
+                              width: dFundII.r * 2,
+                              height: dFundII.r * 2,
+                              background: hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund II' ? '#2F54EB' : '#E9F0FF',
+                              borderColor: hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund II' ? '#2F54EB' : '#D8E1FF'
+                            }}
+                          />
+                        </button>
+                      )}
+
+                      {/* Hover label */}
+                      {hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund II' && dFundII?.value ? (
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2F54EB] text-white rounded-md px-2 py-1 text-[9px] font-semibold whitespace-nowrap">
+                          <div>{cat.toUpperCase()}</div>
+                          <div>{dFundII.value} FOUNDERS</div>
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  
   const W = isMobile ? 300 : isTablet ? 600 : 1120;
   const H = isMobile ? 380 : isTablet ? 350 : 460;
   const M = { 
