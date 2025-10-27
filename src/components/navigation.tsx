@@ -13,10 +13,13 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
   const [menuPos, setMenuPos] = useState<{ top: number; left: number }>({ top: 64, left: 16 });
   const [menuWidth, setMenuWidth] = useState<number>(320);
   const pathname = usePathname();
   const isHome = pathname === '/' || pathname === null;
+
+  // No body scroll lock; allow normal page scrolling when menu is open
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,35 +29,17 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Position the dropdown directly beneath the hamburger button
+  // Close on outside click
   useEffect(() => {
     if (!isOpen) return;
-    const computePos = () => {
-      const btn = buttonRef.current;
-      if (!btn) return;
-      const rect = btn.getBoundingClientRect();
-      const gap = 8; // small vertical offset
-      const panelMaxWidth = 320; // desired max width
-      const viewportPadding = 16; // keep away from the edges
-      const top = rect.bottom + window.scrollY + gap;
-      // Align panel's right edge with button's right edge by default
-      const allowedWidth = Math.max(200, Math.min(panelMaxWidth, window.innerWidth - viewportPadding * 2));
-      const leftAlignedToRight = rect.right + window.scrollX - allowedWidth;
-      const left = Math.min(
-        Math.max(viewportPadding, leftAlignedToRight),
-        window.innerWidth - allowedWidth - viewportPadding
-      );
-      setMenuPos({ top, left });
-      setMenuWidth(allowedWidth);
+    const onDocClick = (e: MouseEvent) => {
+      const t = e.target as Node;
+      if (buttonRef.current && buttonRef.current.contains(t)) return;
+      if (panelRef.current && panelRef.current.contains(t)) return;
+      setIsOpen(false);
     };
-
-    computePos();
-    window.addEventListener('resize', computePos);
-    window.addEventListener('scroll', computePos);
-    return () => {
-      window.removeEventListener('resize', computePos);
-      window.removeEventListener('scroll', computePos);
-    };
+    document.addEventListener('mousedown', onDocClick);
+    return () => document.removeEventListener('mousedown', onDocClick);
   }, [isOpen]);
 
   const navItems = [
@@ -129,72 +114,66 @@ export default function Navigation() {
               />
             </Link>
 
-            {/* Hamburger Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              className={`p-0 size-[40px] rounded-lg border transition-colors duration-200 translate-y-[20px] group ${
-                isOpen ? 'bg-black border-black text-white' : 'bg-white border-gray-200 hover:bg-black hover:border-black'
-              }`}
-              aria-label="Toggle menu"
-              onClick={() => setIsOpen(!isOpen)}
-              ref={buttonRef}
-            >
-              {isOpen ? (
-                <X className="size-[22px] text-white" />
-              ) : (
-                <div className="flex flex-col items-stretch justify-center px-[8px]">
-                  <span className="block h-[2px] w-[18px] rounded-full bg-gray-900 group-hover:bg-white transition-colors duration-200" />
-                  <span className="block h-[2px] w-[18px] rounded-full bg-gray-900 group-hover:bg-white transition-colors duration-200 mt-[4px]" />
-                  <span className="block h-[2px] w-[9px] rounded-full bg-gray-900 group-hover:bg-white transition-colors duration-200 mt-[4px] self-end" />
+            {/* Hamburger Menu Button + anchored dropdown */}
+            <div className="relative">
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                className={`p-0 size-[40px] rounded-lg border transition-colors duration-200 translate-y-[20px] group ${
+                  isOpen ? 'bg-black border-black text-white' : 'bg-white border-gray-200 hover:bg-black hover:border-black'
+                }`}
+                aria-label="Toggle menu"
+                onClick={() => setIsOpen(!isOpen)}
+                ref={buttonRef}
+              >
+                {isOpen ? (
+                  <X className="size-[22px] text-white" />
+                ) : (
+                  <div className="flex flex-col items-stretch justify-center px-[8px]">
+                    <span className="block h-[2px] w-[18px] rounded-full bg-gray-900 group-hover:bg-white transition-colors duration-200" />
+                    <span className="block h-[2px] w-[18px] rounded-full bg-gray-900 group-hover:bg-white transition-colors duration-200 mt-[4px]" />
+                    <span className="block h-[2px] w-[9px] rounded-full bg-gray-900 group-hover:bg-white transition-colors duration-200 mt-[4px] self-end" />
+                  </div>
+                )}
+              </Button>
+
+              {isOpen && (
+                <div
+                  ref={panelRef}
+                  className="absolute right-0 mt-6 w-[320px] max-w-[calc(100vw-32px)] rounded-lg shadow-xl border border-gray-800 bg-[#2a2a2a] text-white"
+                >
+                  <div className="p-6">
+                    <div className="space-y-1">
+                      {navItems.map((item) => (
+                        item.isContact ? (
+                          <button
+                            key={item.href}
+                            className="block w-full text-left px-4 py-3 text-white hover:bg-[#1f1f1f] rounded-md transition-colors duration-200 font-medium"
+                            onClick={() => handleLinkClick(item.href, item.isContact)}
+                          >
+                            {item.label}
+                          </button>
+                        ) : (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className="block px-4 py-3 text-white hover:bg-[#1f1f1f] rounded-md transition-colors duration-200 font-medium"
+                            onClick={() => handleLinkClick(item.href)}
+                          >
+                            {item.label}
+                          </Link>
+                        )
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )}
-            </Button>
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile/Desktop Overlay Menu */}
-      {isOpen && (
-        <div className="fixed inset-0 z-50">
-          {/* Backdrop */}
-          <div 
-            className="absolute inset-0 bg-black/30"
-            onClick={() => setIsOpen(false)}
-          />
-          
-          {/* Dark Gray Menu Panel - fixed positioned under the button */}
-          <div
-            className="fixed rounded-lg shadow-xl border border-gray-800 bg-[#2a2a2a] text-white"
-            style={{ top: menuPos.top, left: menuPos.left, width: menuWidth }}
-          >
-            <div className="p-6">
-              <div className="space-y-1">
-                {navItems.map((item) => (
-                  item.isContact ? (
-                    <button
-                      key={item.href}
-                      className="block w-full text-left px-4 py-3 text-white hover:bg-[#1f1f1f] rounded-md transition-colors duration-200 font-medium"
-                      onClick={() => handleLinkClick(item.href, item.isContact)}
-                    >
-                      {item.label}
-                    </button>
-                  ) : (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="block px-4 py-3 text-white hover:bg-[#1f1f1f] rounded-md transition-colors duration-200 font-medium"
-                      onClick={() => handleLinkClick(item.href)}
-                    >
-                      {item.label}
-                    </Link>
-                  )
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* No full-screen overlay; panel is anchored to the button */}
 
       {/* Contact Form Modal */}
       <ContactFormModal 
