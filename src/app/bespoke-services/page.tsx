@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect, Component } from 'react';
-import { Compass } from 'lucide-react';
 
 // Custom Spline loader with proper error handling
 const loadSpline = async () => {
@@ -110,9 +109,6 @@ function SplineFallback() {
       
       {/* Content */}
       <div className="text-center z-10">
-        <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
-          <Compass className="w-12 h-12 text-white" />
-        </div>
         <h3 className="text-xl font-semibold text-gray-800 mb-2">Interactive 3D Model</h3>
         <p className="text-gray-600 text-sm">3D visualization requires WebGL support</p>
       </div>
