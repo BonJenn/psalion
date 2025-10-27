@@ -167,7 +167,7 @@ function DirectSpline() {
         style={{
           width: '100%',
           height: '100%',
-          transform: 'scale(1.2)',
+          transform: 'scale(1.05)',
           transformOrigin: 'center',
           opacity: isLoading ? 0 : 1,
           pointerEvents: isLoading ? 'none' : 'auto',
@@ -257,7 +257,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden lg:overflow-visible mx-auto lg:mr-auto lg:pr-24 xl:pr-32 lg:transform lg:-translate-x-20 xl:-translate-x-28">
+            <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-visible mx-auto lg:-translate-x-4 xl:-translate-x-6">
               {isMobile ? (
                 <Image src="/psalion_cubes.png" alt="Psalion visualization" fill className="object-contain" priority />
               ) : (
@@ -281,7 +281,7 @@ export default function HeroSection() {
                 {/* PSALION YIELD Label - Upper Right */}
                 <motion.a
                   href="/psalion-yield"
-                  className="absolute top-[44%] left-[78%] md:left-[80%] lg:left-[82%] xl:left-[84%] 2xl:left-[86%] -translate-y-1/2 transform pointer-events-auto group"
+                  className="absolute top-[44%] left-[80%] md:left-[82%] lg:left-[84%] xl:left-[86%] 2xl:left-[88%] -translate-y-1/2 transform pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
@@ -304,15 +304,14 @@ export default function HeroSection() {
               </div>
               {/* Bottom fade gradient */}
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 sm:h-28 md:h-32 bg-gradient-to-b from-transparent to-white" />
-              {/* Side fade gradients */}
-              <div className="pointer-events-none absolute left-0 top-0 h-full w-10 sm:w-12 md:w-16 bg-gradient-to-r from-white to-transparent" />
+              {/* Side fade gradients (left gradient removed as requested) */}
             </div>
           </motion.div>
         </div>
 
         {/* Psalion VC Section Header */}
         <motion.div
-          className="max-w-6xl mx-auto mt-0"
+          className="max-w-6xl mx-auto mt-6 md:mt-8"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
