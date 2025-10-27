@@ -252,7 +252,7 @@ export default function HeroSection() {
 
           {/* Spline 3D Model with Interactive Labels */}
           <motion.div
-            className="flex justify-center lg:justify-end order-last lg:order-last"
+            className="flex justify-center lg:justify-center order-last lg:order-last"
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
