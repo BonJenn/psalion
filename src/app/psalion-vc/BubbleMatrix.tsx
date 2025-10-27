@@ -29,7 +29,7 @@ const dots: Dot[] = [
   // Fund II row (top)
   { cat: "Decentralized Finance", row: "Fund II", r: 32, value: 5, muted: true },
   { cat: "Infrastructure",        row: "Fund II", r: 48, value: 12, muted: true },
-  { cat: "NFT",                   row: "Fund II", r: 24, value: 3, muted: true },
+  { cat: "NFT",                   row: "Fund II", r: 26, value: 3, muted: true },
   { cat: "RWA",                   row: "Fund II", r: 24, value: 2, muted: true },
   { cat: "Other",                 row: "Fund II", r: 28, value: 2, muted: true },
 
@@ -46,7 +46,7 @@ const getMobileDots = (): Dot[] => [
   // Fund II row (top) - much smaller bubbles for mobile
   { cat: "Decentralized Finance", row: "Fund II", r: 12, value: 5, muted: true },
   { cat: "Infrastructure",        row: "Fund II", r: 18, value: 12, muted: true },
-  { cat: "NFT",                   row: "Fund II", r: 9, value: 3, muted: true },
+  { cat: "NFT",                   row: "Fund II", r: 10, value: 3, muted: true },
   { cat: "RWA",                   row: "Fund II", r: 9, value: 2, muted: true },
   { cat: "Other",                 row: "Fund II", r: 10, value: 2, muted: true },
 
