@@ -649,7 +649,7 @@ export default function TechnologiesChart() {
       {/* Results Count */}
       <div className="text-center mt-8">
         <p className="text-gray-600">
-          Showing {filteredTechnologies.length} of {technologies.length} technologies
+          Showing {filteredTechnologies.length} of {technologies.length} Technologies
         </p>
       </div>
     </div>
