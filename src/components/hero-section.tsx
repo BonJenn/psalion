@@ -257,7 +257,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden mx-auto">
+            <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden lg:overflow-visible mx-auto lg:mr-auto lg:pr-24 xl:pr-32 lg:transform lg:-translate-x-20 xl:-translate-x-28">
               {isMobile ? (
                 <Image src="/psalion_cubes.png" alt="Psalion visualization" fill className="object-contain" priority />
               ) : (
@@ -281,19 +281,19 @@ export default function HeroSection() {
                 {/* PSALION YIELD Label - Upper Right */}
                 <motion.a
                   href="/psalion-yield"
-                  className="absolute top-1/2 right-[-24px] md:right-[-40px] lg:right-[-64px] -translate-y-1/2 transform pointer-events-auto group"
+                  className="absolute top-[44%] left-[78%] md:left-[80%] lg:left-[82%] xl:left-[84%] 2xl:left-[86%] -translate-y-1/2 transform pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <span className="relative inline-block px-1 rounded text-blue-700 font-normal text-base group-hover:text-blue-900 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300" style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}>PSALION YIELD</span>
+                  <span className="relative inline-block px-1 rounded text-blue-700 font-normal text-base whitespace-nowrap group-hover:text-blue-900 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300" style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}>PSALION YIELD</span>
                 </motion.a>
 
                 {/* BESPOKE SERVICES Label - Lower Center */}
                 <motion.a
                   href="/bespoke-services"
-                  className="absolute bottom-[8%] sm:bottom-[12%] left-[12%] pointer-events-auto group"
+                  className="absolute bottom-[8%] sm:bottom-[12%] left-[6%] pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.4, duration: 0.5 }}
