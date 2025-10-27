@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import React, { useState, useEffect, Component } from 'react';
+import React, { useState, useEffect, Component, useRef } from 'react';
 
 // Custom Spline loader with proper error handling
 const loadSpline = async () => {
@@ -260,6 +260,8 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
 export default function PsalionYieldPage() {
   const [isMobile, setIsMobile] = useState(false);
   const [mobileYieldSrc, setMobileYieldSrc] = useState<string>('/psalion_yield/hero.png');
+  const [capturedSrc, setCapturedSrc] = useState<string | null>(null);
+  const offscreenRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const mql = window.matchMedia('(pointer: coarse), (max-width: 640px)');
@@ -319,15 +321,38 @@ export default function PsalionYieldPage() {
             >
               <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-4xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden mx-auto lg:mx-0 lg:-translate-x-24 xl:-translate-x-32 2xl:-translate-x-40">
                 {isMobile ? (
-                  <Image
-                    src={mobileYieldSrc}
-                    alt="Psalion Yield visualization"
-                    fill
-                    className="object-contain"
-                    priority
-                    style={{ touchAction: 'pan-y' }}
-                    onError={() => setMobileYieldSrc(prev => prev === '/psalion_yield/hero.png' ? '/psalion_yield_hero.png' : '/psalion_cubes.png')}
-                  />
+                  <>
+                    <Image
+                      src={capturedSrc ?? mobileYieldSrc}
+                      alt="Psalion Yield visualization"
+                      fill
+                      className="object-contain"
+                      priority
+                      style={{ touchAction: 'pan-y' }}
+                      onError={() => setMobileYieldSrc(prev => prev === '/psalion_yield/hero.png' ? '/psalion_yield_hero.png' : '/psalion_cubes.png')}
+                    />
+                    {!capturedSrc && (
+                      <div ref={offscreenRef} style={{ position: 'fixed', top: -9999, left: -9999, width: 600, height: 600, opacity: 0, pointerEvents: 'none' }}>
+                        <SplineComponent
+                          scene="https://prod.spline.design/x7emdz5Mo6GlTTWV/scene.splinecode"
+                          onLoad={() => {
+                            setTimeout(() => {
+                              const canvas = offscreenRef.current?.querySelector('canvas') as HTMLCanvasElement | undefined;
+                              try {
+                                if (canvas) {
+                                  const data = canvas.toDataURL('image/png');
+                                  setCapturedSrc(data);
+                                }
+                              } catch (e) {
+                                // Ignore capture errors; fallback image remains
+                              }
+                            }, 300);
+                          }}
+                          style={{ width: '100%', height: '100%' }}
+                        />
+                      </div>
+                    )}
+                  </>
                 ) : (
                   <DirectSpline
                     scene="https://prod.spline.design/x7emdz5Mo6GlTTWV/scene.splinecode"
