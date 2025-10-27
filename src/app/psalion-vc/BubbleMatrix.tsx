@@ -76,14 +76,11 @@ export default function BubbleMatrix() {
       <section className="py-10 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="w-full" style={{ fontFamily: "IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" }}>
-            {/* Column headers */}
-            <div className="grid grid-cols-2 gap-6 mb-3">
-              <div className="text-center text-[10px] text-gray-600">Fund I</div>
-              <div className="text-center text-[10px] text-gray-600">Fund II</div>
-            </div>
-
-            {/* Category rows */}
-            <div className="space-y-3">
+            {/* Category rows with vertical dotted column guides */}
+            <div className="relative space-y-3">
+              {/* vertical dotted lines through each column center */}
+              <div className="pointer-events-none absolute inset-y-0 left-[25%] border-l border-dotted border-gray-300/80" />
+              <div className="pointer-events-none absolute inset-y-0 left-[75%] border-l border-dotted border-gray-300/80" />
               {categories.map((cat) => {
                 const dFundI = getDot(cat, 'Fund I');
                 const dFundII = getDot(cat, 'Fund II');
@@ -102,8 +99,8 @@ export default function BubbleMatrix() {
                           <span
                             className="block rounded-full border"
                             style={{
-                              width: dFundI.r * 2,
-                              height: dFundI.r * 2,
+                              width: Math.round(dFundI.r * 2 * 1.45),
+                              height: Math.round(dFundI.r * 2 * 1.45),
                               background: hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund I' ? '#2F54EB' : '#E9F0FF',
                               borderColor: hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund I' ? '#2F54EB' : '#D8E1FF'
                             }}
@@ -113,7 +110,7 @@ export default function BubbleMatrix() {
 
                       {/* Hover label */}
                       {hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund I' && dFundI?.value ? (
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2F54EB] text-white rounded-md px-2 py-1 text-[9px] font-semibold whitespace-nowrap">
+                        <div className="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#2F54EB] text-white rounded-md px-2.5 py-1 text-[11px] font-semibold whitespace-nowrap shadow-sm">
                           <div>{cat.toUpperCase()}</div>
                           <div>{dFundI.value} FOUNDERS</div>
                         </div>
@@ -133,8 +130,8 @@ export default function BubbleMatrix() {
                           <span
                             className="block rounded-full border"
                             style={{
-                              width: dFundII.r * 2,
-                              height: dFundII.r * 2,
+                              width: Math.round(dFundII.r * 2 * 1.45),
+                              height: Math.round(dFundII.r * 2 * 1.45),
                               background: hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund II' ? '#2F54EB' : '#E9F0FF',
                               borderColor: hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund II' ? '#2F54EB' : '#D8E1FF'
                             }}
@@ -144,7 +141,7 @@ export default function BubbleMatrix() {
 
                       {/* Hover label */}
                       {hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund II' && dFundII?.value ? (
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2F54EB] text-white rounded-md px-2 py-1 text-[9px] font-semibold whitespace-nowrap">
+                        <div className="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#2F54EB] text-white rounded-md px-2.5 py-1 text-[11px] font-semibold whitespace-nowrap shadow-sm">
                           <div>{cat.toUpperCase()}</div>
                           <div>{dFundII.value} FOUNDERS</div>
                         </div>
@@ -153,6 +150,12 @@ export default function BubbleMatrix() {
                   </div>
                 );
               })}
+
+              {/* Bottom column labels */}
+              <div className="grid grid-cols-2 gap-6 mt-2">
+                <div className="text-center text-[11px] text-gray-600">Fund I</div>
+                <div className="text-center text-[11px] text-gray-600">Fund II</div>
+              </div>
             </div>
           </div>
         </div>
