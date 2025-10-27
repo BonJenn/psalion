@@ -85,9 +85,9 @@ export default function BubbleMatrix() {
                 const dFundI = getDot(cat, 'Fund I');
                 const dFundII = getDot(cat, 'Fund II');
                 return (
-                  <div key={cat} className="grid grid-cols-2 gap-6 items-center py-3 border-t border-dashed border-gray-200 first:border-t-0">
+                  <div key={cat} className="grid grid-cols-2 gap-0 items-center py-3 border-t border-dashed border-gray-200 first:border-t-0">
                     {/* Fund I cell */}
-                    <div className="relative flex items-center justify-center h-16">
+                    <div className="relative flex items-center justify-center h-16 px-3">
                       {dFundI && dFundI.r > 0 && (
                         <button
                           aria-label={`${cat} – ${dFundI.value ?? 0} founders in Fund I`}
@@ -110,7 +110,7 @@ export default function BubbleMatrix() {
 
                       {/* Hover label */}
                       {hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund I' && dFundI?.value ? (
-                        <div className="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#2F54EB] text-white rounded-md px-2.5 py-1 text-[11px] font-semibold whitespace-nowrap shadow-sm">
+                        <div className="absolute -top-9 left-1/2 -translate-x-1/2 bg-[#2F54EB] text-white rounded-md px-2.5 py-1 text-[11px] font-semibold whitespace-nowrap shadow-sm">
                           <div>{cat.toUpperCase()}</div>
                           <div>{dFundI.value} FOUNDERS</div>
                         </div>
@@ -118,7 +118,7 @@ export default function BubbleMatrix() {
                     </div>
 
                     {/* Fund II cell */}
-                    <div className="relative flex items-center justify-center h-16">
+                    <div className="relative flex items-center justify-center h-16 px-3">
                       {dFundII && dFundII.r > 0 && (
                         <button
                           aria-label={`${cat} – ${dFundII.value ?? 0} founders in Fund II`}
@@ -141,7 +141,7 @@ export default function BubbleMatrix() {
 
                       {/* Hover label */}
                       {hoveredBubble && hoveredBubble.cat === cat && hoveredBubble.row === 'Fund II' && dFundII?.value ? (
-                        <div className="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#2F54EB] text-white rounded-md px-2.5 py-1 text-[11px] font-semibold whitespace-nowrap shadow-sm">
+                        <div className="absolute -top-9 left-1/2 -translate-x-1/2 bg-[#2F54EB] text-white rounded-md px-2.5 py-1 text-[11px] font-semibold whitespace-nowrap shadow-sm">
                           <div>{cat.toUpperCase()}</div>
                           <div>{dFundII.value} FOUNDERS</div>
                         </div>
