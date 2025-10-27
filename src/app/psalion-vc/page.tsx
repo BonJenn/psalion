@@ -291,7 +291,9 @@ export default function PsalionVCPage() {
               transition={{ duration: 0.8 }}
             >
               <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-800 mb-4 leading-tight tracking-tight">
-                Driving innovation in digital assets.
+                Driving innovation
+                <br />
+                in digital assets.
               </h1>
               
               <p className="text-sm md:text-base text-gray-600 mb-4 leading-snug">
