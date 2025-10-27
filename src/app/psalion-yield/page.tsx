@@ -316,7 +316,7 @@ export default function PsalionYieldPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-4xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
+              <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-4xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
                 {isMobile ? (
                   <Image src="/psalion_cubes.png" alt="Psalion visualization" fill className="object-contain" priority />
                 ) : (
@@ -333,6 +333,8 @@ export default function PsalionYieldPage() {
                     }}
                   />
                 )}
+                {/* Bottom fade gradient */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 sm:h-28 md:h-32 bg-gradient-to-b from-transparent to-white" />
               </div>
             </motion.div>
           </div>
