@@ -305,9 +305,9 @@ export default function PsalionVCPage() {
               <p className="text-sm md:text-base text-gray-600 mb-4 leading-snug">
                 By investing in cutting-edge startups, we drive the
                 <br />
-                development of technologies that enhance transparency
+                development of technologies that enhance transparency,
                 <br />
-                , security, and efficiency across various industries.
+                security, and efficiency across various industries.
               </p>
             </motion.div>
 
