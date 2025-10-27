@@ -124,7 +124,7 @@ export default function Navigation() {
                 alt="Psalion"
                 width={100}
                 height={30}
-                className="h-8 w-auto"
+                className="h-8 w-auto translate-y-[6px]"
                 priority
               />
             </Link>
