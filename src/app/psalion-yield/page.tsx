@@ -259,7 +259,7 @@ function DirectSpline({ scene, style }: { scene: string; style: React.CSSPropert
 
 export default function PsalionYieldPage() {
   const [isMobile, setIsMobile] = useState(false);
-  const [mobileYieldSrc, setMobileYieldSrc] = useState<string>('/psalion_yield/hero.png');
+  const [mobileYieldSrc, setMobileYieldSrc] = useState<string>('/psalion_yield/psalion_yield_mobile_image.png');
   const [capturedSrc, setCapturedSrc] = useState<string | null>(null);
   const offscreenRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -329,7 +329,11 @@ export default function PsalionYieldPage() {
                       className="object-contain"
                       priority
                       style={{ touchAction: 'pan-y' }}
-                    onError={() => setMobileYieldSrc(prev => prev === '/psalion_yield/hero.png' ? '/psalion_yield_hero.png' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==')}
+                    onError={() => setMobileYieldSrc(prev =>
+                      prev.endsWith('.png')
+                        ? '/psalion_yield/psalion_yield_mobile_image.jpg'
+                        : '/psalion_cubes.png'
+                    )}
                     />
                     {/* Offscreen Spline capture is disabled for now to avoid flash; leaving block for future use */}
                     {false && !capturedSrc && (
