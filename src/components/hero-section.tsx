@@ -367,17 +367,28 @@ export default function HeroSection() {
             variants={fadeInUp}
           >
             <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden">
-              <SplineErrorBoundary>
-                <SplineComponent
-                  scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/funds.splinecode"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    transform: 'scale(1.2)',
-                    transformOrigin: 'center'
-                  }}
+              {isMobile ? (
+                <Image
+                  src="/psalion_vc_cube.png"
+                  alt="Psalion VC visualization"
+                  fill
+                  priority
+                  className="object-contain"
+                  style={{ touchAction: 'pan-y' }}
                 />
-              </SplineErrorBoundary>
+              ) : (
+                <SplineErrorBoundary>
+                  <SplineComponent
+                    scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/funds.splinecode"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      transform: 'scale(1.2)',
+                      transformOrigin: 'center'
+                    }}
+                  />
+                </SplineErrorBoundary>
+              )}
             </div>
           </motion.div>
         </motion.div>
