@@ -95,7 +95,7 @@ export default function ClientTypesChart() {
   return (
     <section id="clients" className="py-12 md:py-14 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center mb-3">
+        <div className="flex items-center mb-1.5">
           <h2
             className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-400 uppercase tracking-wide"
             style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
