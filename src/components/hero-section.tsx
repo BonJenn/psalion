@@ -558,7 +558,7 @@ export default function HeroSection() {
               <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Usual</span>
             </a>
           </motion.div>
-          <div className="text-center mt-6">
+          <div className="text-center mt-10 md:mt-12">
             <Link
               href="/psalion-vc"
               className="inline-block text-blue-700 hover:text-blue-900 text-xs sm:text-sm font-medium tracking-wide"
