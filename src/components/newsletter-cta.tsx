@@ -2,12 +2,15 @@
 
 import { useState } from 'react'
 import { saveNewsletterEmail } from '@/lib/sanity-server'
+import { usePathname } from 'next/navigation'
 
 export default function NewsletterCTA({ source = '/mentions' }: { source?: string }) {
   const [email, setEmail] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const pathname = usePathname()
+  const isBespoke = pathname === '/bespoke-services'
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -28,10 +31,10 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   }
 
   return (
-    <section className="pt-4 md:pt-6 pb-16 md:pb-24 bg-gray-50">
+    <section className={`${isBespoke ? 'pt-0 md:pt-4 pb-12 md:pb-20 -mt-10 md:-mt-6' : 'pt-4 md:pt-6 pb-16 md:pb-24'} bg-gray-50`}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="bg-gradient-to-b from-gray-50 to-gray-100 rounded-none">
-          <div className="flex flex-col items-start justify-center gap-2 lg:gap-3 py-8 lg:py-12 max-w-6xl mx-auto">
+          <div className={`flex flex-col items-start justify-center gap-2 lg:gap-3 ${isBespoke ? 'py-4 lg:py-6' : 'py-8 lg:py-12'} max-w-6xl mx-auto`}>
             <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-left">
               Receive the latest overview,
             </h3>
