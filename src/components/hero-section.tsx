@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState, useEffect, Component } from 'react';
 
 // Custom Spline loader with proper error handling
@@ -557,6 +558,15 @@ export default function HeroSection() {
               <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Usual</span>
             </a>
           </motion.div>
+          <div className="text-center mt-6">
+            <Link
+              href="/psalion-vc"
+              className="inline-block text-blue-700 hover:text-blue-900 text-xs sm:text-sm font-medium tracking-wide"
+              style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
+            >
+              See Full Portfolio &gt;
+            </Link>
+          </div>
         </motion.div>
 
         {/* Learn More button removed */}
