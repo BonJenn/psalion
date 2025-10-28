@@ -256,9 +256,9 @@ export default function BespokeServicesPage() {
   return (
     <div className="pt-6">
       {/* Hero Section */}
-      <section className="py-8 bg-white">
+      <section className="pt-4 md:pt-6 pb-2 md:pb-4 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center">
             {/* Left Content - Text */}
             <motion.div
               className="space-y-6"
@@ -273,7 +273,7 @@ export default function BespokeServicesPage() {
                     Your vision, our craft:<br />
                     <span className="text-gray-800">Bespoke services</span>
                   </h1>
-                  <p className="text-base sm:text-lg text-gray-600 mt-6 leading-relaxed">
+                  <p className="text-base sm:text-lg text-gray-600 mt-3 leading-relaxed">
                     There are many ways to enter the digital assets realm. We help you find yours.
                   </p>
                 </div>
@@ -287,7 +287,7 @@ export default function BespokeServicesPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden flex items-center justify-center">
+              <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[360px] sm:h-[460px] md:h-[560px] lg:h-[660px] overflow-hidden flex items-center justify-center">
                 {isMobile ? (
                   <img src="/psalion_bespoke_services/Psalion_bespoke_services_mobile_image.png" alt="Psalion bespoke visualization" className="w-full h-full object-contain object-center mx-auto" />
                 ) : (
