@@ -266,7 +266,7 @@ export default function HeroSection() {
               )}
               
               {/* Interactive Labels positioned around the 3D model */}
-              <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute inset-0 pointer-events-none z-10">
                 {/* PSALION VC Label - Upper Left */}
                 <motion.a
                   href="/psalion-vc"
@@ -303,8 +303,8 @@ export default function HeroSection() {
                   <span className="relative inline-block px-1 rounded text-blue-700 font-normal text-base group-hover:text-blue-900 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300" style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}>BESPOKE SERVICES</span>
                 </motion.a>
               </div>
-              {/* Bottom fade gradient */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 sm:h-28 md:h-32 bg-gradient-to-b from-transparent to-white" />
+              {/* Bottom fade gradient (kept visually behind labels) */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 sm:h-28 md:h-32 bg-gradient-to-b from-transparent to-white z-0" />
               {/* Side fade gradients (left gradient removed as requested) */}
             </div>
           </motion.div>
