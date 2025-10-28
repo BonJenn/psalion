@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import ContactFormModal from './contact-form-modal';
 
@@ -10,6 +10,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   // Match header logo selection
   const logoSrc = (() => {
@@ -37,12 +38,14 @@ export default function Footer() {
     // Handle anchor links with smooth scrolling
     if (href.startsWith('/#')) {
       const targetId = href.substring(2); // Remove '/#' to get the ID
+      // If we're not on the homepage, navigate there first with hash
+      if (pathname !== '/') {
+        router.push(`/#${targetId}`);
+        return;
+      }
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
-        targetElement.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
   };
