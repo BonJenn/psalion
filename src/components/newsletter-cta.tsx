@@ -28,10 +28,10 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   }
 
   return (
-    <section className="pt-8 pb-32 bg-gray-50">
+    <section className="pt-4 md:pt-6 pb-16 md:pb-24 bg-gray-50">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="bg-gradient-to-b from-gray-50 to-gray-100 rounded-none">
-          <div className="flex flex-col items-start justify-center gap-2 lg:gap-3 py-12 lg:py-16 max-w-6xl mx-auto">
+          <div className="flex flex-col items-start justify-center gap-2 lg:gap-3 py-8 lg:py-12 max-w-6xl mx-auto">
             <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-left">
               Receive the latest overview,
             </h3>

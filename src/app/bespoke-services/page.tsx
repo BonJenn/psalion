@@ -256,7 +256,7 @@ export default function BespokeServicesPage() {
   return (
     <div className="pt-6">
       {/* Hero Section */}
-      <section className="pt-4 md:pt-6 pb-2 md:pb-4 bg-white">
+      <section className="pt-2 md:pt-4 pb-0 md:pb-2 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center">
             {/* Left Content - Text */}
