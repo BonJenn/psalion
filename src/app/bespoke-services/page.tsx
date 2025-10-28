@@ -269,7 +269,7 @@ export default function BespokeServicesPage() {
               <div className="flex items-start gap-4">
               
                 <div>
-                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-gray-800 leading-tight">
+                  <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-800 leading-tight">
                     Your vision, our craft:<br />
                     <span className="text-gray-800">Bespoke services</span>
                   </h1>
