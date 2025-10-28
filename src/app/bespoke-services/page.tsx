@@ -287,7 +287,7 @@ export default function BespokeServicesPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
+              <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden flex items-center justify-center">
                 {isMobile ? (
                   <img src="/psalion_bespoke_services/Psalion_bespoke_services_mobile_image.png" alt="Psalion bespoke visualization" className="w-full h-full object-contain object-center mx-auto" />
                 ) : (
