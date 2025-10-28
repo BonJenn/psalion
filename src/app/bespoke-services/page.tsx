@@ -289,7 +289,7 @@ export default function BespokeServicesPage() {
             >
               <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
                 {isMobile ? (
-                  <img src="/psalion_bespoke_services/Psalion_bespoke_services_mobile_image.png" alt="Psalion bespoke visualization" className="w-full h-full object-contain" />
+                  <img src="/psalion_bespoke_services/Psalion_bespoke_services_mobile_image.png" alt="Psalion bespoke visualization" className="w-full h-full object-contain object-center mx-auto" />
                 ) : (
                   <DirectSpline
                     scene="https://cdn.jsdelivr.net/gh/Altalogy/spline-runtime@v1.0.3/psalion/bespoke.splinecode"
