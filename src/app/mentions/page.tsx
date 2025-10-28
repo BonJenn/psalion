@@ -69,7 +69,7 @@ export default function MentionsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-800 leading-tight tracking-tight">Mentions and Featured Content</h1>
           <div className="mt-4 border-b border-dotted border-gray-300 w-32"></div>
         </motion.div>
 
@@ -83,11 +83,7 @@ export default function MentionsPage() {
           >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
               {/* Left Column - Section Title */}
-              <div className="lg:pr-8">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 uppercase tracking-wide leading-tight">
-                  Mentions and<br />Featured Content
-                </h2>
-              </div>
+              <div className="lg:pr-8"></div>
               
               {/* Right Column - Featured Article */}
               <div>
