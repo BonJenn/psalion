@@ -104,7 +104,7 @@ export default function ClientTypesChart() {
           </h2>
           <div className="flex-1 ml-4 border-t border-dashed border-gray-200"></div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center -mt-2">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mt-6 md:-mt-2">
           {/* Text Content */}
           <motion.div
             className="text-left"
