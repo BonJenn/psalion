@@ -77,8 +77,6 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
     }
   };
 
-  if (!isOpen) return null;
-
   // Lazy-load and render Cloudflare Turnstile
   useEffect(() => {
     if (!isOpen) return;
@@ -114,6 +112,8 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
       render();
     }
   }, [isOpen]);
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">

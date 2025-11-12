@@ -135,9 +135,9 @@ export default function MentionsPage() {
                   </h3>
                 </a>
               </div>
-              {/* Divider with 'Last mention' label aligned left and dashed line to the right (full width on desktop) */}
+              {/* Divider with 'All Mentions' label aligned left and dashed line to the right (full width on desktop) */}
               <div className="mt-6 flex items-center w-full lg:col-span-2">
-                <div className="text-xs text-gray-500 uppercase tracking-wide whitespace-nowrap">Last mention</div>
+                <div className="text-xs text-gray-500 uppercase tracking-wide whitespace-nowrap">All Mentions</div>
                 <div className="ml-4 border-t border-dashed border-gray-300 flex-1"></div>
               </div>
             </div>

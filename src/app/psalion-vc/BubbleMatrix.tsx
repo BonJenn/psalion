@@ -85,7 +85,7 @@ export default function BubbleMatrix() {
                 const dFundI = getDot(cat, 'Fund I');
                 const dFundII = getDot(cat, 'Fund II');
                 return (
-                  <div key={cat} className="grid grid-cols-2 gap-0 items-center py-3 border-t border-dashed border-gray-200 first:border-t-0">
+                  <div key={cat} className="relative grid grid-cols-2 gap-0 items-center py-3 border-t border-dashed border-gray-200 first:border-t-0">
                     {/* Fund I cell */}
                     <div className="relative flex items-center justify-center h-16 px-3">
                       {dFundI && dFundI.r > 0 && (
@@ -146,6 +146,13 @@ export default function BubbleMatrix() {
                           <div>{dFundII.value} FOUNDERS</div>
                         </div>
                       ) : null}
+                    </div>
+
+                    {/* Mobile row category label centered between bubbles */}
+                    <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                      <span className="text-[10px] font-medium text-gray-600 uppercase tracking-wide bg-white px-1 rounded-sm">
+                        {cat}
+                      </span>
                     </div>
                   </div>
                 );

@@ -150,7 +150,7 @@ export default function ClientTypesChart() {
 
           {/* Pie Chart Container */}
           <motion.div
-            className="flex flex-col items-start lg:items-start lg:ml-8"
+            className="flex flex-col items-center lg:items-start lg:ml-8"
             variants={fadeInUp}
             initial="initial"
             whileInView="animate"
@@ -260,7 +260,7 @@ export default function ClientTypesChart() {
 
             {/* Client Types Title - Underneath chart */}
             <motion.h2
-              className="w-full text-center -mt-8 sm:-mt-10 md:-mt-12 lg:-mt-16 xl:-mt-20 2xl:-mt-24 relative -left-3 lg:-left-6 text-[10px] sm:text-xs md:text-sm font-medium text-gray-400 uppercase tracking-wide leading-none"
+              className="w-full text-center -mt-2 sm:-mt-4 md:-mt-6 lg:-mt-16 xl:-mt-20 2xl:-mt-24 relative -left-3 lg:-left-6 text-[10px] sm:text-xs md:text-sm font-medium text-gray-400 uppercase tracking-wide leading-none"
               style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
               variants={fadeInUp}
               transition={{ delay: 0.4 }}

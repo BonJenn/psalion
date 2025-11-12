@@ -281,7 +281,7 @@ export default function PsalionYieldPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="pt-16 section-y pb-0 lg:pb-0">
+      <section className="pt-16 section-y pb-6 md:pb-8 lg:pb-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 md:gap-4 lg:gap-6 items-center">
             {/* Left Column - Text Content */}
@@ -383,8 +383,8 @@ export default function PsalionYieldPage() {
         </div>
       </section>
 
-            {/* Features Grid Section */}
-      <section className="pt-0 -mt-2 md:mt-0 section-y bg-white">
+      {/* Features Grid Section */}
+      <section className="pt-0 mt-0 section-y bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-4">
             {/* Feature 1: High yields */}
