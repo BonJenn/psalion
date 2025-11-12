@@ -104,7 +104,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   }
 
   return (
-    <section className={`bg-gray-50 ${isBespoke ? '-mt-2 sm:mt-0 py-16 md:py-24' : 'py-16 md:py-24'}`}>
+    <section className={`bg-gray-50 ${isBespoke ? '-mt-24 sm:-mt-8 md:mt-0 py-16 md:py-24' : 'py-16 md:py-24'}`}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none min-h-[260px] md:min-h-[340px] flex items-center`}>
           <div className={`flex flex-col items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-left w-full`}>
