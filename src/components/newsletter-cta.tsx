@@ -120,7 +120,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                   </h3>
                   <div className="w-full md:flex-1 min-w-[200px]">
                     {success ? (
-                      <div className="text-2xl sm:text-3xl md:text-5xl font-semibold text-gray-300 leading-[0.95] select-none">Thank you!</div>
+                      <div className="text-2xl sm:text-3xl md:text-5xl font-semibold text-gray-300 leading-[0.95] select-none -mt-2 md:mt-0">Thank you!</div>
                     ) : (
                       <form onSubmit={onSubmit} className="flex flex-col md:flex-row items-center md:items-baseline justify-center md:justify-start pb-0 gap-2 md:gap-2">
                         <input
