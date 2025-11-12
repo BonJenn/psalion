@@ -104,10 +104,10 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   }
 
   return (
-    <section className={`bg-gray-50 ${isBespoke ? '-mt-24 sm:-mt-8 md:mt-0 py-16 md:py-24' : 'py-16 md:py-24'}`}>
+    <section className={`bg-gray-50 ${isBespoke ? '-mt-36 sm:-mt-16 md:mt-0 py-16 md:py-24' : 'py-16 md:py-24'}`}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none min-h-[260px] md:min-h-[340px] flex items-center`}>
-          <div className={`flex flex-col items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-left w-full`}>
+          <div className={`flex flex-col items-center md:items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-center md:text-left w-full`}>
             {/* Hide all text while captcha is displayed */}
             {(!showCaptcha || success) && (
               <>
@@ -142,7 +142,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                       </form>
                     )}
                     {/* Only show non-captcha errors */}
-                    {error && !showCaptcha && <p className="text-sm text-red-600 mt-2">{error}</p>}
+                    {error && !showCaptcha && <p className="text-sm text-red-600 mt-2 text-center md:text-left">{error}</p>}
                   </div>
                 </div>
               </>
