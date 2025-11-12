@@ -106,7 +106,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   return (
     <section className={`bg-gray-50 ${isBespoke ? '-mt-80 sm:-mt-32 md:mt-0 py-16 md:py-24 relative z-20' : 'py-16 md:py-24'}`}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none min-h-[220px] md:min-h-[340px] flex items-center`}>
+        <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none min-h-[300px] md:min-h-[340px] flex items-center`}>
           <div className={`flex flex-col items-center md:items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-center md:text-left w-full`}>
             {/* Hide all text while captcha is displayed */}
             {(!showCaptcha || success) && (
@@ -128,7 +128,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="Your email address here."
-                          className="w-full md:flex-1 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold relative top-[2px] md:top-[3px] text-center md:text-left"
+                          className="w-full md:flex-1 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold text-center md:text-left"
                           aria-label="Email address"
                         />
                         <button
