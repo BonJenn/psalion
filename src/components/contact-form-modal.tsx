@@ -23,6 +23,8 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string>('');
+  const [submitError, setSubmitError] = useState<string>('');
+  const [attemptedSubmit, setAttemptedSubmit] = useState<boolean>(false);
   const turnstileContainerRef = useRef<HTMLDivElement | null>(null);
   const widgetIdRef = useRef<any>(null);
 
@@ -43,6 +45,8 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setAttemptedSubmit(true);
+    setSubmitError('');
     setIsSubmitting(true);
 
     try {
@@ -72,6 +76,7 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
       }, 2000);
     } catch (error) {
       console.error('Error submitting contact form:', error);
+      setSubmitError(error instanceof Error ? error.message : 'Failed to submit. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -241,16 +246,22 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
             {/* Captcha */}
             <div>
               <div ref={turnstileContainerRef} className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}></div>
+              {attemptedSubmit && !captchaToken && (
+                <p className="mt-2 text-sm text-red-400">Please complete the captcha before submitting.</p>
+              )}
             </div>
 
             {/* Submit Button */}
             <Button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !captchaToken}
               className="w-full bg-gray-800 hover:bg-gray-700 text-white border-gray-700"
             >
               {isSubmitting ? 'Sending...' : 'Send message'}
             </Button>
+            {submitError && (
+              <p className="text-sm text-red-400">{submitError}</p>
+            )}
           </form>
         )}
       </div>
