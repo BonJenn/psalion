@@ -69,8 +69,7 @@ export default function MentionsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-800 leading-tight tracking-tight">Mentions and Featured Content</h1>
-          <div className="mt-4 border-b border-dotted border-gray-300 w-32"></div>
+          <h1 className="text-xl md:text-3xl lg:text-4xl font-semibold text-gray-800 leading-tight tracking-tight">Mentions and Featured Content</h1>
         </motion.div>
 
         {/* Featured Article */}
@@ -131,118 +130,131 @@ export default function MentionsPage() {
                   </div>
                   
                   {/* Featured Article Title */}
-                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-200 leading-tight">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-200 leading-tight">
                     {mentions[0].articleTitle}
                   </h3>
                 </a>
+              </div>
+              {/* Divider with 'Last mention' label aligned left and dashed line to the right (full width on desktop) */}
+              <div className="mt-6 flex items-center w-full lg:col-span-2">
+                <div className="text-xs text-gray-500 uppercase tracking-wide whitespace-nowrap">Last mention</div>
+                <div className="ml-4 border-t border-dashed border-gray-300 flex-1"></div>
               </div>
             </div>
           </motion.div>
         )}
 
         {/* All Mentions List (excluding featured) */}
-        {mentions.length > 1 ? (
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <div className="text-sm text-gray-500 uppercase tracking-wide mb-4"></div>
-            <div className="divide-y divide-gray-200">
-              {mentions.slice(1, 1 + visibleCount).map((mention, index) => {
-                console.log(`Rendering mention ${index + 1}:`, mention.articleTitle);
-                return (
-                <motion.a
-                  key={mention._id}
-                  href={mention.articleUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block group"
-                  initial={{ opacity: 1, y: 0 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                >
-                  <div className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-y-4 sm:gap-y-6 md:gap-x-16 items-center">
-                    {/* Publisher Logo and Name */}
-                    <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
-                      {mention.publisherData?.publisherLogo ? (
-                        <LogoBox
-                          src={urlFor(mention.publisherData.publisherLogo).height(32).fit('max').url()}
-                          alt={`${mention.publisherData.publisherName} logo`}
-                          isForbes={(mention.publisherData?.publisherName || '').toLowerCase().includes('forbes')}
-                        />
-                      ) : (
-                        <div className="w-8 h-8 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
-                          <span className="text-base font-medium text-gray-500">
-                            {mention.publisherData?.publisherName?.charAt(0) || '?'}
+        {(() => {
+          // Exclude the featured article (index 0), plus any duplicates of it by id or URL
+          const restMentions = mentions.filter((m, i) => {
+            if (i === 0) return false;
+            const first = mentions[0];
+            return (m._id !== (first as any)._id) && (m.articleUrl !== first.articleUrl);
+          });
+          return restMentions.length > 0 ? (
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <div className="text-sm text-gray-500 uppercase tracking-wide mb-4"></div>
+              <div className="divide-y divide-gray-200">
+                {restMentions.slice(0, visibleCount).map((mention, index) => {
+                  console.log(`Rendering mention ${index + 1}:`, mention.articleTitle);
+                  return (
+                    <motion.a
+                      key={mention._id}
+                      href={mention.articleUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block group"
+                      initial={{ opacity: 1, y: 0 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                    >
+                      <div className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-y-4 sm:gap-y-6 md:gap-x-16 items-center">
+                        {/* Publisher Logo and Name */}
+                        <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
+                          {mention.publisherData?.publisherLogo ? (
+                            <LogoBox
+                              src={urlFor(mention.publisherData.publisherLogo).height(32).fit('max').url()}
+                              alt={`${mention.publisherData.publisherName} logo`}
+                              isForbes={(mention.publisherData?.publisherName || '').toLowerCase().includes('forbes')}
+                            />
+                          ) : (
+                            <div className="w-8 h-8 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
+                              <span className="text-base font-medium text-gray-500">
+                                {mention.publisherData?.publisherName?.charAt(0) || '?'}
+                              </span>
+                            </div>
+                          )}
+                          <span className="text-sm font-medium text-gray-900 whitespace-nowrap">
+                            {mention.publisherData?.publisherName}
                           </span>
                         </div>
-                      )}
-                      <span className="text-sm font-medium text-gray-900 whitespace-nowrap">
-                        {mention.publisherData?.publisherName}
-                      </span>
-                    </div>
 
-                    {/* Interview Info (if applicable) */}
-                      {mention.isInterview && mention.intervieweeData?.intervieweeName && (
-                      <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
-                        {(() => {
-                          const override = resolveIntervieweeImage(mention.intervieweeData?.intervieweeName);
-                          const src = override || (mention.intervieweeData?.intervieweeHeadshot ? urlFor(mention.intervieweeData.intervieweeHeadshot).width(32).height(32).url() : '');
-                          return src ? (
-                            <div className="w-8 h-8 relative flex-shrink-0 rounded-md overflow-hidden">
-                              <Image src={src} alt={`${mention.intervieweeData?.intervieweeName || 'Interviewee'} headshot`} fill className="object-cover grayscale" />
-                            </div>
-                          ) : null;
-                        })()}
-                        <span className="text-sm text-gray-600 leading-tight">
-                          Interview with {mention.intervieweeData.intervieweeName}
-                        </span>
+                        {/* Interview Info (if applicable) */}
+                        {mention.isInterview && mention.intervieweeData?.intervieweeName && (
+                          <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
+                            {(() => {
+                              const override = resolveIntervieweeImage(mention.intervieweeData?.intervieweeName);
+                              const src = override || (mention.intervieweeData?.intervieweeHeadshot ? urlFor(mention.intervieweeData.intervieweeHeadshot).width(32).height(32).url() : '');
+                              return src ? (
+                                <div className="w-8 h-8 relative flex-shrink-0 rounded-md overflow-hidden">
+                                  <Image src={src} alt={`${mention.intervieweeData?.intervieweeName || 'Interviewee'} headshot`} fill className="object-cover grayscale" />
+                                </div>
+                              ) : null;
+                            })()}
+                            <span className="text-sm text-gray-600 leading-tight">
+                              Interview with {mention.intervieweeData.intervieweeName}
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Article Title */}
+                        <div className="flex-1 min-w-0 mt-3 md:mt-0 md:col-span-6 md:pl-8">
+                          <h3 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200 leading-tight">
+                            {mention.articleTitle}
+                          </h3>
+                        </div>
                       </div>
-                    )}
-
-                    {/* Article Title */}
-                    <div className="flex-1 min-w-0 mt-3 md:mt-0 md:col-span-6 md:pl-8">
-                      <h3 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200 leading-tight">
-                        {mention.articleTitle}
-                      </h3>
-                    </div>
-                  </div>
-                </motion.a>
-                );
-              })}
-            </div>
-
-            {/* Show More Button */}
-            {visibleCount < Math.max(0, mentions.length - 1) && (
-              <div className="text-center">
-                <motion.button
-                  onClick={() => setVisibleCount((v) => v + 5)}
-                  className="mt-6 text-blue-600 hover:text-blue-800 font-medium text-sm uppercase tracking-wide inline-flex items-center space-x-2 group"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <span>
-                    Show {Math.min(5, Math.max(0, (mentions.length - 1) - visibleCount))} More
-                  </span>
-                  <svg
-                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </motion.button>
+                    </motion.a>
+                  );
+                })}
               </div>
-            )}
-          </motion.div>
-        ) : (
-          <div className="text-center py-8">
-            <p className="text-gray-500">No additional mentions found.</p>
-          </div>
-        )}
+
+              {/* Show More Button */}
+              {visibleCount < Math.max(0, restMentions.length) && (
+                <div className="text-center">
+                  <motion.button
+                    onClick={() => setVisibleCount((v) => v + 5)}
+                    className="mt-6 text-blue-600 hover:text-blue-800 font-medium text-sm uppercase tracking-wide inline-flex items-center space-x-2 group"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <span>
+                      Show {Math.min(5, Math.max(0, restMentions.length - visibleCount))} More
+                    </span>
+                    <svg
+                      className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </motion.button>
+                </div>
+              )}
+            </motion.div>
+          ) : (
+            <div className="text-center py-8">
+              <p className="text-gray-500">No additional mentions found.</p>
+            </div>
+          );
+        })()}
 
 
       </div>
