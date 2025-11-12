@@ -381,6 +381,54 @@ const locations = ['All Locations', 'Africa', 'Asia', 'Europe', 'Middle East', '
 const categories = ['All Categories', 'Decentralized Finance', 'Infrastructure', 'RWA', 'NFT', 'Other'];
 
 export default function TechnologiesChart() {
+  // Website mapping for portfolio companies
+  const websiteByName: Record<string, string> = {
+    'Aave': 'https://aave.com/',
+    'Aioz': 'https://aioz.network/',
+    'Arcadia': 'https://arcadia.finance/',
+    'Archimedes': 'https://www.bitwave.io/',
+    'Arkis': 'https://www.arkis.xyz/',
+    'Avnu': 'https://www.avnu.fi/',
+    'Beans': 'https://beans.fun/',
+    'Binance': 'https://www.binance.com/',
+    'Bitbond': 'https://www.bitbond.com/',
+    'Brickken': 'https://www.brickken.com/en',
+    'Celo': 'https://celo.org/',
+    'Chainlink': 'https://chain.link/',
+    'Curve': 'https://curve.fi/',
+    'Deltaprime': 'https://deltaprime.io/',
+    'Flow': 'https://flow.com/',
+    'Focus Tree': 'https://www.focustree.app/',
+    'Genius': 'https://www.tradegenius.com/',
+    'Hinkal': 'https://hinkal.pro/',
+    'Hyperion': 'https://www.hyperionlabs.xyz/',
+    'Levelfield': 'https://lp.levelfield.us/',
+    'Mintify': 'https://mintify.xyz/',
+    'Omega': 'https://www.omega.xyz/',
+    'Opium': 'https://opium.network/',
+    'Orbital': 'https://www.getorbital.com/',
+    'Origin': 'https://www.originprotocol.com/',
+    'Polkadot': 'https://polkadot.network/',
+    'Presearch': 'https://presearch.io/',
+    'Quantfury': 'https://quantfury.com/',
+    'Radicle': 'https://radicle.xyz/',
+    'Radix': 'https://www.radixdlt.com/',
+    'Render': 'https://rendernetwork.com/',
+    'STS Digital': 'https://www.stsdigital.io/',
+    'Serum': 'https://solana.com/',
+    'Solana': 'https://solana.com/',
+    'Stix': 'https://stix.co/',
+    'Sushi': 'https://www.sushi.com/',
+    'Top Tier Authentics': 'https://www.toptierauth.com/',
+    'Umoja': 'https://umoja.xyz/',
+    'Uniswap': 'https://uniswap.org/',
+    'Usual': 'https://usual.money/',
+    'Utila': 'https://utila.io/',
+    'VeChain': 'https://www.vechain.org/',
+    'Vektor': 'https://vektor.finance/',
+    'Wootrade': 'https://woo.org/',
+    'Zkex': 'https://zkex.com/',
+  };
   const [selectedFund, setSelectedFund] = useState('All Funds');
   const [selectedLocation, setSelectedLocation] = useState('All Locations');
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
@@ -627,8 +675,19 @@ export default function TechnologiesChart() {
                   <div className="px-4 pb-4 pt-0 text-gray-700">
                     <div className="text-sm mb-2">{tech.description}</div>
                     <div className="flex items-center gap-2 text-xs">
+                      {/* Website pill (leftmost) */}
+                      {websiteByName[tech.name] && (
+                        <a
+                          href={websiteByName[tech.name]}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-2 py-1 rounded-full bg-orange-100 text-orange-800 hover:bg-orange-200 transition-colors"
+                        >
+                          Website
+                        </a>
+                      )}
                       <span className={`px-2 py-1 rounded-full ${tech.fund === 'Fund I' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}`}>{tech.fund}</span>
-                      <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-700">{tech.category}</span>
+                      <span className="px-2 py-1 rounded-full bg-purple-100 text-purple-800">{tech.category}</span>
                       <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-700">{tech.region}</span>
                     </div>
                   </div>
@@ -672,7 +731,18 @@ export default function TechnologiesChart() {
                               />
                             </div>
                           )}
-                          <span className="text-sm sm:text-lg font-semibold text-gray-900">{tech.name}</span>
+                          {websiteByName[tech.name] ? (
+                            <a
+                              href={websiteByName[tech.name]}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm sm:text-lg font-semibold text-gray-900 hover:text-blue-700 transition-colors"
+                            >
+                              {tech.name}
+                            </a>
+                          ) : (
+                            <span className="text-sm sm:text-lg font-semibold text-gray-900">{tech.name}</span>
+                          )}
                         </div>
                         <span className={`px-2 py-1 text-xs font-medium rounded-full w-fit ${
                           tech.fund === 'Fund I' 
