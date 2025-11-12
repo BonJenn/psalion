@@ -104,10 +104,10 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   }
 
   return (
-    <section className={`py-0 bg-gray-50 ${isBespoke ? '-mt-40 sm:-mt-48 md:mt-0 pb-6 md:pb-24' : ''}`}>
+    <section className={`py-0 bg-gray-50 ${isBespoke ? 'mt-0 pb-20 md:pb-24' : ''}`}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none ${isBespoke ? 'min-h-[140px]' : 'min-h-[260px]'} md:min-h-[340px] flex items-center`}>
-          <div className={`flex flex-col items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-left w-full`}>
+        <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none ${isBespoke ? 'min-h-[220px]' : 'min-h-[260px]'} md:min-h-[340px] flex items-center`}>
+          <div className={`flex flex-col items-start justify-center gap-2 lg:gap-3 ${isBespoke ? 'w-full md:max-w-6xl' : 'max-w-6xl'} mx-auto text-left w-full`}>
             {/* Hide all text while captcha is displayed */}
             {(!showCaptcha || success) && (
               <>
