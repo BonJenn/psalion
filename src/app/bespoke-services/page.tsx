@@ -256,7 +256,7 @@ export default function BespokeServicesPage() {
   return (
     <div className="pt-6">
       {/* Hero Section */}
-      <section className="pt-2 md:pt-4 pb-10 md:pb-16 lg:pb-20 bg-white">
+      <section className="pt-2 md:pt-4 pb-0 md:pb-16 lg:pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center">
             {/* Left Content - Text */}
@@ -302,8 +302,8 @@ export default function BespokeServicesPage() {
                     }}
                   />
                 )}
-                {/* Bottom fade gradient */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 sm:h-28 md:h-32 bg-gradient-to-b from-transparent to-white" />
+                {/* Bottom fade gradient (minimized on mobile) */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-0 sm:h-16 md:h-32 bg-gradient-to-b from-transparent to-white" />
                 {/* Side fade gradients */}
                 <div className="pointer-events-none absolute left-0 top-0 h-full w-10 sm:w-12 md:w-16 bg-gradient-to-r from-white to-transparent" />
                 <div className="pointer-events-none absolute right-0 top-0 h-full w-10 sm:w-12 md:w-16 bg-gradient-to-l from-white to-transparent" />

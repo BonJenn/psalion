@@ -52,7 +52,7 @@ export default function Footer() {
 
   const footerSections = [
     {
-      title: 'branches',
+      title: 'Branches',
       links: [
         { href: '/psalion-vc', label: 'Psalion VC' },
         { href: '/psalion-yield', label: 'Psalion Yield' },
@@ -60,7 +60,7 @@ export default function Footer() {
       ],
     },
     {
-      title: 'contact',
+      title: 'Contact',
       links: [
         { href: '#', label: 'Write a message', isContact: true },
         { href: 'https://www.linkedin.com/company/psalion/', label: 'LinkedIn' },
@@ -92,10 +92,10 @@ export default function Footer() {
             </Link>
             <a
               href="mailto:invest@psalion.com"
-              className="group text-gray-600 hover:text-black transition-colors duration-200 text-sm text-center md:text-left inline-block mt-2"
+              className="group text-gray-600 hover:text-black transition-colors duration-200 text-sm text-center md:text-left block mt-2 mx-auto md:mx-0"
             >
               <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">
-                INVEST@PSALION.COM
+                Invest@Psalion.com
               </span>
             </a>
           </div>

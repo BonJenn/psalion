@@ -31,9 +31,9 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   }
 
   return (
-    <section className={`py-0 bg-gray-50`}>
+    <section className={`py-0 bg-gray-50 ${isBespoke ? '-mt-40 sm:-mt-48 md:mt-0' : ''}`}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-b from-gray-50 to-gray-100 rounded-none min-h-[260px] md:min-h-[340px] flex items-center">
+        <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none ${isBespoke ? 'min-h-[140px]' : 'min-h-[260px]'} md:min-h-[340px] flex items-center`}>
           <div className={`flex flex-col items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-left w-full`}>
             <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-left">
               Receive the latest overview,

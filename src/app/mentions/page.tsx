@@ -15,7 +15,7 @@ export default function MentionsPage() {
   };
   const LogoBox = ({ src, alt, small = false, isForbes = false }: { src: string; alt: string; small?: boolean; isForbes?: boolean }) => {
     return (
-      <div className={`w-8 h-8 relative flex-shrink-0 overflow-hidden ${isForbes ? '' : 'rounded-md bg-white border border-gray-200'}`}>
+      <div className={`w-8 h-8 relative flex-shrink-0 overflow-hidden ${isForbes ? '' : 'rounded-lg bg-white border border-gray-200'}`}>
         <Image src={src} alt={alt} fill className={isForbes ? "object-cover" : "object-contain"} />
       </div>
     );
@@ -173,9 +173,44 @@ export default function MentionsPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.05 }}
                     >
-                      <div className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-y-4 sm:gap-y-6 md:gap-x-16 items-center">
+                  <div className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-y-4 sm:gap-y-6 md:gap-x-16 items-center">
+                    {/* Mobile compact header: logo + (optional) headshot + 'Interview with …' text */}
+                    <div className="md:hidden flex items-center gap-2">
+                      {/* Publisher logo */}
+                      {mention.publisherData?.publisherLogo ? (
+                        <LogoBox
+                          src={urlFor(mention.publisherData.publisherLogo).height(28).fit('max').url()}
+                          alt={`${mention.publisherData.publisherName} logo`}
+                          isForbes={(mention.publisherData?.publisherName || '').toLowerCase().includes('forbes')}
+                        />
+                      ) : (
+                        <div className="w-7 h-7 flex-shrink-0 bg-white border border-gray-200 rounded-lg flex items-center justify-center">
+                          <span className="text-[10px] font-medium text-gray-500">
+                            {mention.publisherData?.publisherName?.charAt(0) || '?'}
+                          </span>
+                        </div>
+                      )}
+                      {/* Interview headshot and text */}
+                      {mention.isInterview && mention.intervieweeData?.intervieweeName && (
+                        <div className="flex items-center gap-2 min-w-0">
+                          {(() => {
+                            const override = resolveIntervieweeImage(mention.intervieweeData?.intervieweeName);
+                            const src = override || (mention.intervieweeData?.intervieweeHeadshot ? urlFor(mention.intervieweeData.intervieweeHeadshot).width(28).height(28).url() : '');
+                            return src ? (
+                              <div className="w-7 h-7 relative flex-shrink-0 rounded-md overflow-hidden">
+                                <Image src={src} alt={`${mention.intervieweeData?.intervieweeName || 'Interviewee'} headshot`} fill className="object-cover grayscale" />
+                              </div>
+                            ) : null;
+                          })()}
+                          <span className="text-xs text-gray-600 leading-tight truncate">
+                            Interview with {mention.intervieweeData.intervieweeName}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
                         {/* Publisher Logo and Name */}
-                        <div className="flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
+                    <div className="hidden md:flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
                           {mention.publisherData?.publisherLogo ? (
                             <LogoBox
                               src={urlFor(mention.publisherData.publisherLogo).height(32).fit('max').url()}
@@ -183,20 +218,20 @@ export default function MentionsPage() {
                               isForbes={(mention.publisherData?.publisherName || '').toLowerCase().includes('forbes')}
                             />
                           ) : (
-                            <div className="w-8 h-8 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
+                        <div className="w-8 h-8 flex-shrink-0 bg-white border border-gray-200 rounded-lg flex items-center justify-center">
                               <span className="text-base font-medium text-gray-500">
                                 {mention.publisherData?.publisherName?.charAt(0) || '?'}
                               </span>
                             </div>
                           )}
-                          <span className="text-sm font-medium text-gray-900 whitespace-nowrap">
+                      <span className="hidden md:inline text-sm font-medium text-gray-900 whitespace-nowrap">
                             {mention.publisherData?.publisherName}
                           </span>
                         </div>
 
                         {/* Interview Info (if applicable) */}
-                        {mention.isInterview && mention.intervieweeData?.intervieweeName && (
-                          <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
+                      {mention.isInterview && mention.intervieweeData?.intervieweeName && (
+                      <div className="hidden md:flex items-center space-x-3 sm:space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
                             {(() => {
                               const override = resolveIntervieweeImage(mention.intervieweeData?.intervieweeName);
                               const src = override || (mention.intervieweeData?.intervieweeHeadshot ? urlFor(mention.intervieweeData.intervieweeHeadshot).width(32).height(32).url() : '');
@@ -206,7 +241,7 @@ export default function MentionsPage() {
                                 </div>
                               ) : null;
                             })()}
-                            <span className="text-sm text-gray-600 leading-tight">
+                        <span className="text-sm text-gray-600 leading-tight">
                               Interview with {mention.intervieweeData.intervieweeName}
                             </span>
                           </div>
