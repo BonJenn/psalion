@@ -122,19 +122,19 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                     {success ? (
                       <div className="text-2xl sm:text-3xl md:text-5xl font-semibold text-gray-300 leading-[0.95] select-none">Thank you!</div>
                     ) : (
-                      <form onSubmit={onSubmit} className="flex items-baseline justify-center md:justify-start pb-0 gap-1 md:gap-2 whitespace-nowrap">
+                      <form onSubmit={onSubmit} className="flex flex-col md:flex-row items-center md:items-baseline justify-center md:justify-start pb-0 gap-2 md:gap-2">
                         <input
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          placeholder="Your email address here"
-                          className="flex-1 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold relative top-[2px] md:top-[3px]"
+                          placeholder="Your email address here."
+                          className="w-full md:flex-1 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold relative top-[2px] md:top-[3px]"
                           aria-label="Email address"
                         />
                         <button
                           type="submit"
                           disabled={submitting}
-                          className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60"
+                          className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60 md:ml-0"
                           aria-label="Submit"
                         >
                           <span className="inline-block -translate-x-px">›</span>
