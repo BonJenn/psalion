@@ -111,16 +111,16 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
             {/* Hide all text while captcha is displayed */}
             {(!showCaptcha || success) && (
               <>
-                <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-center md:text-left">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[0.95] text-center md:text-left">
                   Receive the latest overview,
                 </h3>
-                <div className="w-full -mt-1 flex flex-col md:flex-row md:flex-wrap items-center md:items-baseline gap-2 justify-center md:justify-start">
-                  <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-center md:text-left">
+                <div className="w-full -mt-1 flex flex-col lg:flex-row items-center lg:items-baseline gap-2 justify-center lg:justify-start">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[0.95] text-center md:text-left">
                     trends, and insights.
                   </h3>
-                  <div className="w-full md:flex-1 min-w-[200px]">
+                  <div className="w-full lg:flex-1 min-w-0">
                     {success ? (
-                      <div className="text-2xl sm:text-3xl md:text-5xl font-semibold text-gray-300 leading-[0.95] select-none">Thank you!</div>
+                      <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-300 leading-[0.95] select-none">Thank you!</div>
                     ) : (
                       <form onSubmit={onSubmit} className="flex flex-col md:flex-row items-center md:items-baseline justify-center md:justify-start pb-0 gap-2 md:gap-2 w-full md:w-full lg:w-auto">
                         <input
@@ -128,7 +128,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="Your email address here."
-                          className="w-full md:flex-1 min-w-0 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold text-center md:text-left"
+                          className="w-full md:flex-1 min-w-0 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold text-center md:text-left"
                           aria-label="Email address"
                         />
                         <button
