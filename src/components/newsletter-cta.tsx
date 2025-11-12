@@ -82,7 +82,6 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
     // If no token yet, reveal captcha and wait for user to solve
     if (!captchaToken) {
       setShowCaptcha(true)
-      setError('Please complete the captcha')
       return
     }
     // If user already has a token (rare), proceed
@@ -109,51 +108,55 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none ${isBespoke ? 'min-h-[140px]' : 'min-h-[260px]'} md:min-h-[340px] flex items-center`}>
           <div className={`flex flex-col items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-left w-full`}>
-            <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-left">
-              Receive the latest overview,
-            </h3>
-            <div className="w-full flex flex-wrap items-end gap-2 justify-start">
-              <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-left">
-                trends, and insights.
-              </h3>
-              <div className="flex-1 min-w-[240px] max-w-[640px]">
-                {success ? (
-                  <div className="text-2xl sm:text-3xl md:text-5xl font-semibold text-gray-300 leading-[0.95] select-none">Thank you!</div>
-                ) : (
-                  <form onSubmit={onSubmit} className="flex flex-col items-start pb-0 gap-2 md:gap-3">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Your email address here"
-                      className="flex-1 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold relative top-[2px] md:top-[3px]"
-                      aria-label="Email address"
-                    />
-                    <div className="w-full flex items-center gap-2">
-                      <div className="flex-1">
-                        {showCaptcha && !success ? (
-                          <>
-                            <div ref={turnstileContainerRef} className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}></div>
-                            {attempted && !captchaToken && (
-                              <p className="text-xs text-red-500 mt-1">Please complete the captcha.</p>
-                            )}
-                          </>
-                        ) : null}
-                      </div>
-                      <button
-                        type="submit"
-                        disabled={submitting}
-                        className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60"
-                        aria-label="Submit"
-                      >
-                        <span className="inline-block -translate-x-px">›</span>
-                      </button>
-                    </div>
-                  </form>
-                )}
-                {error && <p className="text-sm text-red-600 mt-2">{error}</p>}
+            {/* Hide all text while captcha is displayed */}
+            {(!showCaptcha || success) && (
+              <>
+                <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-left">
+                  Receive the latest overview,
+                </h3>
+                <div className="w-full flex flex-wrap items-end gap-2 justify-start">
+                  <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-left">
+                    trends, and insights.
+                  </h3>
+                  <div className="flex-1 min-w-[240px] max-w-[640px]">
+                    {success ? (
+                      <div className="text-2xl sm:text-3xl md:text-5xl font-semibold text-gray-300 leading-[0.95] select-none">Thank you!</div>
+                    ) : (
+                      <form onSubmit={onSubmit} className="flex flex-col items-start pb-0 gap-2 md:gap-3">
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="Your email address here"
+                          className="flex-1 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold relative top-[2px] md:top-[3px]"
+                          aria-label="Email address"
+                        />
+                        <div className="w-full flex items-center gap-2">
+                          <div className="flex-1" />
+                          <button
+                            type="submit"
+                            disabled={submitting}
+                            className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60"
+                            aria-label="Submit"
+                          >
+                            <span className="inline-block -translate-x-px">›</span>
+                          </button>
+                        </div>
+                      </form>
+                    )}
+                    {/* Only show non-captcha errors */}
+                    {error && !showCaptcha && <p className="text-sm text-red-600 mt-2">{error}</p>}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* Captcha-only view (no text) */}
+            {showCaptcha && !success && (
+              <div className="w-full">
+                <div ref={turnstileContainerRef} className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}></div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
