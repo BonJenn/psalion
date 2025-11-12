@@ -52,7 +52,7 @@ export default function Footer() {
 
   const footerSections = [
     {
-      title: 'Products',
+      title: 'branches',
       links: [
         { href: '/psalion-vc', label: 'Psalion VC' },
         { href: '/psalion-yield', label: 'Psalion Yield' },
@@ -60,20 +60,16 @@ export default function Footer() {
       ],
     },
     {
-      title: 'Company',
+      title: 'contact',
       links: [
-        { href: '/#team', label: 'Team' },
-        { href: '/#clients', label: 'Clients' },
-        { href: '/mentions', label: 'Press Mentions' },
-        { href: '#', label: 'Contact', isContact: true },
+        { href: '#', label: 'Write a message', isContact: true },
+        { href: 'https://www.linkedin.com/company/psalion/', label: 'LinkedIn' },
       ],
     },
     {
-      title: 'Legal',
+      title: 'See Also',
       links: [
-        { href: '/legal/privacy', label: 'Privacy Policy' },
-        { href: '/legal/terms', label: 'Terms of Service' },
-        { href: '/legal/cookies', label: 'Cookie Policy' },
+        { href: '/mentions', label: 'Press Mentions' },
       ],
     },
   ];
@@ -94,7 +90,14 @@ export default function Footer() {
                 priority
               />
             </Link>
-    
+            <a
+              href="mailto:invest@psalion.com"
+              className="group text-gray-600 hover:text-black transition-colors duration-200 text-sm text-center md:text-left inline-block mt-2"
+            >
+              <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">
+                INVEST@PSALION.COM
+              </span>
+            </a>
           </div>
 
           {/* Footer Links */}
@@ -144,26 +147,6 @@ export default function Footer() {
           <p className="text-gray-500 text-sm text-center md:text-left">
             © {currentYear} Psalion. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0 justify-center md:justify-end">
-            <Link
-              href="/legal/privacy"
-              className="group text-gray-500 hover:text-gray-700 text-sm transition-colors duration-200"
-            >
-              <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">Privacy</span>
-            </Link>
-            <Link
-              href="/legal/terms"
-              className="group text-gray-500 hover:text-gray-700 text-sm transition-colors duration-200"
-            >
-              <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">Terms</span>
-            </Link>
-            <Link
-              href="/legal/cookies"
-              className="group text-gray-500 hover:text-gray-700 text-sm transition-colors duration-200"
-            >
-              <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">Cookies</span>
-            </Link>
-          </div>
         </div>
       </div>
       

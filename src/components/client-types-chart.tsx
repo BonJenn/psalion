@@ -260,7 +260,7 @@ export default function ClientTypesChart() {
 
             {/* Client Types Title - Underneath chart */}
             <motion.h2
-              className="w-full text-center -mt-8 sm:-mt-10 md:-mt-12 lg:-mt-16 xl:-mt-20 2xl:-mt-24 relative -left-3 text-[10px] sm:text-xs md:text-sm font-medium text-gray-400 uppercase tracking-wide leading-none"
+              className="w-full text-center -mt-8 sm:-mt-10 md:-mt-12 lg:-mt-16 xl:-mt-20 2xl:-mt-24 relative -left-3 lg:-left-6 text-[10px] sm:text-xs md:text-sm font-medium text-gray-400 uppercase tracking-wide leading-none"
               style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
               variants={fadeInUp}
               transition={{ delay: 0.4 }}

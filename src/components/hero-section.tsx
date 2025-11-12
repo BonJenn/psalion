@@ -270,7 +270,7 @@ export default function HeroSection() {
                 {/* PSALION VC Label - Upper Left */}
                 <motion.a
                   href="/psalion-vc"
-                  className="absolute top-[6%] left-[14%] pointer-events-auto group"
+                  className="absolute top-[6%] lg:top-[12%] left-[20%] pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1, duration: 0.5 }}
@@ -282,7 +282,7 @@ export default function HeroSection() {
                 {/* PSALION YIELD Label - Upper Right */}
                 <motion.a
                   href="/psalion-yield"
-                  className="absolute top-[22%] sm:top-[44%] left-[58%] sm:left-[76%] md:left-[82%] lg:left-[84%] xl:left-[86%] 2xl:left-[88%] -translate-y-1/2 transform pointer-events-auto group"
+                  className="absolute top-[22%] sm:top-[44%] left-[54%] sm:left-[70%] md:left-[76%] lg:left-[84%] xl:left-[86%] 2xl:left-[88%] -translate-y-1/2 transform pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
@@ -294,7 +294,7 @@ export default function HeroSection() {
                 {/* BESPOKE SERVICES Label - Lower Center */}
                 <motion.a
                   href="/bespoke-services"
-                  className="absolute bottom-[8%] sm:bottom-[12%] left-[6%] pointer-events-auto group"
+                  className="absolute bottom-[8%] sm:bottom-[12%] lg:bottom-[18%] left-[14%] pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.4, duration: 0.5 }}
@@ -303,9 +303,11 @@ export default function HeroSection() {
                   <span className="relative inline-block px-1 rounded text-blue-700 font-normal text-base group-hover:text-blue-900 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300" style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}>BESPOKE SERVICES</span>
                 </motion.a>
               </div>
-              {/* Bottom fade gradient (kept visually behind labels) */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 sm:h-28 md:h-32 bg-gradient-to-b from-transparent to-white z-0" />
-              {/* Side fade gradients (left gradient removed as requested) */}
+              {/* Bottom fade gradient (stronger, behind labels) */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-36 sm:h-44 md:h-56 bg-gradient-to-b from-transparent to-white z-[1]" />
+              {/* Side fade gradients for bottom half (left and right) */}
+              <div className="pointer-events-none absolute left-0 bottom-0 h-1/2 w-20 sm:w-28 md:w-32 bg-gradient-to-r from-white to-transparent z-[1]" />
+              <div className="pointer-events-none absolute right-0 bottom-0 h-1/2 w-20 sm:w-28 md:w-32 bg-gradient-to-l from-white to-transparent z-[1]" />
             </div>
           </motion.div>
         </div>
