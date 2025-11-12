@@ -106,7 +106,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   return (
     <section className={`bg-gray-50 ${isBespoke ? '-mt-80 sm:-mt-32 md:mt-0 py-16 md:py-24 relative z-20' : 'py-16 md:py-24'}`}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none min-h-[300px] md:min-h-[340px] flex items-center justify-center`}>
+        <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none min-h-[300px] md:min-h-[340px] flex items-center md:items-start justify-center md:pt-12 lg:pt-16`}>
           <div className={`flex flex-col items-center md:items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-center md:text-left w-full`}>
             {/* Text + form block (hide on mobile only when captcha is active) */}
             {(!showCaptcha || success) && (
@@ -122,7 +122,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                     {success ? (
                       <div className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-semibold text-gray-300 leading-[0.95] select-none text-center md:text-left">Thank you!</div>
                     ) : (
-                      <form onSubmit={onSubmit} className="flex flex-row items-center md:items-baseline justify-center md:justify-start pb-0 gap-2 w-full md:w-auto">
+                      <form onSubmit={onSubmit} className="flex flex-row items-center md:items-baseline justify-center md:justify-start pb-0 gap-1 md:gap-1 w-full md:w-auto">
                         <input
                           type="email"
                           value={email}
@@ -134,7 +134,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                         <button
                           type="submit"
                           disabled={submitting}
-                          className="w-10 h-10 md:w-12 md:h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60 flex-shrink-0"
+                          className="w-10 h-10 md:w-12 md:h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60 flex-shrink-0 ml-0"
                           aria-label="Submit"
                         >
                           <span className="inline-block -translate-x-px">›</span>
