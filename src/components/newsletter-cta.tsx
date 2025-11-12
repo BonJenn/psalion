@@ -106,7 +106,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   return (
     <section className={`bg-gray-50 ${isBespoke ? '-mt-80 sm:-mt-32 md:mt-0 py-16 md:py-24 relative z-20' : 'py-16 md:py-24'}`}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none min-h-[300px] md:min-h-[340px] flex items-center`}>
+        <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none min-h-[300px] md:min-h-[340px] flex items-center justify-center`}>
           <div className={`flex flex-col items-center md:items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-center md:text-left w-full`}>
             {/* Hide all text while captcha is displayed */}
             {(!showCaptcha || success) && (
@@ -120,7 +120,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                   </h3>
                   <div className="w-full md:flex-1 min-w-[200px]">
                     {success ? (
-                      <div className="text-2xl sm:text-3xl md:text-5xl font-semibold text-gray-300 leading-[0.95] select-none -mt-2 md:mt-0">Thank you!</div>
+                      <div className="text-2xl sm:text-3xl md:text-5xl font-semibold text-gray-300 leading-[0.95] select-none">Thank you!</div>
                     ) : (
                       <form onSubmit={onSubmit} className="flex flex-col md:flex-row items-center md:items-baseline justify-center md:justify-start pb-0 gap-2 md:gap-2">
                         <input
