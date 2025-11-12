@@ -150,7 +150,7 @@ export default function BubbleMatrix() {
 
                     {/* Mobile row category label centered between bubbles */}
                     <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                      <span className="text-[10px] font-medium text-gray-600 uppercase tracking-wide bg-white px-1 rounded-sm">
+                      <span className="text-[10px] font-medium text-gray-600 uppercase tracking-wide bg-white px-1 rounded-sm text-center leading-tight whitespace-normal break-words max-w-[84px]">
                         {cat}
                       </span>
                     </div>

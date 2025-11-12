@@ -686,9 +686,9 @@ export default function TechnologiesChart() {
                           Website
                         </a>
                       )}
-                      <span className={`px-2 py-1 rounded-full ${tech.fund === 'Fund I' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}`}>{tech.fund}</span>
-                      <span className="px-2 py-1 rounded-full bg-purple-100 text-purple-800">{tech.category}</span>
-                      <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-700">{tech.region}</span>
+                      <span className={`inline-flex items-center justify-center px-2 py-1 rounded-full text-center whitespace-nowrap ${tech.fund === 'Fund I' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}`}>{tech.fund}</span>
+                      <span className="inline-flex items-center justify-center px-2 py-1 rounded-full bg-purple-100 text-purple-800 text-center">{tech.category}</span>
+                      <span className="inline-flex items-center justify-center px-2 py-1 rounded-full bg-gray-100 text-gray-700 text-center">{tech.region}</span>
                     </div>
                   </div>
                 )}

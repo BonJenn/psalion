@@ -111,18 +111,18 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
             {/* Hide all text while captcha is displayed */}
             {(!showCaptcha || success) && (
               <>
-                <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-left">
+                <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-center md:text-left">
                   Receive the latest overview,
                 </h3>
-                <div className="w-full -mt-1 flex flex-nowrap items-baseline gap-2 justify-start">
-                  <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-left">
+                <div className="w-full -mt-1 flex flex-col md:flex-row md:flex-nowrap items-center md:items-baseline gap-2 justify-center md:justify-start">
+                  <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-center md:text-left">
                     trends, and insights.
                   </h3>
-                  <div className="flex-1 min-w-[200px]">
+                  <div className="w-full md:flex-1 min-w-[200px]">
                     {success ? (
                       <div className="text-2xl sm:text-3xl md:text-5xl font-semibold text-gray-300 leading-[0.95] select-none">Thank you!</div>
                     ) : (
-                      <form onSubmit={onSubmit} className="flex items-baseline pb-0 gap-1 md:gap-2 whitespace-nowrap">
+                      <form onSubmit={onSubmit} className="flex items-baseline justify-center md:justify-start pb-0 gap-1 md:gap-2 whitespace-nowrap">
                         <input
                           type="email"
                           value={email}
