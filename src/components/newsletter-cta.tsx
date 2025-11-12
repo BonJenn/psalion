@@ -114,15 +114,15 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                 <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-left">
                   Receive the latest overview,
                 </h3>
-                <div className="w-full flex flex-wrap items-end gap-2 justify-start">
+                <div className="w-full -mt-1 flex flex-nowrap items-baseline gap-2 justify-start">
                   <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-[0.95] text-left">
                     trends, and insights.
                   </h3>
-                  <div className="flex-1 min-w-[240px] max-w-[640px]">
+                  <div className="flex-1 min-w-[200px]">
                     {success ? (
                       <div className="text-2xl sm:text-3xl md:text-5xl font-semibold text-gray-300 leading-[0.95] select-none">Thank you!</div>
                     ) : (
-                      <form onSubmit={onSubmit} className="flex flex-col items-start pb-0 gap-2 md:gap-3">
+                      <form onSubmit={onSubmit} className="flex items-baseline pb-0 gap-1 md:gap-2 whitespace-nowrap">
                         <input
                           type="email"
                           value={email}
@@ -131,17 +131,14 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                           className="flex-1 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold relative top-[2px] md:top-[3px]"
                           aria-label="Email address"
                         />
-                        <div className="w-full flex items-center gap-2">
-                          <div className="flex-1" />
-                          <button
-                            type="submit"
-                            disabled={submitting}
-                            className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60"
-                            aria-label="Submit"
-                          >
-                            <span className="inline-block -translate-x-px">›</span>
-                          </button>
-                        </div>
+                        <button
+                          type="submit"
+                          disabled={submitting}
+                          className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60"
+                          aria-label="Submit"
+                        >
+                          <span className="inline-block -translate-x-px">›</span>
+                        </button>
                       </form>
                     )}
                     {/* Only show non-captcha errors */}
@@ -153,7 +150,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
 
             {/* Captcha-only view (no text) */}
             {showCaptcha && !success && (
-              <div className="w-full">
+              <div className="w-full min-h-[140px] flex items-center justify-center">
                 <div ref={turnstileContainerRef} className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}></div>
               </div>
             )}
