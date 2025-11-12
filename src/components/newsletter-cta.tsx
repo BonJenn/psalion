@@ -104,10 +104,10 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   }
 
   return (
-    <section className={`py-0 bg-gray-50 ${isBespoke ? '-mt-6 sm:mt-0 pb-16 md:pb-24' : ''}`}>
+    <section className={`bg-gray-50 ${isBespoke ? '-mt-2 sm:mt-0 py-16 md:py-24' : 'py-16 md:py-24'}`}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none ${isBespoke ? 'min-h-[180px]' : 'min-h-[260px]'} md:min-h-[340px] flex items-center`}>
-          <div className={`flex flex-col items-start justify-center gap-2 lg:gap-3 ${isBespoke ? 'w-full md:max-w-6xl' : 'max-w-6xl'} mx-auto text-left w-full`}>
+        <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none min-h-[260px] md:min-h-[340px] flex items-center`}>
+          <div className={`flex flex-col items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-left w-full`}>
             {/* Hide all text while captcha is displayed */}
             {(!showCaptcha || success) && (
               <>
@@ -128,7 +128,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="Your email address here."
-                          className="w-full md:flex-1 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold relative top-[2px] md:top-[3px]"
+                          className="w-full md:flex-1 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold relative top-[2px] md:top-[3px] text-center md:text-left"
                           aria-label="Email address"
                         />
                         <button
