@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { saveNewsletterEmail } from '@/lib/sanity-server'
 import { usePathname } from 'next/navigation'
 
@@ -11,16 +11,59 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   const [error, setError] = useState<string | null>(null)
   const pathname = usePathname()
   const isBespoke = pathname === '/bespoke-services'
+  const [captchaToken, setCaptchaToken] = useState<string>('')
+  const [attempted, setAttempted] = useState(false)
+  const turnstileContainerRef = useRef<HTMLDivElement | null>(null)
+  const widgetIdRef = useRef<any>(null)
+
+  // Load and render Turnstile
+  useEffect(() => {
+    const render = () => {
+      try {
+        if (!turnstileContainerRef.current) return
+        if ((window as any).turnstile) {
+          // @ts-ignore
+          widgetIdRef.current = (window as any).turnstile.render(turnstileContainerRef.current, {
+            sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+            callback: (token: string) => setCaptchaToken(token),
+            'error-callback': () => setCaptchaToken(''),
+            theme: 'light',
+          })
+        }
+      } catch {
+        // no-op
+      }
+    }
+    if (typeof window !== 'undefined' && !(window as any).turnstile) {
+      const s = document.createElement('script')
+      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
+      s.async = true
+      s.defer = true
+      s.onload = render
+      document.body.appendChild(s)
+      return () => {
+        try { document.body.removeChild(s) } catch {}
+      }
+    } else {
+      render()
+    }
+  }, [])
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
+    setAttempted(true)
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError('Please enter a valid email')
       return
     }
+    if (!captchaToken) {
+      setError('Please complete the captcha')
+      return
+    }
     setSubmitting(true)
-    const res = await saveNewsletterEmail({ email, sourcePage: source })
+    const payload: any = { email, sourcePage: source, captchaToken }
+    const res = await saveNewsletterEmail(payload)
     setSubmitting(false)
     if (res.ok) {
       setSuccess(true)
@@ -46,7 +89,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                 {success ? (
                   <div className="text-2xl sm:text-3xl md:text-5xl font-semibold text-gray-300 leading-[0.95] select-none">Thank you!</div>
                 ) : (
-                  <form onSubmit={onSubmit} className="flex items-end pb-0 gap-2 md:gap-3">
+                  <form onSubmit={onSubmit} className="flex flex-col items-start pb-0 gap-2 md:gap-3">
                     <input
                       type="email"
                       value={email}
@@ -55,14 +98,22 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                       className="flex-1 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold relative top-[2px] md:top-[3px]"
                       aria-label="Email address"
                     />
-                    <button
-                      type="submit"
-                      disabled={submitting}
-                      className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60"
-                      aria-label="Submit"
-                    >
-                      <span className="inline-block -translate-x-px">›</span>
-                    </button>
+                    <div className="w-full flex items-center gap-2">
+                      <div className="flex-1">
+                        <div ref={turnstileContainerRef} className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}></div>
+                        {attempted && !captchaToken && (
+                          <p className="text-xs text-red-500 mt-1">Please complete the captcha.</p>
+                        )}
+                      </div>
+                      <button
+                        type="submit"
+                        disabled={submitting || !captchaToken}
+                        className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60"
+                        aria-label="Submit"
+                      >
+                        <span className="inline-block -translate-x-px">›</span>
+                      </button>
+                    </div>
                   </form>
                 )}
                 {error && <p className="text-sm text-red-600 mt-2">{error}</p>}

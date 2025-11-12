@@ -2,11 +2,33 @@
 
 import { createClient } from 'next-sanity';
 import { dataset, projectId, apiVersion } from '@/sanity/env';
+// import { RecaptchaEnterpriseServiceClient } from '@google-cloud/recaptcha-enterprise';
 
-export async function saveNewsletterEmail(params: { email: string; sourcePage?: string }) {
-  const { email, sourcePage } = params;
+export async function saveNewsletterEmail(params: { email: string; sourcePage?: string; captchaToken?: string }) {
+  const { email, sourcePage, captchaToken } = params;
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     throw new Error('Invalid email');
+  }
+  // Verify Turnstile captcha for newsletter when configured
+  if (process.env.TURNSTILE_SECRET_KEY) {
+    try {
+      const resp = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          secret: process.env.TURNSTILE_SECRET_KEY,
+          response: captchaToken || '',
+        }),
+        cache: 'no-store',
+      });
+      const data = await resp.json().catch(() => ({ success: false }));
+      if (!data?.success) {
+        throw new Error('Captcha verification failed');
+      }
+    } catch (e) {
+      console.error('Turnstile verification error (newsletter)', e);
+      throw new Error('Captcha verification failed');
+    }
   }
   
   // Create write-enabled client inside the server action
@@ -100,6 +122,8 @@ export async function saveContactForm(params: {
     return { ok: false };
   }
 }
+
+// reCAPTCHA Enterprise verification removed; using Turnstile again.
 
 async function sendContactEmail(args: {
   fullName: string;

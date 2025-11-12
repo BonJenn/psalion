@@ -436,7 +436,7 @@ export default function HeroSection() {
             >
               <div className="w-16 h-16 flex items-center justify-center mb-3">
                 <Image
-                  src="/asset_logos/2.aave_logo.png"
+                  src="/asset_logos/aave-aave-logo.svg"
                   alt="AAVE"
                   width={64}
                   height={64}

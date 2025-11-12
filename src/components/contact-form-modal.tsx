@@ -66,12 +66,6 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
           message: ''
         });
         setCaptchaToken('');
-        try {
-          // Reset captcha widget if available
-          if (typeof window !== 'undefined' && (window as any).turnstile && widgetIdRef.current !== null) {
-            (window as any).turnstile.reset(widgetIdRef.current);
-          }
-        } catch {}
         onClose();
       }, 2000);
     } catch (error) {
@@ -245,7 +239,9 @@ export default function ContactFormModal({ isOpen, onClose }: ContactFormModalPr
 
             {/* Captcha */}
             <div>
-              <div ref={turnstileContainerRef} className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}></div>
+              <div className="w-full flex justify-center">
+                <div ref={turnstileContainerRef} className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}></div>
+              </div>
               {attemptedSubmit && !captchaToken && (
                 <p className="mt-2 text-sm text-red-400">Please complete the captcha before submitting.</p>
               )}

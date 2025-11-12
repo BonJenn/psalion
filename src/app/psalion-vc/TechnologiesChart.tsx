@@ -20,7 +20,7 @@ const technologies: Technology[] = [
     category: 'Decentralized Finance',
     region: 'Europe',
     fund: 'Fund I',
-    logo: '/psalion_vc/aave_logo.png'
+    logo: '/psalion_vc/aave-aave-logo.svg'
   },
   {
     name: 'Aioz',

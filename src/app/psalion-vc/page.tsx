@@ -387,7 +387,7 @@ export default function PsalionVCPage() {
             >
               <div className="w-16 h-16 relative">
                 <Image
-                  src="/asset_logos/2.aave_logo.png"
+                  src="/asset_logos/aave-aave-logo.svg"
                   alt="AAVE logo"
                   fill
                   className="object-contain"
