@@ -104,7 +104,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   }
 
   return (
-    <section className={`py-0 bg-gray-50 ${isBespoke ? '-mt-40 sm:-mt-48 md:mt-0' : ''}`}>
+    <section className={`py-0 bg-gray-50 ${isBespoke ? '-mt-40 sm:-mt-48 md:mt-0 pb-6 md:pb-24' : ''}`}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none ${isBespoke ? 'min-h-[140px]' : 'min-h-[260px]'} md:min-h-[340px] flex items-center`}>
           <div className={`flex flex-col items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-left w-full`}>
@@ -134,7 +134,7 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                         <button
                           type="submit"
                           disabled={submitting}
-                          className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60 md:ml-0"
+                          className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60 md:ml-0 self-center md:self-auto"
                           aria-label="Submit"
                         >
                           <span className="inline-block -translate-x-px">›</span>
