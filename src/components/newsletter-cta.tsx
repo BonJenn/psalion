@@ -15,9 +15,11 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   const [attempted, setAttempted] = useState(false)
   const turnstileContainerRef = useRef<HTMLDivElement | null>(null)
   const widgetIdRef = useRef<any>(null)
+  const [showCaptcha, setShowCaptcha] = useState(false)
 
-  // Load and render Turnstile
+  // Load and render Turnstile only when we decide to show it
   useEffect(() => {
+    if (!showCaptcha || success) return
     const render = () => {
       try {
         if (!turnstileContainerRef.current) return
@@ -47,7 +49,27 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
     } else {
       render()
     }
-  }, [])
+  }, [showCaptcha, success])
+
+  // When captcha completes, submit automatically if not already submitted
+  useEffect(() => {
+    const submitAfterCaptcha = async () => {
+      if (!captchaToken || submitting || success) return
+      setSubmitting(true)
+      const payload: any = { email, sourcePage: source, captchaToken }
+      const res = await saveNewsletterEmail(payload)
+      setSubmitting(false)
+      if (res.ok) {
+        setSuccess(true)
+        setShowCaptcha(false)
+        setEmail('')
+      } else {
+        setError('Something went wrong. Please try again later.')
+      }
+    }
+    submitAfterCaptcha()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [captchaToken])
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -57,18 +79,27 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
       setError('Please enter a valid email')
       return
     }
+    // If no token yet, reveal captcha and wait for user to solve
     if (!captchaToken) {
+      setShowCaptcha(true)
       setError('Please complete the captcha')
       return
     }
-    setSubmitting(true)
-    const payload: any = { email, sourcePage: source, captchaToken }
-    const res = await saveNewsletterEmail(payload)
-    setSubmitting(false)
-    if (res.ok) {
-      setSuccess(true)
-      setEmail('')
-    } else {
+    // If user already has a token (rare), proceed
+    try {
+      setSubmitting(true)
+      const payload: any = { email, sourcePage: source, captchaToken }
+      const res = await saveNewsletterEmail(payload)
+      setSubmitting(false)
+      if (res.ok) {
+        setSuccess(true)
+        setShowCaptcha(false)
+        setEmail('')
+      } else {
+        setError('Something went wrong. Please try again later.')
+      }
+    } catch {
+      setSubmitting(false)
       setError('Something went wrong. Please try again later.')
     }
   }
@@ -100,14 +131,18 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                     />
                     <div className="w-full flex items-center gap-2">
                       <div className="flex-1">
-                        <div ref={turnstileContainerRef} className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}></div>
-                        {attempted && !captchaToken && (
-                          <p className="text-xs text-red-500 mt-1">Please complete the captcha.</p>
-                        )}
+                        {showCaptcha && !success ? (
+                          <>
+                            <div ref={turnstileContainerRef} className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}></div>
+                            {attempted && !captchaToken && (
+                              <p className="text-xs text-red-500 mt-1">Please complete the captcha.</p>
+                            )}
+                          </>
+                        ) : null}
                       </div>
                       <button
                         type="submit"
-                        disabled={submitting || !captchaToken}
+                        disabled={submitting}
                         className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60"
                         aria-label="Submit"
                       >
