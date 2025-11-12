@@ -111,30 +111,30 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
             {/* Text + form block (hide on mobile only when captcha is active) */}
             {(!showCaptcha || success) && (
               <>
-                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[0.95] text-center md:text-left w-full">
+                <h3 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[0.95] text-center md:text-left w-full">
                   Receive the latest overview,
                 </h3>
-                <div className="w-full -mt-1 flex flex-col lg:flex-row items-center md:items-start lg:items-baseline gap-2 justify-center md:justify-start">
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[0.95] text-center md:text-left whitespace-nowrap">
+                <div className="w-full -mt-1 flex flex-col md:flex-row items-center md:items-start md:items-baseline gap-2 justify-center md:justify-start">
+                  <h3 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[0.95] text-center md:text-left whitespace-nowrap">
                     trends, and insights.
                   </h3>
-                  <div className="w-full lg:flex-1 min-w-0 flex flex-col items-center md:items-start">
+                  <div className="w-full md:flex-1 min-w-0 flex flex-col items-center md:items-start">
                     {success ? (
-                      <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-300 leading-[0.95] select-none text-center md:text-left">Thank you!</div>
+                      <div className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-semibold text-gray-300 leading-[0.95] select-none text-center md:text-left">Thank you!</div>
                     ) : (
-                      <form onSubmit={onSubmit} className="flex flex-col md:flex-row items-center md:items-baseline justify-center md:justify-start pb-0 gap-2 w-full lg:w-auto">
+                      <form onSubmit={onSubmit} className="flex flex-row items-center md:items-baseline justify-center md:justify-start pb-0 gap-2 w-full md:w-auto">
                         <input
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="Your email address here."
-                          className="w-full md:flex-1 min-w-0 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold text-center md:text-left"
+                          className="flex-1 min-w-0 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold text-center md:text-left"
                           aria-label="Email address"
                         />
                         <button
                           type="submit"
                           disabled={submitting}
-                          className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60 self-center md:self-auto"
+                          className="w-10 h-10 md:w-12 md:h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60 flex-shrink-0"
                           aria-label="Submit"
                         >
                           <span className="inline-block -translate-x-px">›</span>
