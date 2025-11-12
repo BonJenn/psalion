@@ -128,13 +128,15 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="Your email address here."
-                          className="flex-1 min-w-0 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold text-center md:text-left pr-0"
+                          className="bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold text-center md:text-left"
+                          style={{ width: '100%', maxWidth: 'fit-content' }}
+                          size={25}
                           aria-label="Email address"
                         />
                         <button
                           type="submit"
                           disabled={submitting}
-                          className="w-10 h-10 md:w-12 md:h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60 flex-shrink-0"
+                          className="w-10 h-10 md:w-12 md:h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60 flex-shrink-0 -ml-2"
                           aria-label="Submit"
                         >
                           <span className="inline-block -translate-x-px">›</span>
