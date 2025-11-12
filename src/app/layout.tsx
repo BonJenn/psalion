@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import NewsletterCTA from "@/components/newsletter-cta";
 import { Toaster } from "@/components/ui/sonner";
 import InvestorRestriction from "@/components/investor-restriction";
+import CookieConsent from "@/components/cookie-consent";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
         </main>
         <NewsletterCTA />
         <Footer />
+        <CookieConsent />
         <Toaster />
       </body>
     </html>
