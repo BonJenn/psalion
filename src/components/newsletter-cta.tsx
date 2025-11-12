@@ -107,33 +107,34 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
     <section className={`bg-gray-50 ${isBespoke ? '-mt-80 sm:-mt-32 md:mt-0 py-16 md:py-24 relative z-20' : 'py-16 md:py-24'}`}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none min-h-[300px] md:min-h-[340px] flex items-center justify-center`}>
-          <div className={`flex flex-col items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-left w-full`}>
+          <div className={`flex flex-col items-center md:items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-center md:text-left w-full`}>
             {/* Text + form block (hide on mobile only when captcha is active) */}
-            <div className={`${showCaptcha && !success ? 'hidden md:block' : ''}`}>
-                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[0.95] text-left">
+            {(!showCaptcha || success) && (
+              <>
+                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[0.95] text-center md:text-left w-full">
                   Receive the latest overview,
                 </h3>
-                <div className="w-full -mt-1 flex flex-col lg:flex-row items-start lg:items-baseline gap-2 justify-start">
-                  <h3 className="w-full text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[0.95] text-left">
+                <div className="w-full -mt-1 flex flex-col lg:flex-row items-center md:items-start lg:items-baseline gap-2 justify-center md:justify-start">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[0.95] text-center md:text-left whitespace-nowrap">
                     trends, and insights.
                   </h3>
-                  <div className="w-full lg:flex-1 min-w-0">
+                  <div className="w-full lg:flex-1 min-w-0 flex flex-col items-center md:items-start">
                     {success ? (
-                      <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-300 leading-[0.95] select-none">Thank you!</div>
+                      <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-300 leading-[0.95] select-none text-center md:text-left">Thank you!</div>
                     ) : (
-                      <form onSubmit={onSubmit} className="flex flex-col md:flex-row items-start md:items-baseline justify-start pb-0 gap-2 md:gap-2 w-full md:w-full lg:w-auto">
+                      <form onSubmit={onSubmit} className="flex flex-col md:flex-row items-center md:items-baseline justify-center md:justify-start pb-0 gap-2 w-full lg:w-auto">
                         <input
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="Your email address here."
-                          className="w-full md:flex-1 min-w-0 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold text-left"
+                          className="w-full md:flex-1 min-w-0 bg-transparent text-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[0.95] outline-none placeholder:text-gray-300 placeholder:font-bold text-center md:text-left"
                           aria-label="Email address"
                         />
                         <button
                           type="submit"
                           disabled={submitting}
-                          className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60 md:ml-0 self-start"
+                          className="w-12 h-12 rounded-md bg-gray-900 text-white flex items-center justify-center hover:bg-black disabled:opacity-60 self-center md:self-auto"
                           aria-label="Submit"
                         >
                           <span className="inline-block -translate-x-px">›</span>
@@ -144,11 +145,12 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
                     {error && !showCaptcha && <p className="text-sm text-red-600 mt-2 text-center md:text-left">{error}</p>}
                   </div>
                 </div>
-            </div>
+              </>
+            )}
 
-            {/* Captcha-only view (no text) */}
+            {/* Captcha-only view (perfectly centered) */}
             {showCaptcha && !success && (
-              <div className="w-full min-h-[140px] flex items-center justify-center md:hidden">
+              <div className="w-full flex items-center justify-center">
                 <div ref={turnstileContainerRef} className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}></div>
               </div>
             )}
