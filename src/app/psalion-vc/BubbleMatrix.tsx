@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 type Cat = "Decentralized Finance" | "Infrastructure" | "NFT" | "RWA" | "Other";
 type Row = "Fund I" | "Fund II";
@@ -60,22 +60,51 @@ const getMobileDots = (): Dot[] => [
 
 export default function BubbleMatrix() {
   const [hoveredBubble, setHoveredBubble] = useState<{ cat: Cat; row: Row } | null>(null);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+
+  // Track window width for responsive layout
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const updateWidth = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    // Set initial width
+    updateWidth();
+    
+    // Add resize listener
+    window.addEventListener('resize', updateWidth);
+    
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
 
   // Canvas + plot geometry - responsive sizing
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const isTablet = typeof window !== 'undefined' && window.innerWidth < 1024;
+  // Default to desktop layout on initial render (SSR)
+  const isMobile = windowWidth > 0 && windowWidth < 640;
+  const isTablet = windowWidth > 0 && windowWidth < 1280 && windowWidth >= 640;
+  const isDesktop = windowWidth === 0 || windowWidth >= 1280;
+  const isVerticalLayout = windowWidth > 0 && !isDesktop; // Mobile or tablet
   
-  // Use mobile-optimized dots on mobile
-  const currentDots = isMobile ? getMobileDots() : dots;
+  // Use mobile-optimized dots for vertical layout (mobile and tablet)
+  // Use regular dots for horizontal layout (desktop)
+  const currentDots = isVerticalLayout ? getMobileDots() : dots;
   
-  // Mobile-only vertical redesign: 2 columns (Fund I, Fund II)
-  if (isMobile) {
+  // Mobile and tablet: vertical redesign (2 columns - Fund I, Fund II)
+  // Desktop: horizontal layout
+  if (isVerticalLayout) {
     const getDot = (cat: Cat, row: Row) => currentDots.find(d => d.cat === cat && d.row === row);
 
     return (
       <section className="py-10 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="w-full" style={{ fontFamily: "IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" }}>
+            {/* Top column labels */}
+            <div className="grid grid-cols-2 gap-6 mb-2">
+              <div className="text-center text-[11px] text-gray-600">Fund I</div>
+              <div className="text-center text-[11px] text-gray-600">Fund II</div>
+            </div>
+            
             {/* Category rows with vertical dotted column guides */}
             <div className="relative space-y-3">
               {/* vertical dotted lines through each column center */}
@@ -157,12 +186,6 @@ export default function BubbleMatrix() {
                   </div>
                 );
               })}
-
-              {/* Bottom column labels */}
-              <div className="grid grid-cols-2 gap-6 mt-2">
-                <div className="text-center text-[11px] text-gray-600">Fund I</div>
-                <div className="text-center text-[11px] text-gray-600">Fund II</div>
-              </div>
             </div>
           </div>
         </div>
@@ -254,10 +277,22 @@ export default function BubbleMatrix() {
               {/* Dynamic connecting lines - only show on hover */}
               {hoveredBubble && (
                 <g>
-                  {/* Horizontal connecting line from right edge (fund label) to bubble center */}
+                  {/* Horizontal connecting line from bubble center to right edge */}
                   <line
                     x1={x(hoveredBubble.cat)}
                     x2={W - M.right}
+                    y1={y(hoveredBubble.row)}
+                    y2={y(hoveredBubble.row)}
+                    stroke="#2F54EB"
+                    strokeDasharray="2 6"
+                    strokeWidth="1.5"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                  
+                  {/* Horizontal connecting line extends to fund label on the right */}
+                  <line
+                    x1={W - M.right}
+                    x2={W - M.right + (isMobile ? 25 : isTablet ? 40 : 54)}
                     y1={y(hoveredBubble.row)}
                     y2={y(hoveredBubble.row)}
                     stroke="#2F54EB"
@@ -313,6 +348,21 @@ export default function BubbleMatrix() {
 
               {/* Axis labels */}
               <g>
+                {/* right-side row labels (Fund I and Fund II) - positioned to the right of each row */}
+                {rows.map((r, i) => (
+                  <text
+                    key={i}
+                    x={W - M.right + (isMobile ? 25 : isTablet ? 40 : 54)}
+                    y={y(r) + 4}
+                    textAnchor="start"
+                    fontSize={isMobile ? "8" : isTablet ? "10" : "12"}
+                    fill="#6B7280"
+                    fontFamily="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+                  >
+                    {r}
+                  </text>
+                ))}
+
                 {/* bottom category labels */}
                 {categories.map((c, i) => (
                   <text
@@ -325,21 +375,6 @@ export default function BubbleMatrix() {
                     fontFamily="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
                   >
                     {isMobile ? c.split(' ')[0] : c}
-                  </text>
-                ))}
-
-                {/* right-side row labels */}
-                {rows.map((r, i) => (
-                  <text
-                    key={i}
-                    x={W - M.right + (isMobile ? 25 : 54)}
-                    y={y(r) + 4}
-                    textAnchor="start"
-                    fontSize={isMobile ? "8" : "12"}
-                    fill="#6B7280"
-                    fontFamily="IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
-                  >
-                    {r}
                   </text>
                 ))}
               </g>

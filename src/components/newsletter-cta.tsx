@@ -104,9 +104,9 @@ export default function NewsletterCTA({ source = '/mentions' }: { source?: strin
   }
 
   return (
-    <section className={`bg-gray-50 ${isBespoke ? '-mt-80 sm:-mt-32 md:mt-0 py-16 md:py-24 relative z-20' : 'py-16 md:py-24'}`}>
+    <section className={`bg-gray-50 ${isBespoke ? '-mt-80 sm:-mt-32 md:mt-0 py-8 md:py-12 relative z-20' : 'py-8 md:py-12'}`}>
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none min-h-[300px] md:min-h-[340px] flex items-center md:items-start justify-center md:pt-12 lg:pt-16`}>
+        <div className={`bg-gradient-to-b from-gray-50 to-gray-100 rounded-none min-h-[160px] md:min-h-[200px] flex items-center md:items-start justify-center md:pt-6 lg:pt-8`}>
           <div className={`flex flex-col items-center md:items-start justify-center gap-2 lg:gap-3 max-w-6xl mx-auto text-center md:text-left w-full`}>
             {/* Text + form block (hide on mobile only when captcha is active) */}
             {(!showCaptcha || success) && (

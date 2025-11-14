@@ -95,7 +95,7 @@ export default function Footer() {
               className="group text-gray-600 hover:text-black transition-colors duration-200 text-sm text-center md:text-left block mt-2 mx-auto md:mx-0"
             >
               <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">
-                Invest@Psalion.com
+                INVEST@PSALION.COM
               </span>
             </a>
           </div>
@@ -143,10 +143,36 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+        <div className="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
           <p className="text-gray-500 text-sm text-center md:text-left">
             © {currentYear} Psalion. All rights reserved.
           </p>
+          <div className="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
+            <Link
+              href="/legal/privacy"
+              className="group text-gray-500 hover:text-black transition-colors duration-200"
+            >
+              <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">
+                Privacy Policy
+              </span>
+            </Link>
+            <Link
+              href="/legal/terms"
+              className="group text-gray-500 hover:text-black transition-colors duration-200"
+            >
+              <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">
+                Terms of Service
+              </span>
+            </Link>
+            <Link
+              href="/legal/cookies"
+              className="group text-gray-500 hover:text-black transition-colors duration-200"
+            >
+              <span className="relative inline-block px-0.5 bg-gradient-to-r from-blue-100 to-blue-100 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300">
+                Cookies
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
       

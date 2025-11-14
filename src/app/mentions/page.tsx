@@ -61,10 +61,10 @@ export default function MentionsPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
         {/* Page Title */}
         <motion.div
-          className="mb-8"
+          className="mb-6"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -75,71 +75,105 @@ export default function MentionsPage() {
         {/* Featured Article */}
         {mentions.length > 0 && (
           <motion.div
-            className="mb-8"
+            className="mb-6"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-              {/* Left Column - Section Title */}
-              <div className="lg:pr-8"></div>
-              
-              {/* Right Column - Featured Article */}
-              <div>
-                <div className="text-sm text-gray-500 uppercase tracking-wide mb-4">FEATURED</div>
-                <a
-                  href={mentions[0].articleUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block group"
-                >
-                  <div className="flex items-start space-x-4 mb-4">
-                    {/* Publisher Logo */}
-                      {mentions[0].publisherData?.publisherLogo ? (
-                        <LogoBox
-                          src={urlFor(mentions[0].publisherData.publisherLogo).height(32).fit('max').url()}
-                          alt={`${mentions[0].publisherData.publisherName} logo`}
-                          small
-                          isForbes={(mentions[0].publisherData?.publisherName || '').toLowerCase().includes('forbes')}
-                        />
-                      ) : (
-                        <div className="w-8 h-8 flex-shrink-0 bg-white border border-gray-200 rounded-md flex items-center justify-center">
-                          <span className="text-[10px] font-medium text-gray-500">
-                          {mentions[0].publisherData?.publisherName?.charAt(0) || '?'}
-                        </span>
-                      </div>
-                    )}
-                    
-                    {/* Interview Info */}
-                    {mentions[0].isInterview && mentions[0].intervieweeData?.intervieweeName && (
-                      <div className="flex items-center space-x-2">
-                        {(() => {
-                            const override = resolveIntervieweeImage(mentions[0].intervieweeData?.intervieweeName);
-                            const src = override || (mentions[0].intervieweeData?.intervieweeHeadshot ? urlFor(mentions[0].intervieweeData.intervieweeHeadshot).width(32).height(32).url() : '');
-                            return src ? (
-                              <div className="w-8 h-8 relative flex-shrink-0 rounded-md overflow-hidden">
-                                <Image src={src} alt={`${mentions[0].intervieweeData?.intervieweeName || 'Interviewee'} headshot`} fill className="object-cover grayscale" />
-                              </div>
-                            ) : null;
-                          })()}
-                          <span className="text-sm text-gray-600">
-                          Interview with {mentions[0].intervieweeData.intervieweeName}
-                        </span>
-                      </div>
-                    )}
+            <div className="text-sm text-gray-500 uppercase tracking-wide mb-3">Last Mention</div>
+            <a
+              href={mentions[0].articleUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group"
+            >
+              <div className="py-4 sm:py-6 grid grid-cols-1 md:grid-cols-12 gap-y-3 sm:gap-y-4 md:gap-x-12 items-center">
+                {/* Mobile compact header: logo + (optional) headshot + 'Interview with …' text */}
+                <div className="md:hidden flex items-center gap-2">
+                  {/* Publisher logo */}
+                  {mentions[0].publisherData?.publisherLogo ? (
+                    <LogoBox
+                      src={urlFor(mentions[0].publisherData.publisherLogo).height(28).fit('max').url()}
+                      alt={`${mentions[0].publisherData.publisherName} logo`}
+                      isForbes={(mentions[0].publisherData?.publisherName || '').toLowerCase().includes('forbes')}
+                    />
+                  ) : (
+                    <div className="w-7 h-7 flex-shrink-0 bg-white border border-gray-200 rounded-lg flex items-center justify-center">
+                      <span className="text-[10px] font-medium text-gray-500">
+                        {mentions[0].publisherData?.publisherName?.charAt(0) || '?'}
+                      </span>
+                    </div>
+                  )}
+                  {/* Interview headshot and text */}
+                  {mentions[0].isInterview && mentions[0].intervieweeData?.intervieweeName && (
+                    <div className="flex items-center gap-2 min-w-0">
+                      {(() => {
+                        const override = resolveIntervieweeImage(mentions[0].intervieweeData?.intervieweeName);
+                        const src = override || (mentions[0].intervieweeData?.intervieweeHeadshot ? urlFor(mentions[0].intervieweeData.intervieweeHeadshot).width(28).height(28).url() : '');
+                        return src ? (
+                          <div className="w-7 h-7 relative flex-shrink-0 rounded-md overflow-hidden">
+                            <Image src={src} alt={`${mentions[0].intervieweeData?.intervieweeName || 'Interviewee'} headshot`} fill className="object-cover grayscale" />
+                          </div>
+                        ) : null;
+                      })()}
+                      <span className="text-xs text-gray-600 leading-tight truncate">
+                        Interview with {mentions[0].intervieweeData.intervieweeName}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Publisher Logo and Name */}
+                <div className="hidden md:flex items-center space-x-3 sm:space-x-5 min-w-0 flex-shrink-0 md:col-span-3">
+                  {mentions[0].publisherData?.publisherLogo ? (
+                    <LogoBox
+                      src={urlFor(mentions[0].publisherData.publisherLogo).height(32).fit('max').url()}
+                      alt={`${mentions[0].publisherData.publisherName} logo`}
+                      isForbes={(mentions[0].publisherData?.publisherName || '').toLowerCase().includes('forbes')}
+                    />
+                  ) : (
+                    <div className="w-8 h-8 flex-shrink-0 bg-white border border-gray-200 rounded-lg flex items-center justify-center">
+                      <span className="text-base font-medium text-gray-500">
+                        {mentions[0].publisherData?.publisherName?.charAt(0) || '?'}
+                      </span>
+                    </div>
+                  )}
+                  <span className="hidden md:inline text-sm font-medium text-gray-900 whitespace-nowrap">
+                    {mentions[0].publisherData?.publisherName}
+                  </span>
+                </div>
+
+                {/* Interview Info (if applicable) */}
+                {mentions[0].isInterview && mentions[0].intervieweeData?.intervieweeName && (
+                  <div className="hidden md:flex items-center space-x-3 sm:space-x-4 min-w-0 flex-shrink-0 mt-3 md:mt-0 md:col-span-3">
+                    {(() => {
+                      const override = resolveIntervieweeImage(mentions[0].intervieweeData?.intervieweeName);
+                      const src = override || (mentions[0].intervieweeData?.intervieweeHeadshot ? urlFor(mentions[0].intervieweeData.intervieweeHeadshot).width(32).height(32).url() : '');
+                      return src ? (
+                        <div className="w-8 h-8 relative flex-shrink-0 rounded-md overflow-hidden">
+                          <Image src={src} alt={`${mentions[0].intervieweeData?.intervieweeName || 'Interviewee'} headshot`} fill className="object-cover grayscale" />
+                        </div>
+                      ) : null;
+                    })()}
+                    <span className="text-sm text-gray-600 leading-tight">
+                      Interview with {mentions[0].intervieweeData.intervieweeName}
+                    </span>
                   </div>
-                  
-                  {/* Featured Article Title */}
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-200 leading-tight">
+                )}
+
+                {/* Article Title - slightly bigger than other articles */}
+                <div className="flex-1 min-w-0 mt-3 md:mt-0 md:col-span-6 md:pl-8">
+                  <h3 className="text-xl font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200 leading-tight">
                     {mentions[0].articleTitle}
                   </h3>
-                </a>
+                </div>
               </div>
-              {/* Divider with 'All Mentions' label aligned left and dashed line to the right (full width on desktop) */}
-              <div className="mt-6 flex items-center w-full lg:col-span-2">
-                <div className="text-xs text-gray-500 uppercase tracking-wide whitespace-nowrap">All Mentions</div>
-                <div className="ml-4 border-t border-dashed border-gray-300 flex-1"></div>
-              </div>
+            </a>
+            
+            {/* Divider with 'All Mentions' label aligned left and dashed line to the right (below featured section) */}
+            <div className="mt-4 flex items-center w-full">
+              <div className="text-xs text-gray-500 uppercase tracking-wide whitespace-nowrap">All Mentions</div>
+              <div className="ml-4 border-t border-dashed border-gray-300 flex-1"></div>
             </div>
           </motion.div>
         )}
@@ -173,7 +207,7 @@ export default function MentionsPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.05 }}
                     >
-                  <div className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-y-4 sm:gap-y-6 md:gap-x-16 items-center">
+                  <div className="py-4 sm:py-6 grid grid-cols-1 md:grid-cols-12 gap-y-3 sm:gap-y-4 md:gap-x-12 items-center">
                     {/* Mobile compact header: logo + (optional) headshot + 'Interview with …' text */}
                     <div className="md:hidden flex items-center gap-2">
                       {/* Publisher logo */}

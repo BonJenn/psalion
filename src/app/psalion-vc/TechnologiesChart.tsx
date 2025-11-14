@@ -39,12 +39,12 @@ const technologies: Technology[] = [
     logo: '/psalion_vc/arcadia_logo.png'
   },
   {
-    name: 'Archimedes',
+    name: 'Bitwave',
     description: 'A decentralized leverage protocol enabling users to amplify their yield farming returns.',
     category: 'Decentralized Finance',
     region: 'North America',
     fund: 'Fund II',
-    logo: '/psalion_vc/archimedes_logo.png'
+    logo: '/psalion_vc/Bitwave_logo.png'
   },
   {
     name: 'Arkis',
@@ -61,14 +61,6 @@ const technologies: Technology[] = [
     region: 'Europe',
     fund: 'Fund II',
     logo: '/psalion_vc/avnu_logo.png'
-  },
-  {
-    name: 'Beans',
-    description: 'A decentralized stablecoin protocol maintaining price stability through algorithmic mechanisms.',
-    category: 'Decentralized Finance',
-    region: 'North America',
-    fund: 'Fund II',
-    logo: '/psalion_vc/beans_logo.jpg'
   },
   {
     name: 'Binance',
@@ -335,14 +327,6 @@ const technologies: Technology[] = [
     logo: '/psalion_vc/top_tier_authentics_logo.png'
   },
   {
-    name: 'Umoja',
-    description: 'A decentralized identity platform providing secure and privacy-preserving digital identity solutions.',
-    category: 'Infrastructure',
-    region: 'Africa',
-    fund: 'Fund II',
-    logo: '/psalion_vc/umoja_logo.png'
-  },
-  {
     name: 'Usual',
     description: 'A decentralized stablecoin protocol maintaining price stability through algorithmic mechanisms.',
     category: 'Decentralized Finance',
@@ -357,14 +341,6 @@ const technologies: Technology[] = [
     region: 'Asia',
     fund: 'Fund II',
     logo: '/psalion_vc/utila_logo.png'
-  },
-  {
-    name: 'Vektor',
-    description: 'A decentralized vector database platform providing AI and machine learning infrastructure.',
-    category: 'Other',
-    region: 'North America',
-    fund: 'Fund II',
-    logo: '/psalion_vc/vektor_logo.png'
   },
   {
     name: 'Zkex',
@@ -386,10 +362,9 @@ export default function TechnologiesChart() {
     'Aave': 'https://aave.com/',
     'Aioz': 'https://aioz.network/',
     'Arcadia': 'https://arcadia.finance/',
-    'Archimedes': 'https://www.bitwave.io/',
+    'Bitwave': 'https://bitwave.io',
     'Arkis': 'https://www.arkis.xyz/',
     'Avnu': 'https://www.avnu.fi/',
-    'Beans': 'https://beans.fun/',
     'Binance': 'https://www.binance.com/',
     'Bitbond': 'https://www.bitbond.com/',
     'Brickken': 'https://www.brickken.com/en',
@@ -420,12 +395,10 @@ export default function TechnologiesChart() {
     'Stix': 'https://stix.co/',
     'Sushi': 'https://www.sushi.com/',
     'Top Tier Authentics': 'https://www.toptierauth.com/',
-    'Umoja': 'https://umoja.xyz/',
     'Uniswap': 'https://uniswap.org/',
     'Usual': 'https://usual.money/',
     'Utila': 'https://utila.io/',
     'VeChain': 'https://www.vechain.org/',
-    'Vektor': 'https://vektor.finance/',
     'Wootrade': 'https://woo.org/',
     'Zkex': 'https://zkex.com/',
   };

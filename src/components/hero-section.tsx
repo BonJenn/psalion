@@ -258,15 +258,25 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.45, delay: 0.1 }}
           >
-            <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-visible mx-auto lg:-translate-x-4 xl:-translate-x-6">
+            <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden mx-auto lg:-translate-x-4 xl:-translate-x-6">
+              {/* Spline / Fallback Image */}
               {isMobile ? (
                 <Image src="/psalion_cubes.png" alt="Psalion visualization" fill className="object-contain" priority />
               ) : (
                 <DirectSpline />
               )}
-              
+
+              {/* Radial fade overlay to cleanly fade out edges */}
+              <div
+                className="pointer-events-none absolute inset-0 z-10"
+                style={{
+                  background:
+                    'radial-gradient(circle at center, rgba(255,255,255,0) 40%, rgba(255,255,255,0.85) 70%, rgba(255,255,255,1) 100%)'
+                }}
+              />
+
               {/* Interactive Labels positioned around the 3D model */}
-              <div className="absolute inset-0 pointer-events-none z-10">
+              <div className="absolute inset-0 pointer-events-none z-20">
                 {/* PSALION VC Label - Upper Left */}
                 <motion.a
                   href="/psalion-vc"
@@ -276,7 +286,15 @@ export default function HeroSection() {
                   transition={{ delay: 1, duration: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <span className="relative inline-block px-1 rounded text-blue-700 font-normal text-base group-hover:text-blue-900 bg-gradient-to-r from-white to-white bg-left bg-no-repeat bg-[length:100%_100%] group-hover:bg-[length:0%_100%] transition-[background-size] duration-300" style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}>PSALION VC</span>
+                  <span
+                    className="relative inline-block px-1 rounded text-blue-700 font-normal text-base group-hover:text-blue-900 bg-gradient-to-r from-white to-white bg-left bg-no-repeat bg-[length:100%_100%] group-hover:bg-[length:0%_100%] transition-[background-size] duration-300"
+                    style={{
+                      fontFamily:
+                        'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+                    }}
+                  >
+                    PSALION VC
+                  </span>
                 </motion.a>
 
                 {/* PSALION YIELD Label - Upper Right */}
@@ -288,7 +306,15 @@ export default function HeroSection() {
                   transition={{ delay: 1.2, duration: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <span className="relative inline-block px-1 rounded text-blue-700 font-normal text-base whitespace-nowrap group-hover:text-blue-900 bg-gradient-to-r from-white to-white bg-left bg-no-repeat bg-[length:100%_100%] group-hover:bg-[length:0%_100%] transition-[background-size] duration-300" style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}>PSALION YIELD</span>
+                  <span
+                    className="relative inline-block px-1 rounded text-blue-700 font-normal text-base whitespace-nowrap group-hover:text-blue-900 bg-gradient-to-r from-white to-white bg-left bg-no-repeat bg-[length:100%_100%] group-hover:bg-[length:0%_100%] transition-[background-size] duration-300"
+                    style={{
+                      fontFamily:
+                        'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+                    }}
+                  >
+                    PSALION YIELD
+                  </span>
                 </motion.a>
 
                 {/* BESPOKE SERVICES Label - Lower Center */}
@@ -300,14 +326,17 @@ export default function HeroSection() {
                   transition={{ delay: 1.4, duration: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <span className="relative inline-block px-1 rounded text-blue-700 font-normal text-base group-hover:text-blue-900 bg-gradient-to-r from-white to-white bg-left bg-no-repeat bg-[length:100%_100%] group-hover:bg-[length:0%_100%] transition-[background-size] duration-300" style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}>BESPOKE SERVICES</span>
+                  <span
+                    className="relative inline-block px-1 rounded text-blue-700 font-normal text-base group-hover:text-blue-900 bg-gradient-to-r from-white to-white bg-left bg-no-repeat bg-[length:100%_100%] group-hover:bg-[length:0%_100%] transition-[background-size] duration-300"
+                    style={{
+                      fontFamily:
+                        'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+                    }}
+                  >
+                    BESPOKE SERVICES
+                  </span>
                 </motion.a>
               </div>
-              {/* Bottom fade gradient (stronger, behind labels) */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-36 sm:h-44 md:h-56 bg-gradient-to-b from-transparent to-white z-[1]" />
-              {/* Side fade gradients for bottom half (left and right) */}
-              <div className="pointer-events-none absolute left-0 bottom-0 h-1/2 w-20 sm:w-28 md:w-32 bg-gradient-to-r from-white to-transparent z-[1]" />
-              <div className="pointer-events-none absolute right-0 bottom-0 h-1/2 w-20 sm:w-28 md:w-32 bg-gradient-to-l from-white to-transparent z-[1]" />
             </div>
           </motion.div>
         </div>
@@ -327,7 +356,10 @@ export default function HeroSection() {
             <div className="flex items-center">
               <h2
                 className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-400 uppercase tracking-wide mb-0"
-                style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
+                style={{
+                  fontFamily:
+                    'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+                }}
               >
                 Psalion VC
               </h2>
@@ -564,7 +596,10 @@ export default function HeroSection() {
             <Link
               href="/psalion-vc"
               className="inline-block text-blue-700 hover:text-blue-900 text-xs sm:text-sm font-medium tracking-wide"
-              style={{ fontFamily: 'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
+              style={{
+                fontFamily:
+                  'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+              }}
             >
               See Full Portfolio &gt;
             </Link>
