@@ -216,7 +216,7 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden section-y">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 xl:px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center">
           {/* Text Content */}
           <motion.div
@@ -258,7 +258,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.45, delay: 0.1 }}
           >
-            <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden mx-auto lg:-translate-x-4 xl:-translate-x-6">
+            <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] lg:overflow-visible overflow-hidden mx-auto lg:-translate-x-20 xl:-translate-x-24 2xl:-translate-x-28">
               {/* Spline / Fallback Image */}
               {isMobile ? (
                 <Image src="/psalion_cubes.png" alt="Psalion visualization" fill className="object-contain" priority />
@@ -276,18 +276,18 @@ export default function HeroSection() {
               />
 
               {/* Interactive Labels positioned around the 3D model */}
-              <div className="absolute inset-0 pointer-events-none z-20">
+              <div className="absolute inset-0 pointer-events-none z-20 overflow-visible">
                 {/* PSALION VC Label - Upper Left */}
                 <motion.a
                   href="/psalion-vc"
-                  className="absolute top-[6%] lg:top-[12%] left-[20%] pointer-events-auto group"
+                  className="absolute top-[6%] lg:top-[12%] left-[20%] lg:left-[12%] pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1, duration: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                 >
                   <span
-                    className="relative inline-block px-1 rounded text-blue-700 font-normal text-base group-hover:text-blue-900 bg-gradient-to-r from-white to-white bg-left bg-no-repeat bg-[length:100%_100%] group-hover:bg-[length:0%_100%] transition-[background-size] duration-300"
+                    className="relative inline-block px-2 py-1 rounded text-blue-700 font-normal text-base whitespace-nowrap group-hover:text-white bg-gradient-to-r from-blue-600 to-blue-600 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300"
                     style={{
                       fontFamily:
                         'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
@@ -300,14 +300,14 @@ export default function HeroSection() {
                 {/* PSALION YIELD Label - Upper Right */}
                 <motion.a
                   href="/psalion-yield"
-                  className="absolute top-[22%] sm:top-[44%] left-[54%] sm:left-[70%] md:left-[76%] lg:left-[84%] xl:left-[86%] 2xl:left-[88%] -translate-y-1/2 transform pointer-events-auto group"
+                  className="absolute top-[22%] sm:top-[44%] left-[54%] sm:left-[68%] md:left-[74%] lg:left-[84%] xl:left-[88%] 2xl:left-[90%] -translate-y-1/2 transform pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                 >
                   <span
-                    className="relative inline-block px-1 rounded text-blue-700 font-normal text-base whitespace-nowrap group-hover:text-blue-900 bg-gradient-to-r from-white to-white bg-left bg-no-repeat bg-[length:100%_100%] group-hover:bg-[length:0%_100%] transition-[background-size] duration-300"
+                    className="relative inline-block px-1.5 py-1 rounded text-blue-700 font-normal text-base whitespace-nowrap group-hover:text-white bg-gradient-to-r from-blue-600 to-blue-600 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300"
                     style={{
                       fontFamily:
                         'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
@@ -320,14 +320,14 @@ export default function HeroSection() {
                 {/* BESPOKE SERVICES Label - Lower Center */}
                 <motion.a
                   href="/bespoke-services"
-                  className="absolute bottom-[8%] sm:bottom-[12%] lg:bottom-[18%] left-[14%] pointer-events-auto group"
+                  className="absolute bottom-[8%] sm:bottom-[12%] lg:bottom-[18%] left-[14%] lg:left-[6%] pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.4, duration: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                 >
                   <span
-                    className="relative inline-block px-1 rounded text-blue-700 font-normal text-base group-hover:text-blue-900 bg-gradient-to-r from-white to-white bg-left bg-no-repeat bg-[length:100%_100%] group-hover:bg-[length:0%_100%] transition-[background-size] duration-300"
+                    className="relative inline-block px-2 py-1 rounded text-blue-700 font-normal text-base whitespace-nowrap group-hover:text-white bg-gradient-to-r from-blue-600 to-blue-600 bg-left bg-no-repeat bg-[length:0%_100%] group-hover:bg-[length:100%_100%] transition-[background-size] duration-300"
                     style={{
                       fontFamily:
                         'IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'

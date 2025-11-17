@@ -44,7 +44,7 @@ const technologies: Technology[] = [
     category: 'Decentralized Finance',
     region: 'North America',
     fund: 'Fund II',
-    logo: '/psalion_vc/Bitwave_logo.png'
+    logo: '/psalion_vc/bitwave_logo.png'
   },
   {
     name: 'Arkis',
@@ -654,14 +654,14 @@ export default function TechnologiesChart() {
                           href={websiteByName[tech.name]}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-2 py-1 rounded-full bg-orange-100 text-orange-800 hover:bg-orange-200 transition-colors"
+                          className="px-1.5 py-1 rounded-full bg-orange-100 text-orange-800 hover:bg-orange-200 transition-colors text-[10px] whitespace-nowrap"
                         >
                           Website
                         </a>
                       )}
-                      <span className={`inline-flex items-center justify-center px-2 py-1 rounded-full text-center whitespace-nowrap ${tech.fund === 'Fund I' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}`}>{tech.fund}</span>
-                      <span className="inline-flex items-center justify-center px-2 py-1 rounded-full bg-purple-100 text-purple-800 text-center">{tech.category}</span>
-                      <span className="inline-flex items-center justify-center px-2 py-1 rounded-full bg-gray-100 text-gray-700 text-center">{tech.region}</span>
+                      <span className={`inline-flex items-center justify-center px-1.5 py-1 rounded-full text-center whitespace-nowrap text-[10px] ${tech.fund === 'Fund I' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}`}>{tech.fund}</span>
+                      <span className="inline-flex items-center justify-center px-1.5 py-1 rounded-full bg-purple-100 text-purple-800 text-center whitespace-nowrap text-[10px]">{tech.category}</span>
+                      <span className="inline-flex items-center justify-center px-1.5 py-1 rounded-full bg-gray-100 text-gray-700 text-center whitespace-nowrap text-[10px]">{tech.region}</span>
                     </div>
                   </div>
                 )}
