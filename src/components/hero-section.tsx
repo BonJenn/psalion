@@ -343,7 +343,7 @@ export default function HeroSection() {
 
         {/* Psalion VC Section Header */}
         <motion.div
-          className="max-w-6xl mx-auto -mt-4 md:mt-8"
+          className="max-w-6xl mx-auto mt-8 md:mt-8"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -370,7 +370,7 @@ export default function HeroSection() {
 
         {/* VC Section */}
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center max-w-6xl mx-auto -mt-2 md:-mt-12"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center max-w-6xl mx-auto mt-4 md:-mt-12"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
