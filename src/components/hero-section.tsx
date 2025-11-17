@@ -343,7 +343,7 @@ export default function HeroSection() {
 
         {/* Psalion VC Section Header */}
         <motion.div
-          className="max-w-6xl mx-auto mt-2 md:mt-8"
+          className="max-w-6xl mx-auto -mt-4 md:mt-8"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
