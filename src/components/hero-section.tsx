@@ -280,7 +280,7 @@ export default function HeroSection() {
                 {/* PSALION VC Label - Upper Left */}
                 <motion.a
                   href="/psalion-vc"
-                  className="absolute top-[6%] lg:top-[12%] left-[20%] lg:left-[12%] pointer-events-auto group"
+                  className="absolute top-[3%] lg:top-[12%] left-[20%] lg:left-[12%] pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1, duration: 0.5 }}
@@ -320,7 +320,7 @@ export default function HeroSection() {
                 {/* BESPOKE SERVICES Label - Lower Center */}
                 <motion.a
                   href="/bespoke-services"
-                  className="absolute bottom-[8%] sm:bottom-[12%] lg:bottom-[18%] left-[14%] lg:left-[6%] pointer-events-auto group"
+                  className="absolute bottom-[12%] sm:bottom-[12%] lg:bottom-[18%] left-[14%] lg:left-[6%] pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.4, duration: 0.5 }}
@@ -343,7 +343,7 @@ export default function HeroSection() {
 
         {/* Psalion VC Section Header */}
         <motion.div
-          className="max-w-6xl mx-auto mt-6 md:mt-8"
+          className="max-w-6xl mx-auto mt-2 md:mt-8"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -370,7 +370,7 @@ export default function HeroSection() {
 
         {/* VC Section */}
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center max-w-6xl mx-auto mt-2 md:-mt-12"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center max-w-6xl mx-auto -mt-2 md:-mt-12"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -430,7 +430,7 @@ export default function HeroSection() {
 
         {/* Portfolio Logos Section */}
         <motion.div
-          className="max-w-6xl mx-auto mt-10 md:mt-20"
+          className="max-w-6xl mx-auto mt-6 md:mt-20"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
