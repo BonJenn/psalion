@@ -266,15 +266,6 @@ export default function HeroSection() {
                 <DirectSpline />
               )}
 
-              {/* Radial fade overlay to cleanly fade out edges */}
-              <div
-                className="pointer-events-none absolute inset-0 z-10"
-                style={{
-                  background:
-                    'radial-gradient(circle at center, rgba(255,255,255,0) 45%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0.6) 75%, rgba(255,255,255,1) 90%)'
-                }}
-              />
-
               {/* Interactive Labels positioned around the 3D model */}
               <div className="absolute inset-0 pointer-events-none z-20 overflow-visible">
                 {/* PSALION VC Label - Upper Left */}
