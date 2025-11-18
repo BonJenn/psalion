@@ -258,19 +258,21 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.45, delay: 0.1 }}
           >
-            <div
-              className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] lg:overflow-visible overflow-hidden mx-auto lg:-translate-x-20 xl:-translate-x-24 2xl:-translate-x-28"
-              style={{
-                WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, black 40%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.1) 80%, transparent 95%)',
-                maskImage: 'radial-gradient(ellipse at center, black 0%, black 40%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.1) 80%, transparent 95%)'
-              }}
-            >
-              {/* Spline / Fallback Image */}
-              {isMobile ? (
-                <Image src="/psalion_cubes.png" alt="Psalion visualization" fill className="object-contain" priority />
-              ) : (
-                <DirectSpline />
-              )}
+            <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-visible mx-auto lg:-translate-x-20 xl:-translate-x-24 2xl:-translate-x-28">
+              {/* Spline / Fallback Image with mask */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, black 40%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.1) 80%, transparent 95%)',
+                  maskImage: 'radial-gradient(ellipse at center, black 0%, black 40%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.1) 80%, transparent 95%)'
+                }}
+              >
+                {isMobile ? (
+                  <Image src="/psalion_cubes.png" alt="Psalion visualization" fill className="object-contain" priority />
+                ) : (
+                  <DirectSpline />
+                )}
+              </div>
 
               {/* Interactive Labels positioned around the 3D model */}
               <div className="absolute inset-0 pointer-events-none z-20 overflow-visible">
@@ -297,7 +299,7 @@ export default function HeroSection() {
                 {/* PSALION YIELD Label - Upper Right */}
                 <motion.a
                   href="/psalion-yield"
-                  className="absolute top-[22%] sm:top-[44%] left-[54%] sm:left-[68%] md:left-[74%] lg:left-[84%] xl:left-[88%] 2xl:left-[90%] -translate-y-1/2 transform pointer-events-auto group"
+                  className="absolute top-[22%] sm:top-[44%] left-[54%] sm:left-[68%] md:left-[74%] lg:left-[82%] xl:left-[85%] 2xl:left-[87%] -translate-y-1/2 transform pointer-events-auto group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
