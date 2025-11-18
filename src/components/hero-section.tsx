@@ -261,8 +261,8 @@ export default function HeroSection() {
             <div
               className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] lg:overflow-visible overflow-hidden mx-auto lg:-translate-x-20 xl:-translate-x-24 2xl:-translate-x-28"
               style={{
-                WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, black 50%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.1) 85%, transparent 100%)',
-                maskImage: 'radial-gradient(ellipse at center, black 0%, black 50%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.1) 85%, transparent 100%)'
+                WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, black 40%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.1) 80%, transparent 95%)',
+                maskImage: 'radial-gradient(ellipse at center, black 0%, black 40%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.1) 80%, transparent 95%)'
               }}
             >
               {/* Spline / Fallback Image */}
