@@ -271,7 +271,7 @@ export default function HeroSection() {
                 className="pointer-events-none absolute inset-0 z-10"
                 style={{
                   background:
-                    'radial-gradient(circle at center, rgba(255,255,255,0) 60%, rgba(255,255,255,0.5) 80%, rgba(255,255,255,1) 95%)'
+                    'radial-gradient(circle at center, rgba(255,255,255,0) 45%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0.6) 75%, rgba(255,255,255,1) 90%)'
                 }}
               />
 
