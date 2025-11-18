@@ -258,22 +258,19 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.45, delay: 0.1 }}
           >
-            <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] lg:overflow-visible overflow-hidden mx-auto lg:-translate-x-20 xl:-translate-x-24 2xl:-translate-x-28">
+            <div
+              className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] lg:overflow-visible overflow-hidden mx-auto lg:-translate-x-20 xl:-translate-x-24 2xl:-translate-x-28"
+              style={{
+                WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, black 50%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.1) 85%, transparent 100%)',
+                maskImage: 'radial-gradient(ellipse at center, black 0%, black 50%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.1) 85%, transparent 100%)'
+              }}
+            >
               {/* Spline / Fallback Image */}
               {isMobile ? (
                 <Image src="/psalion_cubes.png" alt="Psalion visualization" fill className="object-contain" priority />
               ) : (
                 <DirectSpline />
               )}
-
-              {/* Radial fade overlay to cleanly fade out edges */}
-              <div
-                className="pointer-events-none absolute inset-0 z-10"
-                style={{
-                  background:
-                    'radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(255,255,255,0.4) 70%, rgba(255,255,255,0.9) 85%, white 100%)'
-                }}
-              />
 
               {/* Interactive Labels positioned around the 3D model */}
               <div className="absolute inset-0 pointer-events-none z-20 overflow-visible">
